@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\SuperAdminMiddleware;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Route::group(['middleware' => ['superadmin']], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('/2', function () {
+        return 'oke2';
+    });
 });
 
 
 Route::group(['middleware' => ['shorten']], function () {
+    Route::get('/3', function () {
+        return 'oke3';
+    });
 });
