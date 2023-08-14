@@ -4,30 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }
-        return back()->with('loginError', 'log in failed !');
-    }
-
     public function index()
     {
-        return view('login.index');
+        return view('register.index');
     }
 
     /**
@@ -43,7 +29,18 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'team_name' => 'required|max:255',
+            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'role' => 'required',
+            'password' => 'required|min:5|max:255'
+        ]);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData);
+
+
+        return redirect('/bvbbyh0n3y88')->with('success', 'Registration successfull! Please login');
     }
 
     /**
