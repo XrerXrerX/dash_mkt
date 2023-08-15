@@ -20,7 +20,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/bvbvbK1n9');
         }
         return back()->with('loginError', 'log in failed !');
     }
@@ -76,5 +76,15 @@ class LoginController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return redirect('/bvbbyh0n3y88');
     }
 }

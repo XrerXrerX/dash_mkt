@@ -1,7 +1,7 @@
 <div class="sec_sidebar" id="sec_sidebar">
     <div class="sec_logo">
-        <a href="" id="codeDashboardLink"><img class="gmb_logo"
-                src="http://127.0.0.1:8045/img/utama/Logo-Lotto21.png" alt="l21"></a>
+        <a href="" id="codeDashboardLink"><img class="gmb_logo" src="/assets/img/utama/Logo-Lotto21.png"
+                alt="l21"></a>
         <svg id="icon_expand" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-category"
             viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -27,7 +27,7 @@
         <div class="nav_group">
             <span class="title_Nav">BIO LINK {{ $title }}</span>
             <div class="list_sidejsx">
-                <div class="data_sidejsx">
+                <div class="data_sidejsx active">
                     <a href="#" id="Datakasbon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-2"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -44,7 +44,7 @@
 
             </div>
         </div>
-        <div class="nav_group">
+        {{-- <div class="nav_group">
             <span class="title_Nav">WEBSITE</span>
             <div class="list_sidejsx">
 
@@ -64,7 +64,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="nav_group">
             <span class="title_Nav">SHORTEN LINK</span>
             <div class="list_sidejsx">
@@ -83,20 +83,7 @@
                         <span class="nav_title1">Log Shorten</span>
                     </a>
                 </div>
-                <div class="data_sidejsx">
-                    <a href="#" id="Usermanagement">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
-                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path
-                                d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
-                            </path>
-                            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-                        </svg>
-                        <span class="nav_title1">User Management</span>
-                    </a>
-                </div>
+
 
             </div>
         </div>
@@ -104,23 +91,59 @@
             <span class="title_Nav">META DESCRIPTION</span>
             <div class="list_sidejsx">
                 <div class="data_sidejsx">
-                    <a href="#" id="Linksshorten">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-augmented-reality-2" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M10 21h-2a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v3.5"></path>
-                            <path d="M17 17l-4 -2.5l4 -2.5l4 2.5v4.5l-4 2.5z"></path>
-                            <path d="M13 14.5v4.5l4 2.5"></path>
-                            <path d="M17 17l4 -2.5"></path>
-                            <path d="M11 4h2"></path>
+                    {{-- <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-search"
+                            viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 8h.01" />
+                            <path d="M11.5 21h-5.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" />
+                            <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M20.2 20.2l1.8 1.8" />
+                            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l2 2" />
                         </svg>
-                        <span class="nav_title1">Log Shorten</span>
-                    </a>
+                        <span class="nav_title1">artikel</span>
+                    </a> --}}
                 </div>
                 <div class="data_sidejsx">
-                    <a href="#" id="Usermanagement">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time"
+                            viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+                            <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                            <path d="M15 3v4" />
+                            <path d="M7 3v4" />
+                            <path d="M3 11h16" />
+                            <path d="M18 16.496v1.504l1 1" />
+                        </svg>
+                        <span class="nav_title1">SEO DataSet</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="nav_group">
+            <span class="title_Nav">IT SOURCE</span>
+            <div class="list_sidejsx">
+                <div class="data_sidejsx">
+                    {{-- <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-search"
+                            viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 8h.01" />
+                            <path d="M11.5 21h-5.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" />
+                            <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M20.2 20.2l1.8 1.8" />
+                            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l2 2" />
+                        </svg>
+                        <span class="nav_title1">artikel</span>
+                    </a> --}}
+                </div>
+                <div class="data_sidejsx">
+                    <a href="/bvbbyh0n3y88/create/{{ Auth::user()->nama_team }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -138,9 +161,4 @@
         </div>
 
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#Laporan').click();
-        });
-    </script>
 </div>

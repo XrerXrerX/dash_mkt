@@ -1,14 +1,14 @@
 <div class="sec_top_navbar">
     <div class="breadcrumb">
         <ol class="main_bred">
-            <li class="list_bread"><a href="" id="root_bread">Dashboard</a></li>
-            <li class="separator_bread">
+            <li class="list_bread"><a href="" id="root_bread">TEAM {{ $title }}</a></li>
+            {{-- <li class="separator_bread">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"
                         d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path>
                 </svg>
-            </li>
-            <li class="list_bread"><a href="" id="root_bread">Data IP</a></li>
+            </li> --}}
+            {{-- <li class="list_bread"><a href="" id="root_bread">Data IP</a></li> --}}
         </ol>
     </div>
     <div class="right_top_nav">
@@ -50,7 +50,7 @@
       "
                 alt="gambar profile">
             <div class="group_users_name">
-                <span class="users_name">wantos</span>
+                <span class="users_name">{{ Auth::user()->nama_team }}</span>
                 <div class="group_users_level">
                     <span class="users_level">superadmin</span>
                     <span>▼</span>
@@ -83,9 +83,9 @@
                         <span>inbox</span>
                     </div>
                 </a>
-                <form action="/xx88/logout" method="post">
-                    <input type="hidden" name="_token" value="pdqToHvSfzKA8Krsq1MflCQ8dmevyEUF7rwsFjPA"> <button
-                        type="submit">
+                <form action="/logout" method="post">
+                    @csrf
+                    <button type="submit">
                         <div class="data_profile">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2"
                                 viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
@@ -101,7 +101,6 @@
                         </div>
                     </button>
                 </form>
-
             </div>
         </div>
     </div>
