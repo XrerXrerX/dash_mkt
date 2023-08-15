@@ -3,6 +3,21 @@ $(document).ready(function () {
     var initialLogoSrc = $('.gmb_logo').attr('src');
     var initialContainerClass = $('.sec_container_utama').attr('class');
     var isExpanded = false;
+    $(document).on('click', '#icon_expand', function () {
+        isExpanded = !isExpanded;
+        if (isExpanded) {
+            $('.gmb_logo').attr('src', function (index, oldSrc) {
+                return oldSrc.replace('Logo-Lotto21.png', '21icon.png');
+            });
+            $('.sec_container_utama').addClass('noexpand');
+            $('.data_sidejsx').removeClass('active');
+            $('.sub_data_sidejsx').css('display', 'none');
+        } else {
+            $('.gmb_logo').attr('src', initialLogoSrc);
+            $('.sec_container_utama').attr('class', initialContainerClass);
+            $('.sub_data_sidejsx').css('display', '');
+        }
+    });
     $(document).on('mouseenter', '.sec_sidebar', function () {
         if (isExpanded) {
             $('.gmb_logo').attr('src', function (index, oldSrc) {
@@ -19,7 +34,11 @@ $(document).ready(function () {
             $('.sec_container_utama').addClass('noexpand');
         }
     });
-
+    $(document).on('click', '.data_sidejsx, .sub_data_sidejsx', function () {
+        $('.gmb_logo').attr('src', initialLogoSrc);
+        $('.sec_container_utama').attr('class', initialContainerClass);
+        isExpanded = false;
+    });
 });
 
 // copy komponent

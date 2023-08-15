@@ -27,8 +27,10 @@
         <div class="nav_group">
             <span class="title_Nav">BIO LINK {{ $title }}</span>
             <div class="list_sidejsx">
-                <div class="data_sidejsx active">
-                    <a href="#" id="Datakasbon">
+                <div
+                    class="data_sidejsx {{ in_array(request()->path(), ['bvbbyh0n3y88/admin', 'bvbbyh0n3y88/superadmin', 'bvbbyh0n3y88/itteam']) ? 'active' : '' }}
+                    ">
+                    <a href="/bvbvbK1n9" id="Datakasbon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-2"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                             fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -43,8 +45,8 @@
 
 
             </div>
-        </div>
-        {{-- <div class="nav_group">
+
+            {{-- <div class="nav_group">
             <span class="title_Nav">WEBSITE</span>
             <div class="list_sidejsx">
 
@@ -65,8 +67,7 @@
                 </div>
             </div>
         </div> --}}
-        <div class="nav_group">
-            <span class="title_Nav">SHORTEN LINK</span>
+
             <div class="list_sidejsx">
                 <div class="data_sidejsx">
                     <a href="#" id="Linksshorten">
@@ -80,11 +81,33 @@
                             <path d="M17 17l4 -2.5"></path>
                             <path d="M11 4h2"></path>
                         </svg>
-                        <span class="nav_title1">Log Shorten</span>
+                        <span class="nav_title1">Link Shorten</span>
+                        <div class="arrow_side">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right"
+                                viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 12l14 0" />
+                                <path d="M13 18l6 -6" />
+                                <path d="M13 6l6 6" />
+                            </svg>
+                        </div>
                     </a>
                 </div>
-
-
+                <div class="sub_data_sidejsx">
+                    <a href="#" id="codeBoxLink">
+                        <div class="list_subdata">
+                            <div class="dotsub"></div>
+                            <span class="sub_title1">Buat Link Shorten</span>
+                        </div>
+                    </a>
+                    <a href="#" id="codeTableLink">
+                        <div class="list_subdata">
+                            <div class="dotsub"></div>
+                            <span class="sub_title1">Daftar Link Shorten</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="nav_group">
@@ -142,7 +165,7 @@
                         <span class="nav_title1">artikel</span>
                     </a> --}}
                 </div>
-                <div class="data_sidejsx">
+                <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
                     <a href="/bvbbyh0n3y88/create/{{ Auth::user()->nama_team }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -156,7 +179,25 @@
                         <span class="nav_title1">User Management</span>
                     </a>
                 </div>
-
+                <div class="data_sidejsx">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sport-billard"
+                            viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" />
+                        </svg>
+                        <select class="form-select @error('nama_team') is-invalid @enderror" name="nama_team"
+                            id="nama_team" required>
+                            <option value="" selected>Manage Team</option>
+                            @foreach ($total_team as $teamValue => $teamLabel)
+                                <option value="{{ $teamValue }}">{{ $teamLabel }}</option>
+                            @endforeach
+                        </select>
+                    </a>
+                </div>
             </div>
         </div>
 

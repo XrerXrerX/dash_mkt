@@ -27,7 +27,11 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('login.index');
+        if (auth()->check()) {
+            return redirect('/bvbvbK1n9'); // Arahkan ke /bvbvbK1n9 jika sudah terautentikasi
+        } else {
+            return view('login.index'); // Arahkan ke view login.index jika belum terautentikasi
+        }
     }
 
     /**

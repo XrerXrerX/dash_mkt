@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('container')
     <div class="sec_box hgi-100">
-        <form action="/bvbbyh0n3y88/boszoya/{{ $title }}" method="post" enctype="multipart/form-data" id="form">
+        <form action="/bvbbyh0n3y88/superadmin/{{ $title }}" method="post" enctype="multipart/form-data" id="form">
             @method('put')
             @csrf
 
@@ -52,12 +52,8 @@
                 @if ($errors->has('nama_team'))
                     <span class="text-danger">{{ $errors->first('nama_team') }}</span>
                 @endif
-
-
-
-
                 <div class="list_form">
-                    <span class="sec_label">Link Login Refferal</span>
+                    <span class="sec_label">Update Link Login Refferal</span>
                     {{-- <input type="text" id="login" name="login" placeholder="{{ $datauser->login }}" required> --}}
                     <input type="text" class="form-control @error('login') is-invalid @enderror" id="login"
                         name="login" required value="{{ old('login', $datauser->login) }}">
@@ -68,7 +64,7 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Link Daftar Refferal</span>
+                    <span class="sec_label">Update Link Daftar Refferal</span>
                     {{-- <input type="text" id="daftar" name="daftar" placeholder="{{ $datauser->daftar }}" required> --}}
                     <input type="text" class="form-control @error('daftar') is-invalid @enderror" id="daftar"
                         name="daftar" required value="{{ old('daftar', $datauser->daftar) }}">
@@ -79,7 +75,7 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Link Whatsapp</span>
+                    <span class="sec_label">Update Link Whatsapp</span>
                     {{-- <input type="text" id="wa" name="wa" placeholder="{{ $datauser->wa }}" required> --}}
                     <input type="text" class="form-control @error('wa') is-invalid @enderror" id="wa"
                         name="wa" required value="{{ old('wa', $datauser->wa) }}">
@@ -90,7 +86,7 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Link Facebook</span>
+                    <span class="sec_label">Update Link Facebook</span>
                     {{-- <input type="text" id="fb" name="fb" placeholder="{{ $datauser->fb }}" required> --}}
                     <input type="text" class="form-control @error('fb') is-invalid @enderror" id="fb"
                         name="fb" required value="{{ old('fb', $datauser->fb) }}">
@@ -101,7 +97,7 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Link Instagram</span>
+                    <span class="sec_label">Update Link Instagram</span>
                     {{-- <input type="text" id="ig" name="ig" placeholder="{{ $datauser->ig }}" required> --}}
                     <input type="text" class="form-control @error('ig') is-invalid @enderror" id="ig"
                         name="ig" required value="{{ old('ig', $datauser->ig) }}">
@@ -112,7 +108,7 @@
                     @enderror
                 </div>
                 {{-- <div class="list_form">
-                    <span class="sec_label">title</span>
+                    <span class="sec_label">Update title</span>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
                         name="title" required value="{{ old('title', $datauser->title) }}">
                     @error('title')
@@ -122,13 +118,16 @@
                     @enderror
                 </div> --}}
                 <div class="list_form">
-                    <span class="sec_label">upload profil</span>
+                    <span class="sec_label">Update Upload Profile BioLink</span>
                     <input type='hidden' name="oldimg_profile" value="{{ $datauser->img_profile }}">
+                    {{-- <input class="form-control  @error('img_profile') is-invalid @enderror" type="file" id="file"
+                        name="img_profile" accept="image/*" required> --}}
 
-                    {{-- <input type="text" id="img_profile" name="img_profile" placeholder="{{ $datauser->img_profile }}"
+                    {{-- <input type="text" id="img_profile" name="img_profile" placeholder="Masukkan gambar profile BioLink"
                         required> --}}
-                    <input type="text" class="form-control @error('img_profile') is-invalid @enderror" id="img_profile"
-                        name="img_profile" required value="{{ old('img_profile', $datauser->img_profile) }}">
+
+                    <input type="file" class="form-control @error('img_profile') is-invalid @enderror" id="img_profile"
+                        name="img_profile" value="{{ old('img_profile', $datauser->img_profile) }}">
                     @error('img_profile')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -136,11 +135,17 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">upload banner profil</span>
+                    <span class="sec_label">Update Upload Banner BioLink</span>
                     <input type='hidden' name="oldbanner_bio" value="{{ $datauser->banner_bio }}">
-                    {{-- <input type="text" id="banner_bio" name="banner_bio" placeholder="{{ $datauser->banner_bio }}" required> --}}
-                    <input type="text" class="form-control @error('banner_bio') is-invalid @enderror" id="banner_bio"
-                        name="banner_bio" required value="{{ old('banner_bio', $datauser->banner_bio) }}">
+
+                    {{-- <input class="form-control  @error('banner_bio') is-invalid @enderror" type="file" id="file"
+                        name="banner_bio" accept="image/*" required> --}}
+
+                    {{-- <input type="text" id="banner_bio" name="banner_bio" placeholder="Masukkan gambar Banner BioLink"
+                        required> --}}
+
+                    <input type="file" class="form-control @error('banner_bio') is-invalid @enderror" id="banner_bio"
+                        name="banner_bio" value="{{ old('banner_bio', $datauser->banner_bio) }}">
                     @error('banner_bio')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -148,11 +153,19 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">upload banner Web</span>
+                    <span class="sec_label">Update Upload Banner Web</span>
                     <input type='hidden' name="oldbanner_web" value="{{ $datauser->banner_web }}">
-                    {{-- <input type="text" id="banner_web" name="banner_web" placeholder="{{ $datauser->login }}" required> --}}
-                    <input type="text" class="form-control @error('banner_web') is-invalid @enderror" id="banner_web"
-                        name="banner_web" required value="{{ old('banner_web', $datauser->banner_web) }}">
+
+
+                    {{-- <input class="form-control  @error('banner_web') is-invalid @enderror" type="file" id="file"
+                        name="banner_web" accept="image/*" required> --}}
+
+                    {{-- <input type="text" id="banner_web" name="banner_web" placeholder="Masukkan gambar Banner Web"
+                        required> --}}
+
+
+                    <input type="file" class="form-control @error('banner_web') is-invalid @enderror" id="banner_web"
+                        name="banner_web" value="{{ old('banner_web', $datauser->banner_web) }}">
                     @error('banner_web')
                         <div class="invalid-feedback">
                             {{ $message }}

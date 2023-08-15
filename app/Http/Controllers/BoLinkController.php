@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bo_Link;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,9 +28,14 @@ class BoLinkController extends Controller
         $user = Auth::user()->nama_team;
         $data_user = Bo_Link::where('nama_team', $user)
             ->first();
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
         return view('dashboard.bolink.index', [
             'datauser' => $data_user,
-            'title' => $user
+            'title' => $user,
+            'total_team' => $total_team
         ]);
     }
 
@@ -40,9 +47,14 @@ class BoLinkController extends Controller
         $user = Auth::user()->nama_team;
         $data_user = Bo_Link::where('nama_team', $user)
             ->first();
-        return view('dashboard.bolink.index', [
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.bolink.create', [
             'datauser' => $data_user,
-            'title' => $user
+            'title' => $user,
+            'total_team' => $total_team
         ]);
     }
 
@@ -51,7 +63,43 @@ class BoLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $target = $request->nama_team;
+        $validatedData = $request->validate([
+            'nama_team' => 'required|max:255',
+            'login' => 'required|max:255',
+            'daftar' => 'required|max:5046',
+            'wa' => 'required|max:255',
+            'fb' => 'required|max:255',
+            'ig' => 'required|max:255',
+            'rtp' => 'required|max:255',
+            'link_livechat' => 'required|max:255',
+            'link_buktijp' => 'required|max:255',
+            'link_website' => 'required|max:255',
+            'img_profile' => 'image|file|max:5046',
+            'banner_bio' => 'image|file|max:5046',
+            'banner_web' => 'image|file|max:5046',
+            // 'title' => 'required|max:300',
+            // 'artike_bio' => 'required',
+            // 'artikel_web' => 'required',
+            // 'meta_tag' => 'required'
+        ]);
+        $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
+        $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
+        $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
+        Bo_Link::create($validatedData);
+
+        $uservalidate = $request->validate([
+            'nama_team' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'role' => 'required',
+            'password' => 'required|min:5|max:255'
+        ]);
+        $uservalidate['username'] =  $uservalidate['nama_team'];
+
+        $uservalidate['password'] = Hash::make($uservalidate['password']);
+        User::create($uservalidate);
+
+        return redirect('/bvbvbK1n9')->with('success', 'new post has been added!');
     }
 
     /**
@@ -76,7 +124,7 @@ class BoLinkController extends Controller
     public function update(Request $request, string $id)
     {
         $datateam = Bo_Link::where('nama_team', $id)->first();
-
+        $target = $request->nama_team;
         $rules = [
             'login' => 'required|max:255',
             'daftar' => 'required|max:5046',
@@ -102,7 +150,7 @@ class BoLinkController extends Controller
             if ($request->oldimg_profile) {
                 Storage::delete('public/' . $request->oldimg_profile);
             }
-            $validatedData['img_profile'] = $request->file('img_profile')->store('banner', 'public');
+            $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
         }
 
         if ($request->file('banner_bio')) {
@@ -110,7 +158,7 @@ class BoLinkController extends Controller
             if ($request->oldbanner_bio) {
                 Storage::delete('public/' . $request->oldbanner_bio);
             }
-            $validatedData['banner_bio'] = $request->file('banner_bio')->store('banner', 'public');
+            $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
         }
 
         if ($request->file('banner_web')) {
@@ -118,7 +166,7 @@ class BoLinkController extends Controller
             if ($request->oldbanner_web) {
                 Storage::delete('public/' . $request->oldbanner_web);
             }
-            $validatedData['banner_web'] = $request->file('banner_web')->store('banner', 'public');
+            $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
         }
 
         $validatedData['nama_team'] = auth()->user()->nama_team;

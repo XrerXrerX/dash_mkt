@@ -52,11 +52,27 @@
             <div class="group_users_name">
                 <span class="users_name">{{ Auth::user()->nama_team }}</span>
                 <div class="group_users_level">
-                    <span class="users_level">superadmin</span>
-                    <span>▼</span>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit">
+                            <div class="data_profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2"
+                                    viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2">
+                                    </path>
+                                    <path d="M15 12h-12l3 -3"></path>
+                                    <path d="M6 15l-3 -3"></path>
+                                </svg>
+                                <span>logout</span>
+                            </div>
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="list_menu_profile">
+            {{-- <div class="list_menu_profile">
                 <a href="">
                     <div class="data_profile">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle"
@@ -101,7 +117,7 @@
                         </div>
                     </button>
                 </form>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
