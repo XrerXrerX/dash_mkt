@@ -15,17 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('nama_team');
             $table->string('img_profile');
-            $table->string('banner_tim');
+            $table->string('banner_bio');
+            $table->string('banner_web');
             $table->string('login');
             $table->string('daftar');
             $table->string('wa');
             $table->string('fb');
             $table->string('ig');
-            $table->text('artikel');
+            $table->string('title');
+            $table->text('artikel_bio');
+            $table->text('artikel_web');
             $table->text('meta_tag');
             $table->string('rtp');
-            $table->string('link_rtp');
-            $table->string('livechat');
+            $table->string('link_livechat');
+            $table->string('link_buktijp');
+            $table->string('link_website');
             $table->timestamps();
         });
     }
