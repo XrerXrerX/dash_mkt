@@ -39,7 +39,7 @@
                             <path d="M19 16h-12a2 2 0 0 0 -2 2"></path>
                             <path d="M9 8h6"></path>
                         </svg>
-                        <span class="nav_title1">Manage Link</span>
+                        <span class="nav_title1">Manage BioLink</span>
                     </a>
                 </div>
 
@@ -129,7 +129,7 @@
                     </a> --}}
                 </div>
                 <div class="data_sidejsx">
-                    <a href="#">
+                    <a href="/bvbbyh0n3y88/superadmin/meta">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time"
                             viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
