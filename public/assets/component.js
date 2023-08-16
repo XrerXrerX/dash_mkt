@@ -5,14 +5,14 @@
 // });
 
 // sidebar
-$(document).ready(function () {
-    $('#sec_sidebar').load('komponen/side_nav.html', function () {
-        $('#sec_sidebar').on('click', '.data_sidejsx', function (event) {
-            $(this).toggleClass('active');
-            $(this).next('.sub_data_sidejsx').slideToggle('fast');
-            $('.data_sidejsx').not(this).removeClass('active');
-            $('.data_sidejsx').not(this).next('.sub_data_sidejsx').slideUp('fast');
-        });
+// $(document).ready(function () {
+    // $('#sec_sidebar').load('komponen/side_nav.html', function () {
+        // $('#sec_sidebar').on('click', '.data_sidejsx', function (event) {
+        //     $(this).toggleClass('active');
+        //     $(this).next('.sub_data_sidejsx').slideToggle('fast');
+        //     $('.data_sidejsx').not(this).removeClass('active');
+        //     $('.data_sidejsx').not(this).next('.sub_data_sidejsx').slideUp('fast');
+        // });
 
 
         // $('#sec_sidebar').on('click', '.list_subdata', function (event) {
@@ -49,85 +49,85 @@ $(document).ready(function () {
         //         }
         //     });
         // });
-    });
-});
+    // });
+// });
 
 // top navbar
-$(document).ready(function () {
-    $('.sec_top_navbar').load('komponen/top_nav.html');
-    $(document).on('click', '.profile_nav', function () {
-        $('.list_menu_profile').slideToggle('fast');
-    });
-    $(document).on('click', function (event) {
-        if (!$(event.target).closest('.list_menu_profile, .profile_nav').length) {
-            $('.list_menu_profile').slideUp('fast');
-        }
-    });
-});
+// $(document).ready(function () {
+//     $('.sec_top_navbar').load('komponen/top_nav.html');
+//     $(document).on('click', '.profile_nav', function () {
+//         $('.list_menu_profile').slideToggle('fast');
+//     });
+//     $(document).on('click', function (event) {
+//         if (!$(event.target).closest('.list_menu_profile, .profile_nav').length) {
+//             $('.list_menu_profile').slideUp('fast');
+//         }
+//     });
+// });
 
 
 
-// component
-$(document).on('click', '#codeDashboardLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/dashboard.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/dashboard.html');
-    });
-});
+// // component
+// $(document).on('click', '#codeDashboardLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/dashboard.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/dashboard.html');
+//     });
+// });
 
-$(document).on('click', '#codeBoxLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_box.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_box.html');
-    });
-});
+// $(document).on('click', '#codeBoxLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_box.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_box.html');
+//     });
+// });
 
-$(document).on('click', '#codeTableLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_table.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_table.html');
-    });
-});
+// $(document).on('click', '#codeTableLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_table.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_table.html');
+//     });
+// });
 
-$(document).on('click', '#codeFormLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_form.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_form.html');
-    });
-});
+// $(document).on('click', '#codeFormLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_form.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_form.html');
+//     });
+// });
 
-$(document).on('click', '#codeModalLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_modal.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_modal.html');
-    });
-});
+// $(document).on('click', '#codeModalLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_modal.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_modal.html');
+//     });
+// });
 
-$(document).on('click', '#codeButtonLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_button.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_button.html');
-    });
-});
+// $(document).on('click', '#codeButtonLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_button.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_button.html');
+//     });
+// });
 
-$(document).on('click', '#codeCardLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_card.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_card.html');
-    });
-});
+// $(document).on('click', '#codeCardLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_card.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_card.html');
+//     });
+// });
 
-$(document).on('click', '#codeOtherLink', function (event) {
-    event.preventDefault();
-    $('.aplay_code').load('komponen/code_other.html', function () {
-        adjustElementSize();
-        localStorage.setItem('lastPage', 'komponen/code_other.html');
-    });
-});
+// $(document).on('click', '#codeOtherLink', function (event) {
+//     event.preventDefault();
+//     $('.aplay_code').load('komponen/code_other.html', function () {
+//         adjustElementSize();
+//         localStorage.setItem('lastPage', 'komponen/code_other.html');
+//     });
+// });
