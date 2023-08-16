@@ -2,36 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Bo_Link;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-class LoginController extends Controller
+class MetaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if ($request->session()->has('login_expired') && $request->session()->get('login_expired')) {
+                return redirect('/bvbbyh0n3y88')->withErrors(['login_expired' => 'Session habis. Silakan login kembali.']);
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/bvbvbK1n9');
-        }
-        return back()->with('loginError', 'log in failed !');
-    }
-
     public function index()
     {
-        if (auth()->check()) {
-            return redirect('/bvbvbK1n9'); // Arahkan ke /bvbvbK1n9 jika sudah terautentikasi
-        } else {
-            return view('login.index'); // Arahkan ke view login.index jika belum terautentikasi
-        }
+        $user = Auth::user()->nama_team;
+        $data_user = Bo_Link::where('nama_team', $user)
+            ->first();
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.meta.index', [
+            'datauser' => $data_user,
+            'title' => $user,
+            'total_team' => $total_team
+        ]);
     }
 
     /**
@@ -80,15 +84,5 @@ class LoginController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-    public function logout()
-    {
-        Auth::logout();
-
-        request()->session()->invalidate();
-
-        request()->session()->regenerateToken();
-
-        return redirect('/bvbbyh0n3y88');
     }
 }

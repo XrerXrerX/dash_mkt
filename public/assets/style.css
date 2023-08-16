@@ -1142,7 +1142,7 @@ textarea:hover {
 .sec_button_form {
     width: 100%;
     position: absolute;
-    bottom: 80px;
+    bottom: 60px;
     left: 0;
     display: flex;
     align-items: center;
@@ -1600,3 +1600,41 @@ option.sec_selected {
     box-shadow: 0 0 20px rgba(var(--rgba-primary), 0.5), inset 0 0 10px rgba(var(--rgba-primary));
 }
 
+.list_form2 {
+    width: 100%;
+    position: relative;
+    display: inline-flex;
+    gap: 5px;
+    padding-bottom: 5px;
+}
+
+.sec_label2 {
+    width: 20%;
+    height: 40px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px 0 0 6px;
+    background: rgba(var(--rgba-white), 0.05);
+    border: var(--border-primary);
+    text-transform: capitalize;
+}
+
+
+.list_form2 textarea:hover {
+    border-color: rgba(var(--rgba-primary));
+}
+
+.list_form2 textarea {
+    border-radius: 0 6px 6px 0;
+    padding: 10px;
+    height: 180px;
+    width: 80%; /* Adjust as needed */
+    resize: vertical;
+    background: rgba(var(--rgba-primary-bg-color));
+    color: rgba(var(--rgba-white));
+    box-shadow: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--rgba-primary));
+}

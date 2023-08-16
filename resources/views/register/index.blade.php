@@ -33,11 +33,11 @@
                                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                             </svg>
-                            <input ttype="team_name" name="team_name"
-                                class="form-control  @error('team_name') is-invalid @enderror" id="team_name"
-                                placeholder="team_name" autofocus required value="{{ old('team_name') }}">
+                            <input ttype="nama_team" name="nama_team"
+                                class="form-control  @error('nama_team') is-invalid @enderror" id="nama_team"
+                                placeholder="nama_team" autofocus required value="{{ old('nama_team') }}">
                         </div>
-                        @error('team_name')
+                        @error('nama_team')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

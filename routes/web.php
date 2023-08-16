@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BoLinkController;
-
+use App\Http\Controllers\MetaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,24 +18,26 @@ use App\Http\Controllers\BoLinkController;
 |
 */
 
+
+//================================================AUTHENTICATION
+
 Route::get('/bvbbyh0n3y88', [LoginController::class, 'index'])->name('login');
 Route::get('/bvbbyh0n3y88/register', [RegisterController::class, 'index']);
 Route::post('/bvbbyh0n3y88/register', [RegisterController::class, 'store']);
 Route::post('/bvbbyh0n3y88/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout'])->Middleware('auth');
+
 Route::get('/bvbvbK1n9', function () {
-
-
     if (Auth::check()) {
         $user = Auth::user();
-
         if ($user->role == 'superadmin') {
-            return redirect()->intended('/bvbbyh0n3y88/boszoya');
+            return redirect()->intended('/bvbbyh0n3y88/superadmin');
         } elseif ($user->role == 'admin') {
-            return redirect()->intended('/bvbbyh0n3y88/boslinda');
+            return redirect()->intended('/bvbbyh0n3y88/admin');
         } elseif ($user->role == 'shorten') {
-            return redirect()->intended('/bvbbyh0n3y88/bosmega');
+            return redirect()->intended('/bvbbyh0n3y88/shorten');
         } else {
-            return redirect()->intended('/logout');
+            return redirect()->intended('/bvbbyh0n3y88/itteam');
         }
     }
     return redirect()->intended('/logout');
@@ -43,39 +45,26 @@ Route::get('/bvbvbK1n9', function () {
 
 
 
-Route::group(['middleware' => ['superadmin']], function () {
-    // Route::get('/bvbbyh0n3y88/boszoya', function () {
-    //     return view('dashboard.bolink.create', [
-    //         'title' => 'ZOYA',
-    //     ]);
-    // });
-
-    Route::get('/bvbbyh0n3y88/boszoya', [BoLinkController::class, 'index']);
-    Route::resource('/bvbbyh0n3y88/boszoya', BoLinkController::class);
-    Route::get('/bvbbyh0n3y88/create/{nama_team}', [BoLinkController::class, 'create']);
+//================================================================MIDDLEWARE SUPERADMIN
 
 
-    if (Auth::check()) {
-        return redirect()->intended('/superadmin');
-    }
-
-    return redirect()->intended('/login');
-});
-
-Route::group(['middleware' => ['admin']], function () {
-    Route::get('/2', function () {
-        return 'oke2';
-    });
-});
-
-
-Route::group(['middleware' => ['shorten']], function () {
-    Route::get('/3', function () {
-        return 'oke3';
-    });
-});
+Route::get('/bvbbyh0n3y88/superadmin', [BoLinkController::class, 'index'])->Middleware(['auth', 'superadmin']);
+Route::resource('/bvbbyh0n3y88/superadmin', BoLinkController::class)->Middleware(['auth', 'superadmin']);
+Route::get('/bvbbyh0n3y88/create/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
+Route::get('/bvbbyh0n3y88/meta/desc', [MetaController::class, 'index'])->Middleware(['auth', 'superadmin']);
 
 
 
+// if (Auth::check()) {
+//     return redirect()->intended('/superadmin');
+// }
 
-Route::post('/logout', [LoginController::class, 'logout'])->Middleware('auth');
+// return redirect()->intended('/login');
+
+//================================================================MIDDLEWARE ADMIN
+
+Route::get('/bvbbyh0n3y88/admin', [BoLinkController::class, 'index'])->Middleware(['auth', 'admin']);
+
+//================================================================MIDDLEWARE SHORTEN
+
+Route::get('/bvbbyh0n3y88/shorten', [BoLinkController::class, 'index'])->Middleware(['auth', 'shorten']);

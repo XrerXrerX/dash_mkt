@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bo_link', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_team');
+            $table->string('nama_team')->unique();
             $table->string('img_profile');
             $table->string('banner_bio');
             $table->string('banner_web');
@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('wa');
             $table->string('fb');
             $table->string('ig');
-            $table->string('title');
-            $table->text('artikel_bio');
-            $table->text('artikel_web');
-            $table->text('meta_tag');
+            $table->string('title')->nullable();
+            $table->text('artikel_bio')->nullable();
+            $table->text('artikel_web')->nullable();
+            $table->text('meta_tag')->nullable();
             $table->string('rtp');
             $table->string('link_livechat');
             $table->string('link_buktijp');
