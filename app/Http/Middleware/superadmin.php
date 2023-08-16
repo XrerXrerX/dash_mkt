@@ -15,6 +15,10 @@ class superadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth()->check() && auth()->user()->role === 'superadmin') {
+            return $next($request);
+        }
+
+        abort(403, 'Unauthorized');
     }
 }
