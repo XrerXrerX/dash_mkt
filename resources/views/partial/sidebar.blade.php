@@ -95,7 +95,7 @@
                     </a>
                 </div>
                 <div class="sub_data_sidejsx">
-                    <a href="#" id="codeBoxLink">
+                    <a href="/linkshorten" id="codeBoxLink">
                         <div class="list_subdata">
                             <div class="dotsub"></div>
                             <span class="sub_title1">Buat Link Shorten</span>
