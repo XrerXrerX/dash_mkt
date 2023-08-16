@@ -94,46 +94,20 @@
             </div>
         </div> --}}
 
-            <div class="list_sidejsx">
-                <div class="data_sidejsx">
-                    <a href="#" id="Linksshorten">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-augmented-reality-2"
-                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M10 21h-2a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v3.5"></path>
-                            <path d="M17 17l-4 -2.5l4 -2.5l4 2.5v4.5l-4 2.5z"></path>
-                            <path d="M13 14.5v4.5l4 2.5"></path>
-                            <path d="M17 17l4 -2.5"></path>
-                            <path d="M11 4h2"></path>
-                        </svg>
-                        <span class="nav_title1">Link Shorten</span>
-                        <div class="arrow_side">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right"
-                                viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M5 12l14 0" />
-                                <path d="M13 18l6 -6" />
-                                <path d="M13 6l6 6" />
-                            </svg>
-                        </div>
-                    </a>
-                </div>
-                <div class="sub_data_sidejsx">
-                    <a href="#" id="codeBoxLink">
-                        <div class="list_subdata">
-                            <div class="dotsub"></div>
-                            <span class="sub_title1">Buat Link Shorten</span>
-                        </div>
-                    </a>
-                    <a href="#" id="codeTableLink">
-                        <div class="list_subdata">
-                            <div class="dotsub"></div>
-                            <span class="sub_title1">Daftar Link Shorten</span>
-                        </div>
-                    </a>
-                </div>
+            <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/shorten/*') ? 'active' : '' }}">
+                <a href="/bvbbyh0n3y88/shorten/{{ Auth::user()->nama_team }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-augmented-reality-2"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M10 21h-2a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v3.5"></path>
+                        <path d="M17 17l-4 -2.5l4 -2.5l4 2.5v4.5l-4 2.5z"></path>
+                        <path d="M13 14.5v4.5l4 2.5"></path>
+                        <path d="M17 17l4 -2.5"></path>
+                        <path d="M11 4h2"></path>
+                    </svg>
+                    <span class="nav_title1">Link Shorten</span>
+                </a>
             </div>
         </div>
         <div class="nav_group">
@@ -218,9 +192,9 @@
                         <select class="form-select @error('nama_team') is-invalid @enderror" name="nama_team"
                             id="nama_team" required>
                             <option value="" selected>Manage Team</option>
-                            @foreach ($total_team as $teamValue => $teamLabel)
+                            {{-- @foreach ($total_team as $teamValue => $teamLabel)
                                 <option value="{{ $teamValue }}">{{ $teamLabel }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </a>
                 </div>

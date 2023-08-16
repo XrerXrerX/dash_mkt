@@ -5,9 +5,12 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BoLinkController;
+use App\Http\Controllers\LinkShortenController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\SuperAdminController;
 use App\Models\Bo_Link;
+
+use function Laravel\Prompts\alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +104,11 @@ Route::get('/bvbbyh0n3y88/meta/desc', [MetaController::class, 'index'])->Middlew
 Route::resource('/bvbbyh0n3y88/meta/desc', MetaController::class)->Middleware(['auth', 'superadmin']);
 
 
-Route::get('/bvbbyh0n3y88/l4stQu0t3s/{nama_team}', [SuperAdminController::class, 'index'])->Middleware(['auth', 'superadmin']);
-Route::get('/bvbbyh0n3y88/l4stQu0t3s/meta/{nama_team}', [SuperAdminController::class, 'meta'])->Middleware(['auth', 'superadmin']);
-Route::get('/bvbbyh0n3y88/l4stQu0t3s/create/superadmin', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
+Route::get('/bvbbyh0n3y88/shorten', [BoLinkController::class, 'index'])->Middleware(['auth', 'shorten']);
+
+Route::get('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'index'])->Middleware(['auth', 'shorten']);
+Route::post('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'shorten']);
+Route::delete('/bvbbyh0n3y88/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'shorten']);
+
+
+Route::get('/x/{kode}', [LinkShortenController::class, 'unshorten']);
