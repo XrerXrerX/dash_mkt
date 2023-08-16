@@ -9,8 +9,8 @@ use App\Http\Controllers\LinkShortenController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\SuperAdminController;
 use App\Models\Bo_Link;
-
 use function Laravel\Prompts\alert;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +52,6 @@ Route::get('/bvbvbK1n9', function () {
 Route::get('/superadmin', function () {
 
     $user = Auth::user()->nama_team;
-
     $total_team = Bo_Link::select('nama_team')
         ->distinct()
         ->pluck('nama_team')
@@ -65,7 +64,6 @@ Route::get('/superadmin', function () {
 
 Route::get('/admin', function () {
     $user = Auth::user()->nama_team;
-
     $total_team = Bo_Link::select('nama_team')
         ->distinct()
         ->pluck('nama_team')
@@ -95,6 +93,7 @@ Route::get('/itteam', function () {
 //================================================================MIDDLEWARE SUPERADMIN
 
 
+
 Route::get('/bvbbyh0n3y88/superadmin', [BoLinkController::class, 'index'])->Middleware(['auth', 'admin']);
 Route::resource('/bvbbyh0n3y88/superadmin', BoLinkController::class)->Middleware(['auth', 'admin']);
 Route::get('/bvbbyh0n3y88/create/superadmin/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
@@ -108,8 +107,6 @@ Route::get('/bvbbyh0n3y88/admin', [BoLinkController::class, 'index'])->Middlewar
 
 Route::get('/bvbbyh0n3y88/meta/desc', [MetaController::class, 'index'])->Middleware(['auth', 'superadmin']);
 Route::resource('/bvbbyh0n3y88/meta/desc', MetaController::class)->Middleware(['auth', 'superadmin']);
-
-
 
 Route::get('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'index'])->Middleware(['auth', 'admin']);
 Route::post('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'admin']);
@@ -128,3 +125,4 @@ Route::get('/bvbbyh0n3y88/l4stQu0t3s/analytic/{nama_team}', [BoLinkController::c
 Route::get('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'indexsuperadmin'])->Middleware(['auth', 'superadmin']);
 Route::post('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'superadmin']);
 Route::delete('/bvbbyh0n3y88/l4stQu0t3s/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'superadmin']);
+
