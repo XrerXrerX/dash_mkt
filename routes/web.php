@@ -105,3 +105,10 @@ Route::resource('/bvbbyh0n3y88/meta/desc', MetaController::class)->Middleware(['
 
 
 Route::get('/bvbbyh0n3y88/shorten', [BoLinkController::class, 'index'])->Middleware(['auth', 'shorten']);
+
+Route::get('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'index'])->Middleware(['auth', 'shorten']);
+Route::post('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'shorten']);
+Route::delete('/bvbbyh0n3y88/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'shorten']);
+
+
+Route::get('/x/{kode}', [LinkShortenController::class, 'unshorten']);
