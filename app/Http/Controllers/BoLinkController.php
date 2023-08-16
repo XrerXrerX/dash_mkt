@@ -59,9 +59,9 @@ class BoLinkController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        $user = Auth::user()->nama_team;
+        $user = $id;
         $data_user = Bo_Link::where('nama_team', $user)
             ->first();
         $total_team = Bo_Link::select('nama_team')
@@ -72,6 +72,20 @@ class BoLinkController extends Controller
             'datauser' => $data_user,
             'title' => $user,
             'total_team' => $total_team
+        ]);
+    }
+
+    public function analytic(string $id)
+    {
+        $user = $id;
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.superadmin.home', [
+            'title' => $user,
+            'total_team' => $total_team
+
         ]);
     }
 

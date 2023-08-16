@@ -30,17 +30,30 @@ class LinkShortenController extends Controller
     {
         $user = Auth::user()->nama_team;
         $data = LinkShorten::get();
-        $data_user = Bo_Link::where('nama_team', $user)
-            ->first()->nama_team;
         $total_team = Bo_Link::select('nama_team')
             ->distinct()
             ->pluck('nama_team')
             ->toArray();
         return view('dashboard.linkshorten.index', [
             'data' => $data,
-            'title' => 'Link Shortener',
+            'title' => $user,
             'total_team' => $total_team,
             'nama_team' => $user
+        ]);
+    }
+
+    public function indexsuperadmin(string $id)
+    {
+        $user = $id;
+        $data = LinkShorten::get();
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.superadmin.linkshorten.index', [
+            'data' => $data,
+            'title' => $user,
+            'total_team' => $total_team,
         ]);
     }
 
@@ -99,55 +112,7 @@ class LinkShortenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $datateam = LinkShorten::where('nama_team', $id)->first();
-        $target = $request->nama_team;
-        $rules = [
-            'login' => 'required|max:255',
-            'daftar' => 'required|max:5046',
-            'wa' => 'required|max:255',
-            'fb' => 'required|max:255',
-            'ig' => 'required|max:255',
-            'img_profile' => 'image|file|max:5046',
-            'banner_bio' => 'image|file|max:5046',
-            'banner_web' => 'image|file|max:5046',
-            // 'title' => 'required|max:300',
-            // 'artike_bio' => 'required',
-            // 'artikel_web' => 'required',
-            // 'meta_tag' => 'required'
-        ];
-
-        if ($request->nama_team != $datateam->nama_team) {
-            $rules['nama_team'] = 'required';
-        }
-        $validatedData = $request->validate($rules);
-
-        if ($request->file('img_profile')) {
-
-            if ($request->oldimg_profile) {
-                Storage::delete('public/' . $request->oldimg_profile);
-            }
-            $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
-        }
-
-        if ($request->file('banner_bio')) {
-
-            if ($request->oldbanner_bio) {
-                Storage::delete('public/' . $request->oldbanner_bio);
-            }
-            $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
-        }
-
-        if ($request->file('banner_web')) {
-
-            if ($request->oldbanner_web) {
-                Storage::delete('public/' . $request->oldbanner_web);
-            }
-            $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
-        }
-
-        $validatedData['nama_team'] = auth()->user()->nama_team;
-        LinkShorten::where('nama_team', $id)->update($validatedData);
-        return redirect('/bvbvbK1n9')->with('success', 'post has been updated!');
+        //
     }
 
     public function shorten(Request $request)
@@ -158,7 +123,7 @@ class LinkShortenController extends Controller
         $shortenedLink = new LinkShorten();
         $shortenedLink->nama_team = $nama_team;
         $shortenedLink->link_awal = $linkToShorten;
-        $shortenedLink->link_hasil = 'http://127.0.0.1:8000/x/' . $this->generateRandomShortCode();
+        $shortenedLink->link_hasil = 'http://dash_marketing.test/x/' . $this->generateRandomShortCode();
         $shortenedLink->save();
 
         return response()->json(['shortened_link' => $shortenedLink->link_hasil]);
@@ -178,11 +143,12 @@ class LinkShortenController extends Controller
 
     public function unshorten($kode)
     {
-        $kode = 'http://127.0.0.1:8000/x/' . $kode;
+        $kode = 'http://dash_marketing.test/x/' . $kode;
         $result = LinkShorten::where('link_hasil', $kode)
             ->select('link_awal')
             ->first();
         return Redirect::away($result->link_awal);
+        // return redirect($result->link_awal)->with('success', 'post has been updated!');
     }
     /**
      * Remove the specified resource from storage.
