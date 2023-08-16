@@ -119,7 +119,6 @@ class MetaController extends Controller
         ];
         $validatedData = $request->validate($rules);
 
-        dd($request->nama_team);
         if ($request->nama_team != $datateam->nama_team) {
             $validatedData['nama_team'] = auth()->user()->nama_team;
             Bo_Link::where('nama_team', $id)->update($validatedData);
