@@ -54,6 +54,7 @@ class BoLinkController extends Controller
                 'total_team' => $total_team
             ]);
         }
+
     }
 
     /**
@@ -73,6 +74,7 @@ class BoLinkController extends Controller
             'title' => $user,
             'total_team' => $total_team
         ]);
+
     }
 
     public function analytic(string $id)
@@ -202,6 +204,7 @@ class BoLinkController extends Controller
                     Storage::delete('public/' . $request->oldbanner_web);
                 }
                 $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
+
             }
 
             Bo_Link::where('nama_team', $id)->update($validatedData);
@@ -224,6 +227,7 @@ class BoLinkController extends Controller
                 }
                 $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
             }
+
 
             if ($request->file('banner_web')) {
 

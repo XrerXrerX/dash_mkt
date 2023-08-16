@@ -1647,7 +1647,6 @@ option.sec_selected {
     /* ... tambahkan properti lain yang diperlukan ... */
 }
 
-
 .isi_data_short {
     display: flex;
     align-items: stretch;
@@ -1674,4 +1673,5 @@ option.sec_selected {
 .shorten-input {
     border-radius: 3px 0px 0px 3px !important;
 }
+
 

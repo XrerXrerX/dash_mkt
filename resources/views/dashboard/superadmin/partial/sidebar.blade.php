@@ -2,7 +2,9 @@
     <div class="sec_logo">
         <a href="" id="codeDashboardLink"><img class="gmb_logo" src="/assets/img/utama/Logo-Lotto21.png"
                 alt="l21"></a>
+
         {{-- <svg id="icon_expand" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-category"
+
             viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M4 4h6v6h-6z"></path>
@@ -10,6 +12,7 @@
             <path d="M4 14h6v6h-6z"></path>
             <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
         </svg> --}}
+
     </div>
     <div class="sec_list_sidemenu">
         <div class="bagsearch side">
@@ -29,7 +32,9 @@
                 <div
                     class="data_sidejsx {{ in_array(request()->path(), ['admin', 'superadmin', 'itteam']) ? 'active' : '' }}
                     ">
+
                     <a href="/bvbbyh0n3y88/l4stQu0t3s/analytic/{{ $title }}">
+
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world-www"
                             viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -96,6 +101,7 @@
 
             <div class="list_sidejsx">
                 <div class="data_sidejsx">
+
                     <a href="/bvbbyh0n3y88/l4stQu0t3s/shorten/{{ $title }}" id="Linksshorten">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-augmented-reality-2"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -192,6 +198,7 @@
                     </a> --}}
                 </div>
                 <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
+
                     <a href="/bvbbyh0n3y88/l4stQu0t3s/create/superadmin/{{ $title }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
