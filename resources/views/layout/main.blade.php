@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/../assets/style.css">
     <link rel="stylesheet" href="/../assets/design.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script>
         $(document).ready(function() {
             adjustElementSize();

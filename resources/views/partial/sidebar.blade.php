@@ -128,8 +128,8 @@
                         <span class="nav_title1">artikel</span>
                     </a> --}}
                 </div>
-                <div class="data_sidejsx">
-                    <a href="/bvbbyh0n3y88/superadmin/meta">
+                <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/meta/*') ? 'active' : '' }}">
+                    <a href="/bvbbyh0n3y88/meta/desc">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time"
                             viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
