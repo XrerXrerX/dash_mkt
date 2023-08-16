@@ -1631,7 +1631,7 @@ option.sec_selected {
 .list_form2 textarea {
     border-radius: 0 6px 6px 0;
     padding: 10px;
-    height: 180px;
+    height: 100px;
     width: 80%; /* Adjust as needed */
     resize: vertical;
     background: rgba(var(--rgba-primary-bg-color));
