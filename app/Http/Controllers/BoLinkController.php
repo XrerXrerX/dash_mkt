@@ -25,18 +25,35 @@ class BoLinkController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->nama_team;
-        $data_user = Bo_Link::where('nama_team', $user)
-            ->first();
-        $total_team = Bo_Link::select('nama_team')
-            ->distinct()
-            ->pluck('nama_team')
-            ->toArray();
-        return view('dashboard.bolink.index', [
-            'datauser' => $data_user,
-            'title' => $user,
-            'total_team' => $total_team
-        ]);
+        if (strpos(url()->previous(), '/bvbbyh0n3y88/l4stQu0t3s/') !== false) {
+            $previousUrl = url()->previous();
+            $pattern = '/\/bvbbyh0n3y88\/l4stQu0t3s\/([^\/]+)/';
+
+            if (preg_match($pattern, $previousUrl, $matches)) {
+                $namaTeam = $matches[1]; // Mengambil nilai yang cocok dari ekspresi reguler
+                // Lakukan sesuatu dengan $namaTeam
+                $user = $namaTeam;
+                // $url = '/bvbbyh0n3y88/l4stQu0t3s/';
+            }
+            return redirect()->intended('/bvbbyh0n3y88/l4stQu0t3s/' . $user);
+        } else {
+            if (Auth::user()->role == 'superadmin') {
+                $user = Bo_Link::orderBy('id')->pluck('nama_team')->first();
+            } else {
+                $user = Auth::user()->nama_team;
+            }
+            $data_user = Bo_Link::where('nama_team', $user)
+                ->first();
+            $total_team = Bo_Link::select('nama_team')
+                ->distinct()
+                ->pluck('nama_team')
+                ->toArray();
+            return view('dashboard.bolink.index', [
+                'datauser' => $data_user,
+                'title' => $user,
+                'total_team' => $total_team
+            ]);
+        }
     }
 
     /**
@@ -51,7 +68,7 @@ class BoLinkController extends Controller
             ->distinct()
             ->pluck('nama_team')
             ->toArray();
-        return view('dashboard.bolink.create', [
+        return view('dashboard.superadmin.bolink.create', [
             'datauser' => $data_user,
             'title' => $user,
             'total_team' => $total_team
@@ -63,6 +80,10 @@ class BoLinkController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user()->role;
+        if ($user != 'superadmin') {
+            return redirect()->intended('/bvbvbK1n9');
+        }
 
         $target = $request->nama_team;
         $validatedData = $request->validate([
@@ -124,7 +145,9 @@ class BoLinkController extends Controller
     public function update(Request $request, string $id)
     {
         $datateam = Bo_Link::where('nama_team', $id)->first();
+
         $target = $request->nama_team;
+
         $rules = [
             'login' => 'required|max:255',
             'daftar' => 'required|max:5046',
@@ -141,37 +164,64 @@ class BoLinkController extends Controller
         ];
 
         if ($request->nama_team != $datateam->nama_team) {
+            $validatedData['nama_team'] = auth()->user()->nama_team;
+            $validatedData = $request->validate($rules);
+            if ($request->file('img_profile')) {
+
+                if ($request->oldimg_profile) {
+                    Storage::delete('public/' . $request->oldimg_profile);
+                }
+                $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
+            }
+
+            if ($request->file('banner_bio')) {
+
+                if ($request->oldbanner_bio) {
+                    Storage::delete('public/' . $request->oldbanner_bio);
+                }
+                $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
+            }
+
+            if ($request->file('banner_web')) {
+
+                if ($request->oldbanner_web) {
+                    Storage::delete('public/' . $request->oldbanner_web);
+                }
+                $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
+            }
+
+            Bo_Link::where('nama_team', $id)->update($validatedData);
+            return redirect('/bvbvbK1n9')->with('success', 'post has been updated!');
+        } else {
             $rules['nama_team'] = 'required';
-        }
-        $validatedData = $request->validate($rules);
+            $validatedData = $request->validate($rules);
+            if ($request->file('img_profile')) {
 
-        if ($request->file('img_profile')) {
-
-            if ($request->oldimg_profile) {
-                Storage::delete('public/' . $request->oldimg_profile);
+                if ($request->oldimg_profile) {
+                    Storage::delete('public/' . $request->oldimg_profile);
+                }
+                $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
             }
-            $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
-        }
 
-        if ($request->file('banner_bio')) {
+            if ($request->file('banner_bio')) {
 
-            if ($request->oldbanner_bio) {
-                Storage::delete('public/' . $request->oldbanner_bio);
+                if ($request->oldbanner_bio) {
+                    Storage::delete('public/' . $request->oldbanner_bio);
+                }
+                $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
             }
-            $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
-        }
 
-        if ($request->file('banner_web')) {
+            if ($request->file('banner_web')) {
 
-            if ($request->oldbanner_web) {
-                Storage::delete('public/' . $request->oldbanner_web);
+                if ($request->oldbanner_web) {
+                    Storage::delete('public/' . $request->oldbanner_web);
+                }
+                $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
             }
-            $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
-        }
 
-        $validatedData['nama_team'] = auth()->user()->nama_team;
-        Bo_Link::where('nama_team', $id)->update($validatedData);
-        return redirect('/bvbvbK1n9')->with('success', 'post has been updated!');
+            Bo_Link::where('nama_team', $id)->update($validatedData);
+            return redirect('/bvbbyh0n3y88/l4stQu0t3s/' . $request->nama_team)->with('success', 'post has been updated!');
+        }
     }
 
     /**

@@ -1352,14 +1352,16 @@ textarea:hover {
     width: 30% !important;
     border: 3px solid rgba(var(--rgba-primary));
 }
+
+
 .sec_card_count {
     width: 100%;
     background: linear-gradient(45deg, var(--bg-box-primary), transparent);
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 3fr;
     align-items: center;
     gap: 20px;
-    padding: 20px;
+    padding: 40px;
     border-radius: 6px;
     border: var(--border-primary);
     transition: all 0.3s ease;
@@ -1637,4 +1639,10 @@ option.sec_selected {
     box-shadow: none;
     transition: all 0.3s ease;
     border: 1px solid rgba(var(--rgba-primary));
+}
+.containercard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(33.3%, 1fr));
+    gap: 20px;
+    /* ... tambahkan properti lain yang diperlukan ... */
 }
