@@ -193,42 +193,24 @@
                 </div>
                 <div class="list_form">
                     <span class="sec_label">Upload Banner BioLink</span>
-                    {{-- <input type='hidden' name="oldbanner_bio" value="{{ $datauser->banner_bio }}"> --}}
 
                     <input class="form-control  @error('banner_bio') is-invalid @enderror" type="file" id="file"
                         name="banner_bio" accept="image/*" required>
-
-                    {{-- <input type="text" id="banner_bio" name="banner_bio" placeholder="Masukkan gambar Banner BioLink"
-                        required> --}}
-
-                    {{-- <input type="text" class="form-control @error('banner_bio') is-invalid @enderror" id="banner_bio"
-                        name="banner_bio" required value="{{ old('banner_bio', $datauser->banner_bio) }}"> --}}
                     @error('banner_bio')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
-                <div class="list_form">
                     <span class="sec_label">Upload Banner Web</span>
-                    {{-- <input type='hidden' name="oldbanner_web" value="{{ $datauser->banner_web }}"> --}}
-
-
                     <input class="form-control  @error('banner_web') is-invalid @enderror" type="file" id="file"
                         name="banner_web" accept="image/*" required>
-
-                    {{-- <input type="text" id="banner_web" name="banner_web" placeholder="Masukkan gambar Banner Web"
-                        required> --}}
-
-
-                    {{-- <input type="text" class="form-control @error('banner_web') is-invalid @enderror" id="banner_web"
-                        name="banner_web" required value="{{ old('banner_web', $datauser->banner_web) }}"> --}}
                     @error('banner_web')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
+
             </div>
             <div class="sec_button_form">
                 <button class="sec_botton btn_submit" type="submit" id="Contactsubmit">Submit</button>

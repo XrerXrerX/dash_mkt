@@ -47,6 +47,41 @@
                     </div>
                 @enderror
             </div>
+            <div class="list_form">
+                <span class="sec_label">mail</span>
+                {{-- <input type="text" id="mail" name="mail" placeholder="Masukkan Link mail" required> --}}
+                <input type="text" class="form-control @error('mail') is-invalid @enderror" id="mail" name="mail"
+                    required value="{{ old('mail', $datauser->mail) }}">
+                @error('mail')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="list_form">
+                <span class="sec_label">Alamat</span>
+                {{-- <input type="text" id="alamat" name="alamat" placeholder="Masukkan Link alamat" required> --}}
+                <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
+                    name="alamat" required value="{{ old('alamat', $datauser->alamat) }}">
+                @error('alamat')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="list_form">
+                <span class="sec_label">Lokasi</span>
+                {{-- <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan Link lokasi" required> --}}
+                <input type="text" class="form-control @error('lokasi') is-invalid @enderror" id="lokasi"
+                    name="lokasi" required value="{{ old('lokasi', $datauser->lokasi) }}">
+                @error('lokasi')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
 
 
             <div class="sec_button_form">

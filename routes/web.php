@@ -97,7 +97,7 @@ Route::get('/itteam', function () {
 
 Route::get('/bvbbyh0n3y88/superadmin', [BoLinkController::class, 'index'])->Middleware(['auth', 'admin']);
 Route::resource('/bvbbyh0n3y88/superadmin', BoLinkController::class)->Middleware(['auth', 'admin']);
-Route::get('/bvbbyh0n3y88/create/superadmin', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
+Route::get('/bvbbyh0n3y88/create/superadmin/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
 
 
 //================================================================MIDDLEWARE ADMIN
