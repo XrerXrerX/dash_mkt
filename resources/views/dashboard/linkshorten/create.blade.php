@@ -1,7 +1,7 @@
-@extends('dashboard.superadmin.layout.main')
+@extends('layout.main')
 @section('container')
     <div class="sec_box hgi-100">
-        <form action="/bvbbyh0n3y88/superadmin" method="post" enctype="multipart/form-data" id="form">
+        <form action="/bvbbyh0n3y88/boszoya" method="post" enctype="multipart/form-data" id="form">
             @csrf
 
             <div class="sec_form">
