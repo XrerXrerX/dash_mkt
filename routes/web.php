@@ -51,7 +51,7 @@ Route::get('/bvbvbK1n9', function () {
 Route::get('/bvbbyh0n3y88/superadmin', [BoLinkController::class, 'index'])->Middleware(['auth', 'superadmin']);
 Route::resource('/bvbbyh0n3y88/superadmin', BoLinkController::class)->Middleware(['auth', 'superadmin']);
 Route::get('/bvbbyh0n3y88/create/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
-Route::get('/bvbbyh0n3y88/superadmin/meta', [MetaController::class, 'index'])->Middleware(['auth', 'superadmin']);
+Route::get('/bvbbyh0n3y88/meta/desc', [MetaController::class, 'index'])->Middleware(['auth', 'superadmin']);
 
 
 

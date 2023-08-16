@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bo_Link;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MetaController extends Controller
 {
@@ -20,7 +24,18 @@ class MetaController extends Controller
      */
     public function index()
     {
-        return view('dashboard.meta.index');
+        $user = Auth::user()->nama_team;
+        $data_user = Bo_Link::where('nama_team', $user)
+            ->first();
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.meta.index', [
+            'datauser' => $data_user,
+            'title' => $user,
+            'total_team' => $total_team
+        ]);
     }
 
     /**
