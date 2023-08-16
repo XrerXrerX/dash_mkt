@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('dashboard.superadmin.layout.main')
 @section('container')
     <div class="sec_box hgi-100">
         <form action="/bvbbyh0n3y88/{{ $title }}" method="post" enctype="multipart/form-data" id="form">

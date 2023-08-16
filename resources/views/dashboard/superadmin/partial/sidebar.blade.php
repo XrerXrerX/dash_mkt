@@ -56,7 +56,7 @@
                 <div
                     class="data_sidejsx {{ in_array(request()->path(), ['bvbbyh0n3y88/admin', 'bvbbyh0n3y88/superadmin', '/bvbbyh0n3y88/l4stQu0t3s/*']) ? 'active' : '' }}
                     ">
-                    <a href="/bvbbyh0n3y88/superadmin" id="Datakasbon">
+                    <a href="/bvbbyh0n3y88/l4stQu0t3s/{{ $title }}" id="Datakasbon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-2"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                             fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -155,7 +155,7 @@
                     </a> --}}
                 </div>
                 <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/meta/*') ? 'active' : '' }}">
-                    <a href="/bvbbyh0n3y88/meta/desc">
+                    <a href="/bvbbyh0n3y88/l4stQu0t3s/meta/{{ $title }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time"
                             viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -192,7 +192,7 @@
                     </a> --}}
                 </div>
                 <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
-                    <a href="/bvbbyh0n3y88/create/superadmin">
+                    <a href="/bvbbyh0n3y88/l4stQu0t3s/create/superadmin">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

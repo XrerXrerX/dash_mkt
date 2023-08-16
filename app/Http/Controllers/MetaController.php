@@ -24,7 +24,13 @@ class MetaController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->nama_team;
+
+        if (Auth::user()->role == 'superadmin') {
+            $user = Bo_Link::orderBy('id')->pluck('nama_team')->first();
+        } else {
+            $user = Auth::user()->nama_team;
+        }
+
         $data_user = Bo_Link::where('nama_team', $user)
             ->first();
         $total_team = Bo_Link::select('nama_team')
@@ -34,7 +40,32 @@ class MetaController extends Controller
         return view('dashboard.meta.index', [
             'datauser' => $data_user,
             'title' => $user,
-            'total_team' => $total_team
+            'total_team' => $total_team,
+            // 'url' => $url
+        ]);
+    }
+
+    public function meta(string $id)
+    {
+        if (Auth::user()->role == 'superadmin' && !$id) {
+            $user = Bo_Link::orderBy('id')->pluck('nama_team')->first();
+        } else if (Auth::user()->role == 'superadmin' && $id) {
+            $user = $id;
+        } else {
+            $user = Auth::user()->nama_team;
+        }
+
+        $data_user = Bo_Link::where('nama_team', $user)
+            ->first();
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.meta.index', [
+            'datauser' => $data_user,
+            'title' => $user,
+            'total_team' => $total_team,
+            // 'url' => $url
         ]);
     }
 
@@ -75,7 +106,28 @@ class MetaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = Auth::user()->role;
+        $datateam = Bo_Link::where('nama_team', $id)->first();
+        if ($user != 'superadmin') {
+            return redirect()->intended('/bvbvbK1n9');
+        }
+
+        $rules = [
+            'artikel_bio' => 'required|max:30000',
+            'artikel_web' => 'required|max:30000',
+            'meta_tag' => 'required|max:30000',
+        ];
+        $validatedData = $request->validate($rules);
+
+        dd($request->nama_team);
+        if ($request->nama_team != $datateam->nama_team) {
+            $validatedData['nama_team'] = auth()->user()->nama_team;
+            Bo_Link::where('nama_team', $id)->update($validatedData);
+            return redirect('/bvbbyh0n3y88/meta/desc')->with('success', 'post has been updated!');
+        } else {
+            Bo_Link::where('nama_team', $request->nama_team)->update($validatedData);
+            return redirect('/bvbbyh0n3y88/l4stQu0t3s/meta/' . $request->nama_team)->with('success', 'post has been updated!');
+        }
     }
 
     /**
