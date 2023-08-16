@@ -165,6 +165,7 @@
                         </svg>
                         <span class="nav_title1">artikel</span>
                     </a> --}}
+<<<<<<< HEAD
                     </div>
                     <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
                         <a href="/bvbbyh0n3y88/create/superadmin">
@@ -194,6 +195,37 @@
                                 id="nama_team" required>
                                 <option value="" selected>Manage Team</option>
                                 {{-- @foreach ($total_team as $teamValue => $teamLabel)
+=======
+                </div>
+                <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
+                    <a href="/bvbbyh0n3y88/create/superadmin/{{ $title }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                            </path>
+                            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                        </svg>
+                        <span class="nav_title1">User Management</span>
+                    </a>
+                </div>
+                <div class="data_sidejsx">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sport-billard"
+                            viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                            <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" />
+                        </svg>
+                        <select class="form-select @error('nama_team') is-invalid @enderror" name="nama_team"
+                            id="nama_team" required>
+                            <option value="" selected>Manage Team</option>
+                            {{-- @foreach ($total_team as $teamValue => $teamLabel)
+>>>>>>> 4f2e25e550b1ee2730a1c90632ee5131cc11f873
                                 <option value="{{ $teamValue }}">{{ $teamLabel }}</option>
                             @endforeach --}}
                             </select>

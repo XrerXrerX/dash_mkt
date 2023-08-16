@@ -1631,7 +1631,7 @@ option.sec_selected {
 .list_form2 textarea {
     border-radius: 0 6px 6px 0;
     padding: 10px;
-    height: 180px;
+    height: 100px;
     width: 80%; /* Adjust as needed */
     resize: vertical;
     background: rgba(var(--rgba-primary-bg-color));
@@ -1646,3 +1646,32 @@ option.sec_selected {
     gap: 20px;
     /* ... tambahkan properti lain yang diperlukan ... */
 }
+
+.isi_data_short {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.group_shortener input {
+    width: 100%;
+    border-radius: 6px 0 0 6px;
+}
+
+.sbt_short {
+    width: 15%;
+    border-radius: 0 6px 6px 0;
+    background: var(--primary-bg-dark);
+    color: rgba(var(--white-color));
+    transition: all 0.3s ease;
+}
+
+.shorten-input {
+    border-radius: 3px 0px 0px 3px !important;
+}
+
+

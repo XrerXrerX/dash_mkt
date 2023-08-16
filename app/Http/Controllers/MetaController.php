@@ -116,10 +116,12 @@ class MetaController extends Controller
             'artikel_bio' => 'required|max:30000',
             'artikel_web' => 'required|max:30000',
             'meta_tag' => 'required|max:30000',
+            'alamat' => 'required|max:5046',
+            'mail' => 'required|max:5046',
+            'lokasi' => 'required|max:5046',
         ];
         $validatedData = $request->validate($rules);
 
-        dd($request->nama_team);
         if ($request->nama_team != $datateam->nama_team) {
             $validatedData['nama_team'] = auth()->user()->nama_team;
             Bo_Link::where('nama_team', $id)->update($validatedData);

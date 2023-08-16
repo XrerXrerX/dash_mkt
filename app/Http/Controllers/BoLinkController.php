@@ -54,14 +54,15 @@ class BoLinkController extends Controller
                 'total_team' => $total_team
             ]);
         }
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        $user = Auth::user()->nama_team;
+        $user = $id;
         $data_user = Bo_Link::where('nama_team', $user)
             ->first();
         $total_team = Bo_Link::select('nama_team')
@@ -72,6 +73,21 @@ class BoLinkController extends Controller
             'datauser' => $data_user,
             'title' => $user,
             'total_team' => $total_team
+        ]);
+
+    }
+
+    public function analytic(string $id)
+    {
+        $user = $id;
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.superadmin.home', [
+            'title' => $user,
+            'total_team' => $total_team
+
         ]);
     }
 
@@ -94,6 +110,9 @@ class BoLinkController extends Controller
             'fb' => 'required|max:255',
             'ig' => 'required|max:255',
             'rtp' => 'required|max:255',
+            'alamat' => 'required|max:5046',
+            'mail' => 'required|max:5046',
+            'lokasi' => 'required|max:5046',
             'link_livechat' => 'required|max:255',
             'link_buktijp' => 'required|max:255',
             'link_website' => 'required|max:255',
@@ -188,6 +207,7 @@ class BoLinkController extends Controller
                     Storage::delete('public/' . $request->oldbanner_web);
                 }
                 $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
+
             }
 
             Bo_Link::where('nama_team', $id)->update($validatedData);
@@ -210,6 +230,7 @@ class BoLinkController extends Controller
                 }
                 $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
             }
+
 
             if ($request->file('banner_web')) {
 
