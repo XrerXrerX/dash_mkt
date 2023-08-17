@@ -1,35 +1,10 @@
 @extends('layout.main')
 @section('container')
-    <style>
-        .isi_data_short {
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            width: 70%;
-            margin: auto;
-            margin-top: 50px;
-            margin-bottom: 30px;
-        }
-
-        .group_shortener input {
-            width: 100%;
-            border-radius: 6px 0 0 6px;
-        }
-
-        .sbt_short {
-            width: 15%;
-            border-radius: 0 6px 6px 0;
-            background: var(--primary-bg-dark);
-            color: rgba(var(--white-color));
-            transition: all 0.3s ease;
-        }
-
-        .shorten-input {
-            border-radius: 3px 0px 0px 3px !important;
-        }
-    </style>
     <div class="sec_table">
-        <h2>{{ $title }}</h2>
+        <div class="sec_head_form">
+            <h3>Shorten Link {{ $title }}</h3>
+            {{-- <span>Analytic Data</span> --}}
+        </div>
         <div class="group_button_ns">
             <div class="isi_data_short">
                 <input type="text" id="paste_link" class="shorten-input" name="paste_link"

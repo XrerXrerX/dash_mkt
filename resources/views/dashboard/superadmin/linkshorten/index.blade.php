@@ -1,7 +1,10 @@
 @extends('dashboard.superadmin.layout.main')
 @section('container')
     <div class="sec_table">
-        <h2>{{ $title }}</h2>
+        <div class="sec_head_form">
+            <h3>{{ $title }}</h3>
+            <span>Analytic Data</span>
+        </div>
         <div class="group_button_ns">
             <div class="isi_data_short">
                 <input type="text" id="paste_link" class="shorten-input" name="paste_link"

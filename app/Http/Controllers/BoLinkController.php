@@ -54,7 +54,6 @@ class BoLinkController extends Controller
                 'total_team' => $total_team
             ]);
         }
-
     }
 
     /**
@@ -74,12 +73,15 @@ class BoLinkController extends Controller
             'title' => $user,
             'total_team' => $total_team
         ]);
-
     }
 
     public function analytic(string $id)
     {
-        $user = $id;
+        if (!$id) {
+            $user = Auth::user()->nama_team;
+        } else {
+            $user = $id;
+        }
         $total_team = Bo_Link::select('nama_team')
             ->distinct()
             ->pluck('nama_team')
@@ -182,7 +184,7 @@ class BoLinkController extends Controller
             // 'meta_tag' => 'required'
         ];
 
-        if ($request->nama_team != $datateam->nama_team) {
+        if (Auth::user()->role == 'admin') {
             $validatedData['nama_team'] = auth()->user()->nama_team;
             $validatedData = $request->validate($rules);
             if ($request->file('img_profile')) {
@@ -207,11 +209,10 @@ class BoLinkController extends Controller
                     Storage::delete('public/' . $request->oldbanner_web);
                 }
                 $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
-
             }
 
             Bo_Link::where('nama_team', $id)->update($validatedData);
-            return redirect('/bvbvbK1n9')->with('success', 'post has been updated!');
+            return redirect('/bvbbyh0n3y88/superadmin')->with('success', 'post has been updated!');
         } else {
             $rules['nama_team'] = 'required';
             $validatedData = $request->validate($rules);
