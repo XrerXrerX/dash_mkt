@@ -97,6 +97,17 @@
                     @enderror
                 </div>
                 <div class="list_form">
+                    <span class="sec_label">Update Link Banner</span>
+                    {{-- <input type="text" id="link_banner" name="link_banner" placeholder="{{ $datauser->link_banner }}" required> --}}
+                    <input type="text" class="form-control @error('link_banner') is-invalid @enderror" id="link_banner"
+                        name="link_banner" required value="{{ old('link_banner', $datauser->link_banner) }}">
+                    @error('link_banner')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="list_form">
                     <span class="sec_label">Update Link Instagram</span>
                     {{-- <input type="text" id="ig" name="ig" placeholder="{{ $datauser->ig }}" required> --}}
                     <input type="text" class="form-control @error('ig') is-invalid @enderror" id="ig"
@@ -107,6 +118,7 @@
                         </div>
                     @enderror
                 </div>
+
                 {{-- <div class="list_form">
                     <span class="sec_label">Update title</span>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"

@@ -611,8 +611,9 @@ svg {
     width: 100%;
     border: var(--border-primary);
     border-radius: 6px;
-    padding: 10px;
-    background: var(--bg-box-primary);
+    display: inline-flex;
+    padding: 20px;
+    background: #181a1e;
 }
 .sec_box h2 {
     text-align: center;
@@ -1283,10 +1284,12 @@ textarea:hover {
     margin-bottom: 10px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(var(--rgba-primary), 0.2);
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
     text-transform: capitalize;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    justify-content: space-around;
 }
 .sec_head_form span {
     margin-top: 5px;
@@ -1358,15 +1361,17 @@ textarea:hover {
     width: 100%;
     background: linear-gradient(45deg, var(--bg-box-primary), transparent);
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 4fr;
     align-items: center;
     gap: 20px;
-    padding: 40px;
+    padding: 10px;
     border-radius: 6px;
     border: var(--border-primary);
     transition: all 0.3s ease;
     position: relative;
 }
+
+
 .prog_icon_circle {
     width: 70px;
     height: 70px;
@@ -1435,21 +1440,26 @@ textarea:hover {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    height: 100%;
+    align-items: center; /* Rata tengah vertikal */
     justify-content: center;
+    height: 100%;
 }
+
 .detail_count h3 {
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-family: myFont1;
     letter-spacing: 2px;
     color: rgba(var(--rgba-white), 0.8);
     text-shadow: var(--shadow-primary);
+    text-align: center; /* Rata tengah horisontal */
 }
+
 .detail_count span {
-    font-size: 1vw;
+    font-size: 0.75vw;
     text-shadow: var(--shadow-primary);
+    text-align: center; /* Rata tengah horisontal */
 }
+
 .prog_icon_circle.primary .half_circle {
     width: 70px;
     height: 81px;
@@ -1640,12 +1650,37 @@ option.sec_selected {
     transition: all 0.3s ease;
     border: 1px solid rgba(var(--rgba-primary));
 }
-.containercard {
+/* .containercard {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(33.3%, 1fr));
     gap: 20px;
+} */
+
+.containercard2 {
+    width: 48%;
+    background-color: #090b0e;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+    gap: 20px;
+    margin: 10px;
     /* ... tambahkan properti lain yang diperlukan ... */
 }
+
+.containercard {
+    width: 48%;
+    padding: 20px;
+
+    background-color: #090b0e;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+    gap: 20px;
+    margin: 10px;
+    /* ... tambahkan properti lain yang diperlukan ... */
+}
+
+
+
 
 .isi_data_short {
     display: flex;

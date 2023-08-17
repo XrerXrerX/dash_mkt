@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\SumBio;
+use App\Models\SumWeb;
 
 class BoLinkController extends Controller
 {
@@ -86,9 +88,14 @@ class BoLinkController extends Controller
             ->distinct()
             ->pluck('nama_team')
             ->toArray();
+        $analyticbio = SumBio::where('nama_team', $user)->first();
+        $analyticweb = SumWeb::where('nama_team', $user)->first();
+
         return view('dashboard.superadmin.home', [
             'title' => $user,
-            'total_team' => $total_team
+            'total_team' => $total_team,
+            'analytic' => $analyticbio,
+            'analyticweb' => $analyticweb,
 
         ]);
     }
@@ -109,6 +116,7 @@ class BoLinkController extends Controller
             'wa' => 'required|max:255',
             'fb' => 'required|max:255',
             'ig' => 'required|max:255',
+            'link_banner' => 'required|max:255',
             'rtp' => 'required|max:255',
             'alamat' => 'required|max:5046',
             'mail' => 'required|max:5046',
@@ -173,6 +181,7 @@ class BoLinkController extends Controller
             'wa' => 'required|max:255',
             'fb' => 'required|max:255',
             'ig' => 'required|max:255',
+            'link_banner' => 'required|max:255',
             'img_profile' => 'image|file|max:5046',
             'banner_bio' => 'image|file|max:5046',
             'banner_web' => 'image|file|max:5046',
@@ -240,7 +249,7 @@ class BoLinkController extends Controller
             }
 
             Bo_Link::where('nama_team', $id)->update($validatedData);
-            return redirect('/bvbbyh0n3y88/' . $request->nama_team)->with('success', 'post has been updated!');
+            return redirect('/bvbbyh0n3y88/l4stQu0t3s/' . $request->nama_team)->with('success', 'post has been updated!');
         }
     }
 

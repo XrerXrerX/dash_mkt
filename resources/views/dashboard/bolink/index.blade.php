@@ -96,6 +96,18 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="list_form">
+                    <span class="sec_label">Update Link Banner</span>
+                    {{-- <input type="text" id="link_banner" name="link_banner" placeholder="{{ $datauser->link_banner }}" required> --}}
+                    <input type="text" class="form-control @error('link_banner') is-invalid @enderror" id="link_banner"
+                        name="link_banner" required value="{{ old('link_banner', $datauser->link_banner) }}">
+                    @error('link_banner')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
                 <div class="list_form">
                     <span class="sec_label">Update Link Instagram</span>
                     {{-- <input type="text" id="ig" name="ig" placeholder="{{ $datauser->ig }}" required> --}}
@@ -118,7 +130,7 @@
                     @enderror
                 </div> --}}
                 <div class="list_form">
-                    <span class="sec_label">Update Upload Profile BioLink</span>
+                    <span class="sec_label">Update Profile BioLink</span>
                     <input type='hidden' name="oldimg_profile" value="{{ $datauser->img_profile }}">
                     {{-- <input class="form-control  @error('img_profile') is-invalid @enderror" type="file" id="file"
                         name="img_profile" accept="image/*" required> --}}
@@ -135,7 +147,7 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Update Upload Banner BioLink</span>
+                    <span class="sec_label">Update Banner BioLink</span>
                     <input type='hidden' name="oldbanner_bio" value="{{ $datauser->banner_bio }}">
 
                     {{-- <input class="form-control  @error('banner_bio') is-invalid @enderror" type="file" id="file"
@@ -153,7 +165,7 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Update Upload Banner Web</span>
+                    <span class="sec_label">Update Banner Web</span>
                     <input type='hidden' name="oldbanner_web" value="{{ $datauser->banner_web }}">
 
 
