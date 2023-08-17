@@ -10,7 +10,12 @@ use App\Http\Controllers\MetaController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TrackingController;
 use App\Models\Bo_Link;
+use App\Models\SumBio;
+use App\Models\SumWeb;
+
 use function Laravel\Prompts\alert;
+use Illuminate\Support\Facades\Cookie;
+
 
 
 /*
@@ -23,6 +28,72 @@ use function Laravel\Prompts\alert;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//================================================FRONTEND
+
+Route::get('/boszoya', function () {
+    if (Cookie::has('biotrack_done')) {
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos zoya';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
+
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user
+            ]);
+        } else {
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
+        }
+    } else {
+        // Jika cookie sudah ada, lakukan hal lain atau tampilkan pesan
+        return response('Cookie already set', 200);
+    }
+});
+
+
+Route::get('/bosmega', function () {
+    if (Cookie::has('biotrack_done')) {
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos mega';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
+
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user
+            ]);
+        } else {
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
+        }
+    } else {
+        // Jika cookie sudah ada, lakukan hal lain atau tampilkan pesan
+        return response('Cookie already set', 200);
+    }
+});
+
+
+
+
+
 
 
 //================================================AUTHENTICATION
@@ -57,9 +128,13 @@ Route::get('/superadmin', function () {
         ->distinct()
         ->pluck('nama_team')
         ->toArray();
-    return view('dashboard.home', [
+    $analyticbio = SumBio::where('nama_team', $user)->first();
+    $analyticweb = SumWeb::where('nama_team', $user)->first();
+    return view('dashboard.superadmin.home', [
         'title' => $user,
-        'total_team' => $total_team
+        'total_team' => $total_team,
+        'analytic' => $analyticbio,
+        'analyticweb' => $analyticweb
     ]);
 })->Middleware(['auth', 'superadmin']);
 
@@ -69,9 +144,15 @@ Route::get('/admin', function () {
         ->distinct()
         ->pluck('nama_team')
         ->toArray();
+    $analyticbio = SumBio::where('nama_team', $user)->first();
+    $analyticweb = SumWeb::where('nama_team', $user)->first();
+
     return view('dashboard.home', [
         'title' => $user,
-        'total_team' => $total_team
+        'total_team' => $total_team,
+        'analytic' => $analyticbio,
+        'analyticweb' => $analyticweb
+
 
     ]);
 })->Middleware(['auth', 'admin']);
@@ -123,7 +204,7 @@ Route::get('/x/{kode}', [LinkShortenController::class, 'unshorten']);
 Route::get('/trackinglogin/{nama_team}', [TrackingController::class, 'trackingLogin']);
 
 //===SUPERADMIN
-Route::get('/bvbbyh0n3y88/l4stQu0t3s/{nama_team}', [SuperAdminController::class, 'index'])->Middleware(['auth', 'superadmin']);
+Route::get('/bvbbyh0n3y88/l4stQu0t3s/{nama_team}', [BoLinkController::class, 'analytic'])->Middleware(['auth', 'superadmin']);
 Route::get('/bvbbyh0n3y88/l4stQu0t3s/meta/{nama_team}', [SuperAdminController::class, 'meta'])->Middleware(['auth', 'superadmin']);
 Route::get('/bvbbyh0n3y88/l4stQu0t3s/create/superadmin/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
 Route::get('/bvbbyh0n3y88/l4stQu0t3s/analytic/{nama_team}', [BoLinkController::class, 'analytic'])->Middleware(['auth', 'superadmin']);

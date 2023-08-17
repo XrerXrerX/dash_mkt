@@ -8,11 +8,10 @@
         <div class="group_button_ns">
             <div class="isi_data_short">
                 <input type="text" id="paste_link" class="shorten-input" name="paste_link"
-                    placeholder="Paste link anda di sini..." value="http://127.0.0.1:8000/bvbbyh0n3y88/shorten/wantos">
+                    placeholder="Paste link anda di sini..." value="https://www.a.com">
                 <button id="proses_shorten" class="sbt_short">Shorten</button>
             </div>
         </div>
-
         <table>
             <tbody>
                 <tr class="head_table">

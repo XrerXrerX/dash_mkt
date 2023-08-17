@@ -166,6 +166,20 @@
                 </div>
 
                 <div class="list_form">
+                    <span class="sec_label">Link Banner</span>
+                    <input type="text" id="link_banner" name="link_banner" placeholder="Masukkan Link link_banner"
+                        required>
+                    {{-- <input type="text" class="form-control @error('link_banner') is-invalid @enderror" id="link_banner"
+                        name="link_banner" required value="{{ old('link_banner', $datauser->link_banner) }}"> --}}
+                    @error('link_banner')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+
+                <div class="list_form">
                     <span class="sec_label">Alamat</span>
                     <input type="text" id="alamat" name="alamat" placeholder="Masukkan Link alamat" required>
                     {{-- <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
