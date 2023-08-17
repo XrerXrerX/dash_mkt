@@ -98,10 +98,8 @@ class BoLinkController extends Controller
      */
     public function store(Request $request)
     {
+        dd('test');
         $user = Auth::user()->role;
-        if ($user != 'superadmin') {
-            return redirect()->intended('/bvbvbK1n9');
-        }
 
         $target = $request->nama_team;
         $validatedData = $request->validate([
@@ -141,7 +139,7 @@ class BoLinkController extends Controller
         $uservalidate['password'] = Hash::make($uservalidate['password']);
         User::create($uservalidate);
 
-        return redirect('/bvbvbK1n9')->with('success', 'new post has been added!');
+        return redirect('/bvbvbK1n9/superadmin')->with('success', 'new post has been added!');
     }
 
     /**
@@ -242,7 +240,7 @@ class BoLinkController extends Controller
             }
 
             Bo_Link::where('nama_team', $id)->update($validatedData);
-            return redirect('/bvbbyh0n3y88/l4stQu0t3s/' . $request->nama_team)->with('success', 'post has been updated!');
+            return redirect('/bvbbyh0n3y88/' . $request->nama_team)->with('success', 'post has been updated!');
         }
     }
 

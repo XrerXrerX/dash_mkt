@@ -167,6 +167,7 @@
                     </a> --}}
                     </div>
                     <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
+
                         <a href="/bvbbyh0n3y88/l4stQu0t3s/create/superadmin/{{ $title }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
