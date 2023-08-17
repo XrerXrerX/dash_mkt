@@ -132,3 +132,9 @@ Route::get('/bvbbyh0n3y88/l4stQu0t3s/analytic/{nama_team}', [BoLinkController::c
 Route::get('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'indexsuperadmin'])->Middleware(['auth', 'superadmin']);
 Route::post('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'superadmin']);
 Route::delete('/bvbbyh0n3y88/l4stQu0t3s/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'superadmin']);
+
+
+Route::get('/sumbio/{nama_team}/{nama_menu}', [TrackingController::class, 'sumBio']);
+Route::get('/sumweb/{nama_team}/{nama_menu}', [TrackingController::class, 'sumweb']);
+Route::post('/rekapbio', [TrackingController::class, 'rekapBio']);
+Route::post('/rekapweb', [TrackingController::class, 'rekapWeb']);
