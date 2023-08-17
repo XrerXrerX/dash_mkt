@@ -17,21 +17,147 @@ use App\Models\SumWeb;
 class TrackingController extends Controller
 {
 
-    public function trackingLogin($nama_team)
+    public function sumBio($nama_team, $nama_menu)
     {
-        $login = SumBio::where('nama_team', $nama_team)->first()->login;
+        if (empty($nama_team)) {
+            return response("Nama tim tidak valid.", 400);
+        }
+        $sumBio = SumBio::where('nama_team', $nama_team)->first();
 
-        if (!empty($nama_team)) {
+        if ($sumBio) {
+            $loginCount = $sumBio->$nama_menu;
+
             $result = SumBio::where('nama_team', $nama_team)->update([
-                'login' => $login + 1
+                $nama_menu => $loginCount + 1
             ]);
+
             if ($result) {
-                return response("Kolom 'login' berhasil diperbarui.", 200);
+                return response("Kolom '{$nama_menu}' berhasil diperbarui.", 200);
             } else {
-                return response("Gagal memperbarui kolom 'login'.", 500);
+                return response("Gagal memperbarui kolom '{$nama_menu}'.", 500);
             }
         } else {
+            return response("Nama tim '{$nama_team}' tidak ditemukan.", 404);
+        }
+    }
+
+    public function sumWeb($nama_team, $nama_menu)
+    {
+        if (empty($nama_team)) {
             return response("Nama tim tidak valid.", 400);
+        }
+
+        $SumWeb = SumWeb::where('nama_team', $nama_team)->first();
+
+        if ($SumWeb) {
+            $loginCount = $SumWeb->$nama_menu;
+
+            $result = SumWeb::where('nama_team', $nama_team)->update([
+                $nama_menu => $loginCount + 1
+            ]);
+
+            if ($result) {
+                return response("Kolom '{$nama_menu}' berhasil diperbarui.", 200);
+            } else {
+                return response("Gagal memperbarui kolom '{$nama_menu}'.", 500);
+            }
+        } else {
+            return response("Nama tim '{$nama_team}' tidak ditemukan.", 404);
+        }
+    }
+
+    public function rekapBio(Request $request)
+    {
+        $teamToProcess = $request->input('team');
+        $resultSelect = SumBio::where('nama_team', $teamToProcess)->first();
+
+        if ($resultSelect) {
+            $newLogin = new RekapBio();
+            $newLogin->nama_team = $teamToProcess;
+            $newLogin->biotrack = $resultSelect->biotrack;
+            $newLogin->login = $resultSelect->login;
+            $newLogin->daftar = $resultSelect->daftar;
+            $newLogin->whatsapp = $resultSelect->whatsapp;
+            $newLogin->facebook = $resultSelect->facebook;
+            $newLogin->instagram = $resultSelect->instagram;
+
+            if ($newLogin->save()) {
+                // Simpan data berhasil, kemudian update data di SumBio menjadi 0
+                try {
+                    $resultUpdate = SumBio::where('nama_team', $teamToProcess)->update([
+                        'biotrack' => 0,
+                        'login' => 0,
+                        'daftar' => 0,
+                        'whatsapp' => 0,
+                        'facebook' => 0,
+                        'instagram' => 0,
+                        'website_grup' => 0
+                    ]);
+
+                    if ($resultUpdate !== false) {
+                        return "Update was successful.";
+                    } else {
+                        return "An error occurred during update.";
+                    }
+                } catch (\Exception $e) {
+                    return "Error: " . $e->getMessage();
+                }
+                if ($resultUpdate) {
+                    return response("Data berhasil disimpan dan data SumBio diupdate.", 200);
+                } else {
+                    return response("Data berhasil disimpan tetapi gagal mengupdate data SumBio.", 500);
+                }
+            } else {
+                return response("Gagal menyimpan data.", 500);
+            }
+        } else {
+            return response("Data tidak ditemukan.", 404);
+        }
+    }
+
+
+    public function rekapWeb(Request $request)
+    {
+        $teamToProcess = $request->input('nama_team');
+        $resultSelect = SumWeb::where('nama_team', $teamToProcess)->first();
+
+        if ($resultSelect) {
+            $newLogin = new RekapWeb();
+            $newLogin->nama_team = $teamToProcess;
+            $newLogin->daftar = $resultSelect->daftar;
+            $newLogin->whatsapp = $resultSelect->whatsapp;
+            $newLogin->facebook = $resultSelect->facebook;
+            $newLogin->instagram = $resultSelect->instagram;
+            $newLogin->rtp = $resultSelect->rtp;
+            $newLogin->bukti_jp = $resultSelect->bukti_jp;
+            $newLogin->livechat = $resultSelect->livechat;
+
+            if ($newLogin->save()) {
+                try {
+                    $resultUpdate = SumWeb::where('nama_team', $teamToProcess)->update([
+                        'nama_team' => $teamToProcess,
+                        'daftar' => 0,
+                        'whatsapp' => 0,
+                        'facebook' => 0,
+                        'instagram' => 0,
+                        'rtp' => 0,
+                        'bukti_jp' => 0,
+                        'livechat' => 0
+                    ]);
+
+                    if ($resultUpdate !== false) {
+                        return "Update was successful.";
+                    } else {
+                        return "An error occurred during update.";
+                    }
+                } catch (\Exception $e) {
+                    return "Error: " . $e->getMessage();
+                }
+            } else {
+                return response("Gagal menyimpan data.", 500);
+            }
+        } else {
+            return response("Data tidak ditemukan.", 404);
         }
     }
 }

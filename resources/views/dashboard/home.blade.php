@@ -117,6 +117,69 @@
                     <h3>159</h3>
                     <span>Nama Table</span>
                 </div>
+                <form action="" method="POST" enctype="multipart/form-data" id="form">
+                    @csrf
+                    <input type="hidden" id="bio_team" name="bio_team" value="bos zoya">
+                    <button type="button" id="rekapButton" name="rekapButton">Rekap Data Bio</button>
+                </form>
+
+                <form action="" method="POST" enctype="multipart/form-data" id="form-2">
+                    @csrf
+                    <input type="hidden" id="web_nama_team" name="web_nama_team" value="bos zoya">
+                    <button type="button" id="rekapButton2" name="rekapButton2">Rekap Data Web</button>
+                </form>
+
+                <script>
+                    $(document).ready(function() {
+                        $("#rekapButton").click(function() {
+                            var bio_team = $("#bio_team").val();
+                            var token = $("input[name='_token']").val();
+
+                            $.ajax({
+                                url: "http://127.0.0.1:8000/rekapbio",
+                                method: "POST",
+                                data: {
+                                    _token: token,
+                                    team: bio_team
+                                },
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'Berhasil',
+                                        icon: 'success'
+                                    });
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error(error);
+                                }
+                            });
+                        });
+
+                        $("#rekapButton2").click(function() {
+                            var web_nama_team = $("#web_nama_team").val();
+                            var token = $("input[name='_token']").val();
+
+                            $.ajax({
+                                url: "http://127.0.0.1:8000/rekapweb",
+                                method: "POST",
+                                data: {
+                                    _token: token,
+                                    nama_team: web_nama_team
+                                },
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'Berhasil',
+                                        icon: 'success'
+                                    });
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error(error);
+                                }
+                            });
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
