@@ -148,7 +148,6 @@
 
                 </div>
             </div>
-
             <div class="nav_group">
                 <span class="title_Nav">IT SOURCE</span>
                 <div class="list_sidejsx">
@@ -168,7 +167,8 @@
                     </a> --}}
                     </div>
                     <div class="data_sidejsx {{ Request::is('bvbbyh0n3y88/create/*') ? 'active' : '' }}">
-                        <a href="/bvbbyh0n3y88/create/superadmin/{{ $title }}">
+
+                        <a href="/bvbbyh0n3y88/l4stQu0t3s/create/superadmin/{{ $title }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -194,16 +194,15 @@
                             <select class="form-select @error('nama_team') is-invalid @enderror" name="nama_team"
                                 id="nama_team" required>
                                 <option value="" selected>Manage Team</option>
-                                {{-- @foreach ($total_team as $teamValue => $teamLabel)
-                                <option value="{{ $teamValue }}">{{ $teamLabel }}</option>
-                            @endforeach --}}
+                                @foreach ($total_team as $teamValue => $teamLabel)
+                                    <option value="{{ $teamValue }}">{{ $teamLabel }}</option>
+                                @endforeach
                             </select>
                         </a>
                     </div>
                 </div>
             </div>
         @endif
-
     </div>
 </div>
 <script>

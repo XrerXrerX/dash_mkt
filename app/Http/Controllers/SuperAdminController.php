@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class SuperAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if ($request->session()->has('login_expired') && $request->session()->get('login_expired')) {
+                return redirect('/bvbbyh0n3y88')->withErrors(['login_expired' => 'Session habis. Silakan login kembali.']);
+            }
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */

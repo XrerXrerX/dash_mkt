@@ -1,6 +1,10 @@
 @extends('dashboard.superadmin.layout.main')
 @section('container')
     <div class="sec_box hgi-100">
+        <div class="sec_head_form">
+            <h3>{{ $title }}</h3>
+            <span>Analytic Data</span>
+        </div>
         <div class="containercard">
             <div class="sec_card_count">
                 <div class="prog_icon_circle primary">
