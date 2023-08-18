@@ -130,7 +130,7 @@
                     @enderror
                 </div> --}}
                 <div class="list_form">
-                    <span class="sec_label">Update Profile BioLink</span>
+                    <span class="sec_label">Profile BioLink </span>
                     <input type='hidden' name="oldimg_profile" value="{{ $datauser->img_profile }}">
                     {{-- <input class="form-control  @error('img_profile') is-invalid @enderror" type="file" id="file"
                         name="img_profile" accept="image/*" required> --}}
@@ -184,6 +184,16 @@
                         </div>
                     @enderror
                 </div>
+            </div>
+
+            <div class="sec_box hgi-100">
+                <h4>*Noted</h4>
+                <span>adas</span>
+                <ul>
+                    <li>img_profile (130x100)</li>
+                    <li> banner_bio (270x115)</li>
+                    <li> banner_web (1200x300)</li>
+                </ul>
             </div>
             <div class="sec_button_form">
                 <button class="sec_botton btn_submit" type="submit" id="Contactsubmit">Submit</button>
