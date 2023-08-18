@@ -1,163 +1,411 @@
-<?php
+@extends('layout.main')
+@section('container')
+<div class="sec_box hgi-100">
+    <div class="sec_head_form">
+        <h3>{{ $title }}</h3>
+        <span>Analytic Data</span>
+    </div>
+    <div class="containercard">
+        <div class="sec_card_count">
+            <div class="prog_icon_circle primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                    <path d="M8 8l4 0" />
+                    <path d="M8 12l4 0" />
+                    <path d="M8 16l4 0" />
+                </svg>
+                <div class="half_circle"></div>
+            </div>
+            <div class="detail_count">
+                <h3>159</h3>
+                <span>Nama Table</span>
+            </div>
+        </div>
+        <div class="sec_card_count">
+            <div class="prog_icon_circle secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                    <path d="M8 8l4 0" />
+                    <path d="M8 12l4 0" />
+                    <path d="M8 16l4 0" />
+                </svg>
+                <div class="half_circle"></div>
+            </div>
+            <div class="detail_count">
+                <h3>159</h3>
+                <span>Nama Table</span>
+            </div>
+        </div>
 
-namespace App\Http\Controllers;
+        <div class="sec_card_count">
+            <div class="prog_icon_circle success">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                    <path d="M8 8l4 0" />
+                    <path d="M8 12l4 0" />
+                    <path d="M8 16l4 0" />
+                </svg>
+                <div class="half_circle"></div>
+            </div>
+            <div class="detail_count">
+                <h3>159</h3>
+                <span>Nama Table</span>
+            </div>
+        </div>
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Redirect;
-use App\Models\RekapBio;
-use App\Models\RekapWeb;
-use App\Models\SumBio;
-use App\Models\SumWeb;
+        <div class="sec_card_count">
+            <div class="prog_icon_circle danger">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                    <path d="M8 8l4 0" />
+                    <path d="M8 12l4 0" />
+                    <path d="M8 16l4 0" />
+                </svg>
+                <div class="half_circle"></div>
+            </div>
+            <div class="detail_count">
+                <h3>159</h3>
+                <span>Nama Table</span>
+            </div>
+        </div>
 
+        <div class="sec_card_count">
+            <div class="prog_icon_circle warning">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                    <path d="M8 8l4 0" />
+                    <path d="M8 12l4 0" />
+                    <path d="M8 16l4 0" />
+                </svg>
+                <div class="half_circle"></div>
+            </div>
+            <div class="detail_count">
+                <h3>159</h3>
+                <span>Nama Table</span>
+            </div>
+        </div>
 
-class TrackingController extends Controller
-{
+        <div class="sec_card_count">
+            <div class="prog_icon_circle primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                    <path d="M8 8l4 0" />
+                    <path d="M8 12l4 0" />
+                    <path d="M8 16l4 0" />
+                </svg>
+                <div class="half_circle"></div>
+            </div>
+            <div class="detail_count">
+                <h3>159</h3>
+                <span>Nama Table</span>
+            </div>
 
-    public function sumBio($nama_team, $nama_menu)
-    {
-        if (empty($nama_team)) {
-            return response("Nama tim tidak valid.", 400);
-        }
-        $sumBio = SumBio::where('nama_team', $nama_team)->first();
+            <button class="sec_botton btn_primary" onclick="confirmExportToPdf()">Export to PDF Web Bio</button>
+            <button class="sec_botton btn_primary" onclick="confirmExportToPdfwebsite()">Export to PDF
+                Website</button>
+            <button type="button" onclick="confirmDownload()"> Export to Excel Bio</button>
+            <button type="button" onclick="confirmDownload2()"> Export to Excel Web</button>
 
-        if ($sumBio) {
-            $loginCount = $sumBio->$nama_menu;
+            <form action="" method="POST" enctype="multipart/form-data" id="form">
+                @csrf
+                <input type="hidden" id="bio_team" name="bio_team" value="bos zoya">
+                <button type="button" id="rekapButton" name="rekapButton">Rekap Data Bio</button>
+            </form>
 
-            $result = SumBio::where('nama_team', $nama_team)->update([
-                $nama_menu => $loginCount + 1
-            ]);
+            <form action="" method="POST" enctype="multipart/form-data" id="form-2">
+                @csrf
+                <input type="hidden" id="web_nama_team" name="web_nama_team" value="bos zoya">
+                <button type="button" id="rekapButton2" name="rekapButton2">Rekap Data Web</button>
+            </form>
 
-            if ($result) {
-                return response("Kolom '{$nama_menu}' berhasil diperbarui.", 200);
-            } else {
-                return response("Gagal memperbarui kolom '{$nama_menu}'.", 500);
-            }
-        } else {
-            return response("Nama tim '{$nama_team}' tidak ditemukan.", 404);
-        }
-    }
-
-    public function sumWeb($nama_team, $nama_menu)
-    {
-        if (empty($nama_team)) {
-            return response("Nama tim tidak valid.", 400);
-        }
-
-        $SumWeb = SumWeb::where('nama_team', $nama_team)->first();
-
-        if ($SumWeb) {
-            $loginCount = $SumWeb->$nama_menu;
-
-            $result = SumWeb::where('nama_team', $nama_team)->update([
-                $nama_menu => $loginCount + 1
-            ]);
-
-            if ($result) {
-                return response("Kolom '{$nama_menu}' berhasil diperbarui.", 200);
-            } else {
-                return response("Gagal memperbarui kolom '{$nama_menu}'.", 500);
-            }
-        } else {
-            return response("Nama tim '{$nama_team}' tidak ditemukan.", 404);
-        }
-    }
-
-    public function rekapBio(Request $request)
-    {
-        $teamToProcess = $request->input('team');
-        $resultSelect = SumBio::where('nama_team', $teamToProcess)->first();
-
-        if ($resultSelect) {
-            $newLogin = new RekapBio();
-            $newLogin->nama_team = $teamToProcess;
-            $newLogin->biotrack = $resultSelect->biotrack;
-            $newLogin->login = $resultSelect->login;
-            $newLogin->daftar = $resultSelect->daftar;
-            $newLogin->whatsapp = $resultSelect->whatsapp;
-            $newLogin->facebook = $resultSelect->facebook;
-            $newLogin->instagram = $resultSelect->instagram;
-
-            if ($newLogin->save()) {
-                // Simpan data berhasil, kemudian update data di SumBio menjadi 0
-                try {
-                    $resultUpdate = SumBio::where('nama_team', $teamToProcess)->update([
-                        'biotrack' => 0,
-                        'login' => 0,
-                        'daftar' => 0,
-                        'whatsapp' => 0,
-                        'facebook' => 0,
-                        'instagram' => 0,
-                        'website_grup' => 0
-                    ]);
-
-                    if ($resultUpdate !== false) {
-                        return "Update was successful.";
-                    } else {
-                        return "An error occurred during update.";
+            <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+            <script>
+                function confirmExportToPdf() {
+                    var confirmation = confirm("Are you sure you want to export to PDF?");
+                    if (confirmation) {
+                        exportToPdf();
                     }
-                } catch (\Exception $e) {
-                    return "Error: " . $e->getMessage();
                 }
-                if ($resultUpdate) {
-                    return response("Data berhasil disimpan dan data SumBio diupdate.", 200);
-                } else {
-                    return response("Data berhasil disimpan tetapi gagal mengupdate data SumBio.", 500);
-                }
-            } else {
-                return response("Gagal menyimpan data.", 500);
-            }
-        } else {
-            return response("Data tidak ditemukan.", 404);
-        }
-    }
 
-
-    public function rekapWeb(Request $request)
-    {
-        $teamToProcess = $request->input('nama_team');
-        $resultSelect = SumWeb::where('nama_team', $teamToProcess)->first();
-
-        if ($resultSelect) {
-            $newLogin = new RekapWeb();
-            $newLogin->nama_team = $teamToProcess;
-            $newLogin->daftar = $resultSelect->daftar;
-            $newLogin->whatsapp = $resultSelect->whatsapp;
-            $newLogin->facebook = $resultSelect->facebook;
-            $newLogin->instagram = $resultSelect->instagram;
-            $newLogin->rtp = $resultSelect->rtp;
-            $newLogin->bukti_jp = $resultSelect->bukti_jp;
-            $newLogin->livechat = $resultSelect->livechat;
-
-            if ($newLogin->save()) {
-                try {
-                    $resultUpdate = SumWeb::where('nama_team', $teamToProcess)->update([
-                        'nama_team' => $teamToProcess,
-                        'daftar' => 0,
-                        'whatsapp' => 0,
-                        'facebook' => 0,
-                        'instagram' => 0,
-                        'rtp' => 0,
-                        'bukti_jp' => 0,
-                        'livechat' => 0
-                    ]);
-
-                    if ($resultUpdate !== false) {
-                        return "Update was successful.";
-                    } else {
-                        return "An error occurred during update.";
+                function confirmExportToPdfwebsite() {
+                    var confirmation = confirm("Are you sure you want to export to PDF?");
+                    if (confirmation) {
+                        exportToPdfwebsite();
                     }
-                } catch (\Exception $e) {
-                    return "Error: " . $e->getMessage();
                 }
-            } else {
-                return response("Gagal menyimpan data.", 500);
-            }
-        } else {
-            return response("Data tidak ditemukan.", 404);
-        }
-    }
-}
+
+                function exportToPdf() {
+                    var url = '/laporan';
+
+                    window.open(url, '_blank');
+                }
+
+
+                function exportToPdfwebsite() {
+                    var url = '/laporanrekapweb';
+
+                    window.open(url, '_blank');
+                }
+
+                function confirmDownload() {
+                    if (confirm('Apakah Anda yakin ingin mendownload?')) {
+                        exportArrayToExcel();
+                    }
+                }
+
+                function confirmDownload2() {
+                    if (confirm('Apakah Anda yakin ingin mendownload?')) {
+                        exportArrayToExcelWeb();
+                    }
+                }
+
+
+
+                function exportArrayToExcel() {
+                    var url = "/laporanexcel"; // Ganti dengan URL rute yang sesuai
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            var worksheet = XLSX.utils.aoa_to_sheet(data);
+                            var columnWidths = [{
+                                    wch: 5
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                            ];
+
+                            // Mengatur lebar kolom pada sheet
+                            worksheet["!cols"] = columnWidths;
+
+                            var workbook = XLSX.utils.book_new();
+                            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+                            var excelBuffer = XLSX.write(workbook, {
+                                bookType: "xlsx",
+                                type: "array",
+                            });
+
+                            var blob = new Blob([excelBuffer], {
+                                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            });
+
+                            var downloadLink = document.createElement("a");
+                            document.body.appendChild(downloadLink);
+                            downloadLink.href = window.URL.createObjectURL(blob);
+                            downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
+                            downloadLink.click();
+                        })
+                        .catch(error => {
+                            // Tangani kesalahan jika terjadi
+                            console.error('Terjadi kesalahan:', error);
+                        });
+                }
+
+                function exportArrayToExcelWeb() {
+                    var url = "/laporanexcelweb"; // Ganti dengan URL rute yang sesuai
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            var worksheet = XLSX.utils.aoa_to_sheet(data);
+                            var columnWidths = [{
+                                    wch: 5
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                            ];
+
+                            // Mengatur lebar kolom pada sheet
+                            worksheet["!cols"] = columnWidths;
+
+                            var workbook = XLSX.utils.book_new();
+                            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+                            var excelBuffer = XLSX.write(workbook, {
+                                bookType: "xlsx",
+                                type: "array",
+                            });
+
+                            var blob = new Blob([excelBuffer], {
+                                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            });
+
+                            var downloadLink = document.createElement("a");
+                            document.body.appendChild(downloadLink);
+                            downloadLink.href = window.URL.createObjectURL(blob);
+                            downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
+                            downloadLink.click();
+                        })
+                        .catch(error => {
+                            // Tangani kesalahan jika terjadi
+                            console.error('Terjadi kesalahan:', error);
+                        });
+                }
+
+                function exportArrayToExcel() {
+                    var url = "/laporanexcel"; // Ganti dengan URL rute yang sesuai
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            var worksheet = XLSX.utils.aoa_to_sheet(data);
+                            var columnWidths = [{
+                                    wch: 5
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                                {
+                                    wch: 20
+                                },
+                            ];
+
+                            // Mengatur lebar kolom pada sheet
+                            worksheet["!cols"] = columnWidths;
+
+                            var workbook = XLSX.utils.book_new();
+                            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+                            var excelBuffer = XLSX.write(workbook, {
+                                bookType: "xlsx",
+                                type: "array",
+                            });
+
+                            var blob = new Blob([excelBuffer], {
+                                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            });
+
+                            var downloadLink = document.createElement("a");
+                            document.body.appendChild(downloadLink);
+                            downloadLink.href = window.URL.createObjectURL(blob);
+                            downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
+                            downloadLink.click();
+                        })
+                        .catch(error => {
+                            // Tangani kesalahan jika terjadi
+                            console.error('Terjadi kesalahan:', error);
+                        });
+                }
+
+
+
+                $(document).ready(function() {
+                    $("#rekapButton").click(function() {
+                        var bio_team = $("#bio_team").val();
+                        var token = $("input[name='_token']").val();
+
+                        $.ajax({
+                            url: "http://127.0.0.1:8000/rekapbio",
+                            method: "POST",
+                            data: {
+                                _token: token,
+                                team: bio_team
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'Berhasil',
+                                    icon: 'success'
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    });
+
+                    $("#rekapButton2").click(function() {
+                        var web_nama_team = $("#web_nama_team").val();
+                        var token = $("input[name='_token']").val();
+
+                        $.ajax({
+                            url: "http://127.0.0.1:8000/rekapweb",
+                            method: "POST",
+                            data: {
+                                _token: token,
+                                nama_team: web_nama_team
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'Berhasil',
+                                    icon: 'success'
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    });
+
+
+                });
+            </script>
+
+        </div>
+    </div>
+</div>
+@endsection

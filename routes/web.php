@@ -9,6 +9,7 @@ use App\Http\Controllers\LinkShortenController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\LaporanController;
 use App\Models\Bo_Link;
 use App\Models\SumBio;
 use App\Models\SumWeb;
@@ -164,9 +165,13 @@ Route::get('/itteam', function () {
         ->distinct()
         ->pluck('nama_team')
         ->toArray();
+    $analyticbio = SumBio::where('nama_team', $user)->first();
+    $analyticweb = SumWeb::where('nama_team', $user)->first();
     return view('dashboard.home', [
         'title' => $user,
-        'total_team' => $total_team
+        'total_team' => $total_team,
+        'analytic' => $analyticbio,
+        'analyticweb' => $analyticweb
 
     ]);
 })->Middleware(['auth', 'shorten']);
@@ -192,7 +197,7 @@ Route::resource('/bvbbyh0n3y88/meta/desc', MetaController::class)->Middleware(['
 
 
 
-Route::get('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'index'])->Middleware(['auth', 'admin']);
+Route::get('//shorten/{nama_website}', [LinkShortenController::class, 'index'])->Middleware(['auth', 'admin']);
 Route::post('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'admin']);
 Route::delete('/bvbbyh0n3y88/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'shorten']);
 
@@ -219,3 +224,11 @@ Route::get('/sumbio/{nama_team}/{nama_menu}', [TrackingController::class, 'sumBi
 Route::get('/sumweb/{nama_team}/{nama_menu}', [TrackingController::class, 'sumweb']);
 Route::post('/rekapbio', [TrackingController::class, 'rekapBio']);
 Route::post('/rekapweb', [TrackingController::class, 'rekapWeb']);
+
+
+
+Route::get('/laporan', [LaporanController::class, 'generatePDFRekapBio']);
+Route::get('/laporanrekapweb', [LaporanController::class, 'generatePDFRekapWeb']);
+
+Route::get('/laporanexcel', [LaporanController::class, 'generateExcelRekapBio']);
+Route::get('/laporanexcelweb', [LaporanController::class, 'generateExcelRekapWeb']);
