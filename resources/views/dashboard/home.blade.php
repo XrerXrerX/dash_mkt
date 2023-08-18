@@ -280,17 +280,251 @@
             </div>
         </div>
     </div>
+
+    <button class="sec_botton btn_primary" onclick="confirmExportToPdf()">Export to PDF Web Bio</button>
+    <button class="sec_botton btn_primary" onclick="confirmExportToPdfwebsite()">Export to PDF
+        Website</button>
+    <button type="button" onclick="confirmDownload()"> Export to Excel Bio</button>
+    <button type="button" onclick="confirmDownload2()"> Export to Excel Web</button>
+
     <form action="" method="POST" enctype="multipart/form-data" id="form">
         @csrf
         <input type="hidden" id="bio_team" name="bio_team" value="bos zoya">
         <button type="button" id="rekapButton" name="rekapButton">Rekap Data Bio</button>
     </form>
+
     <form action="" method="POST" enctype="multipart/form-data" id="form-2">
         @csrf
         <input type="hidden" id="web_nama_team" name="web_nama_team" value="bos zoya">
         <button type="button" id="rekapButton2" name="rekapButton2">Rekap Data Web</button>
     </form>
+
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
+        function confirmExportToPdf() {
+            var confirmation = confirm("Are you sure you want to export to PDF?");
+            if (confirmation) {
+                exportToPdf();
+            }
+        }
+
+        function confirmExportToPdfwebsite() {
+            var confirmation = confirm("Are you sure you want to export to PDF?");
+            if (confirmation) {
+                exportToPdfwebsite();
+            }
+        }
+
+        function exportToPdf() {
+            var url = '/laporan';
+
+            window.open(url, '_blank');
+        }
+
+
+        function exportToPdfwebsite() {
+            var url = '/laporanrekapweb';
+
+            window.open(url, '_blank');
+        }
+
+        function confirmDownload() {
+            if (confirm('Apakah Anda yakin ingin mendownload?')) {
+                exportArrayToExcel();
+            }
+        }
+
+        function confirmDownload2() {
+            if (confirm('Apakah Anda yakin ingin mendownload?')) {
+                exportArrayToExcelWeb();
+            }
+        }
+
+
+
+        function exportArrayToExcel() {
+            var url = "/laporanexcel"; // Ganti dengan URL rute yang sesuai
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    var worksheet = XLSX.utils.aoa_to_sheet(data);
+                    var columnWidths = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    // Mengatur lebar kolom pada sheet
+                    worksheet["!cols"] = columnWidths;
+
+                    var workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+                    var excelBuffer = XLSX.write(workbook, {
+                        bookType: "xlsx",
+                        type: "array",
+                    });
+
+                    var blob = new Blob([excelBuffer], {
+                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    });
+
+                    var downloadLink = document.createElement("a");
+                    document.body.appendChild(downloadLink);
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
+                    downloadLink.click();
+                })
+                .catch(error => {
+                    // Tangani kesalahan jika terjadi
+                    console.error('Terjadi kesalahan:', error);
+                });
+        }
+
+        function exportArrayToExcelWeb() {
+            var url = "/laporanexcelweb"; // Ganti dengan URL rute yang sesuai
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    var worksheet = XLSX.utils.aoa_to_sheet(data);
+                    var columnWidths = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    // Mengatur lebar kolom pada sheet
+                    worksheet["!cols"] = columnWidths;
+
+                    var workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+                    var excelBuffer = XLSX.write(workbook, {
+                        bookType: "xlsx",
+                        type: "array",
+                    });
+
+                    var blob = new Blob([excelBuffer], {
+                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    });
+
+                    var downloadLink = document.createElement("a");
+                    document.body.appendChild(downloadLink);
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
+                    downloadLink.click();
+                })
+                .catch(error => {
+                    // Tangani kesalahan jika terjadi
+                    console.error('Terjadi kesalahan:', error);
+                });
+        }
+
+        function exportArrayToExcel() {
+            var url = "/laporanexcel"; // Ganti dengan URL rute yang sesuai
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    var worksheet = XLSX.utils.aoa_to_sheet(data);
+                    var columnWidths = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    // Mengatur lebar kolom pada sheet
+                    worksheet["!cols"] = columnWidths;
+
+                    var workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+                    var excelBuffer = XLSX.write(workbook, {
+                        bookType: "xlsx",
+                        type: "array",
+                    });
+
+                    var blob = new Blob([excelBuffer], {
+                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    });
+
+                    var downloadLink = document.createElement("a");
+                    document.body.appendChild(downloadLink);
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
+                    downloadLink.click();
+                })
+                .catch(error => {
+                    // Tangani kesalahan jika terjadi
+                    console.error('Terjadi kesalahan:', error);
+                });
+        }
+
         $(document).ready(function() {
             $("#rekapButton").click(function() {
                 var bio_team = $("#bio_team").val();
