@@ -289,13 +289,13 @@
 
     <form action="" method="POST" enctype="multipart/form-data" id="form">
         @csrf
-        <input type="hidden" id="bio_team" name="bio_team" value="bos zoya">
+        <input type="hidden" id="bio_team" name="bio_team" value="{{ $title }}">
         <button type="button" id="rekapButton" name="rekapButton">Rekap Data Bio</button>
     </form>
 
     <form action="" method="POST" enctype="multipart/form-data" id="form-2">
         @csrf
-        <input type="hidden" id="web_nama_team" name="web_nama_team" value="bos zoya">
+        <input type="hidden" id="web_nama_team" name="web_nama_team" value="{{ $title }}">
         <button type="button" id="rekapButton2" name="rekapButton2">Rekap Data Web</button>
     </form>
 
