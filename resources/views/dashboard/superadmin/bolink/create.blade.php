@@ -46,11 +46,17 @@
                 @endif --}}
 
                 <div class="list_form">
-                    <span class="sec_label">Team Baru</span>
+                    <span class="sec_label">Nama team</span>
                     <input type="text" id="nama_team" name="nama_team" placeholder="Masukkan nama_team" required>
-                    <span class="sec_label">Password</span>
+                    <span class="sec_label">Link Login Refferal</span>
+                    <input type="text" id="login" name="login" placeholder="Masukkan Link login Refferal" required>
+                    @error('login')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
-                    <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
+
                     {{-- <input type="text" class="form-control @error('nama_team') is-invalid @enderror" id="nama_team"
                         name="nama_team" required value="{{ old('nama_team', $datauser->nama_team) }}"> --}}
                     @error('nama_team')
@@ -61,13 +67,27 @@
                 </div>
 
                 <div class="list_form">
-                    <span class="sec_label">Link Login Refferal</span>
-                    <input type="text" id="login" name="login" placeholder="Masukkan Link login Refferal" required>
-                    @error('login')
+                    <span class="sec_label">username</span>
+                    <input type="username" id="username" name="username" placeholder="Masukkan username" required>
+                    <span class="sec_label">title</span>
+                    <input type="text" id="title" name="title" placeholder="Masukkan Link title" required>
+                    {{-- <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                        name="title" required value="{{ old('title', $datauser->title) }}"> --}}
+                    @error('title')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
+
+                </div>
+
+                <div class="list_form">
+
+                    <span class="sec_label">Password</span>
+                    <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
+
+
+
                     <span class="sec_label">Link Daftar Refferal</span>
                     <input type="text" id="daftar" name="daftar" placeholder="Masukkan Link Daftar Refferal"
                         required>
@@ -164,7 +184,6 @@
                         </div>
                     @enderror
                 </div>
-
                 <div class="list_form">
                     <span class="sec_label">Link Banner</span>
                     <input type="text" id="link_banner" name="link_banner" placeholder="Masukkan Link link_banner"
@@ -176,22 +195,6 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
-
-
-                <div class="list_form">
-                    <span class="sec_label">Alamat</span>
-                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan Link alamat" required>
-                    {{-- <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
-                        name="alamat" required value="{{ old('alamat', $datauser->alamat) }}"> --}}
-                    @error('alamat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="list_form">
                     <span class="sec_label">Lokasi</span>
                     <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan Link lokasi" required>
                     {{-- <input type="text" class="form-control @error('lokasi') is-invalid @enderror" id="lokasi"
@@ -203,16 +206,26 @@
                     @enderror
                 </div>
 
-                {{-- <div class="list_form">
-                    <span class="sec_label">title</span>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" required value="{{ old('title', $datauser->title) }}">
-                    @error('title')
+                <div class="list_form">
+                    <span class="sec_label">Alamat</span>
+                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan Link alamat" required>
+                    {{-- <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
+                        name="alamat" required value="{{ old('alamat', $datauser->alamat) }}"> --}}
+                    @error('alamat')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+
+
+                </div>
+
+
+
+
+
+
+
                 <div class="list_form">
                     <span class="sec_label">Upload Profile BioLink</span>
                     <input class="form-control  @error('img_profile') is-invalid @enderror" type="file" id="file"

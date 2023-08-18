@@ -1710,3 +1710,15 @@ option.sec_selected {
 }
 
 
+.sec_box23 {
+    width: 100%;
+    border: var(--border-primary);
+    border-radius: 6px;
+    display: inline-block;
+    padding: 20px;
+    background: #181a1e;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: space-evenly;
+}

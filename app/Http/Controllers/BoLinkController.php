@@ -27,36 +27,36 @@ class BoLinkController extends Controller
      */
     public function index()
     {
-        if (strpos(url()->previous(), '/bvbbyh0n3y88/l4stQu0t3s/') !== false) {
-            $previousUrl = url()->previous();
-            $pattern = '/\/bvbbyh0n3y88\/l4stQu0t3s\/([^\/]+)/';
+        // if (strpos(url()->previous(), '/bvbbyh0n3y88/l4stQu0t3s/') !== false) {
+        //     $previousUrl = url()->previous();
+        //     $pattern = '/\/bvbbyh0n3y88\/l4stQu0t3s\/([^\/]+)/';
 
-            if (preg_match($pattern, $previousUrl, $matches)) {
-                $namaTeam = $matches[1]; // Mengambil nilai yang cocok dari ekspresi reguler
-                // Lakukan sesuatu dengan $namaTeam
-                $user = $namaTeam;
-                // $url = '/bvbbyh0n3y88/l4stQu0t3s/';
-            }
-            return redirect()->intended('/bvbbyh0n3y88/l4stQu0t3s/' . $user);
+        //     if (preg_match($pattern, $previousUrl, $matches)) {
+        //         $namaTeam = $matches[1]; // Mengambil nilai yang cocok dari ekspresi reguler
+        //         // Lakukan sesuatu dengan $namaTeam
+        //         $user = $namaTeam;
+        //         // $url = '/bvbbyh0n3y88/l4stQu0t3s/';
+        //     }
+        //     return redirect()->intended('/bvbbyh0n3y88/l4stQu0t3s/' . $user);
+        // } else {
+        if (Auth::user()->role == 'superadmin') {
+            $user = Bo_Link::orderBy('id')->pluck('nama_team')->first();
         } else {
-            if (Auth::user()->role == 'superadmin') {
-                $user = Bo_Link::orderBy('id')->pluck('nama_team')->first();
-            } else {
-                $user = Auth::user()->nama_team;
-            }
-            $data_user = Bo_Link::where('nama_team', $user)
-                ->first();
-            $total_team = Bo_Link::select('nama_team')
-                ->distinct()
-                ->pluck('nama_team')
-                ->toArray();
-            return view('dashboard.bolink.index', [
-                'datauser' => $data_user,
-                'title' => $user,
-                'total_team' => $total_team
-            ]);
+            $user = Auth::user()->nama_team;
         }
+        $data_user = Bo_Link::where('nama_team', $user)
+            ->first();
+        $total_team = Bo_Link::select('nama_team')
+            ->distinct()
+            ->pluck('nama_team')
+            ->toArray();
+        return view('dashboard.bolink.index', [
+            'datauser' => $data_user,
+            'title' => $user,
+            'total_team' => $total_team
+        ]);
     }
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -127,7 +127,7 @@ class BoLinkController extends Controller
             'img_profile' => 'image|file|max:5046',
             'banner_bio' => 'image|file|max:5046',
             'banner_web' => 'image|file|max:5046',
-            // 'title' => 'required|max:300',
+            'title' => 'required|max:300',
             // 'artike_bio' => 'required',
             // 'artikel_web' => 'required',
             // 'meta_tag' => 'required'
@@ -138,12 +138,11 @@ class BoLinkController extends Controller
         Bo_Link::create($validatedData);
 
         $uservalidate = $request->validate([
-            'nama_team' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'nama_team' => ['required', 'min:3', 'max:255'],
+            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
             'role' => 'required',
             'password' => 'required|min:5|max:255'
         ]);
-        $uservalidate['username'] =  $uservalidate['nama_team'];
-
         $uservalidate['password'] = Hash::make($uservalidate['password']);
         User::create($uservalidate);
 
@@ -185,7 +184,9 @@ class BoLinkController extends Controller
             'img_profile' => 'image|file|max:5046',
             'banner_bio' => 'image|file|max:5046',
             'banner_web' => 'image|file|max:5046',
-            // 'title' => 'required|max:300',
+            'title' => 'required|max:300',
+            'link_website' => 'required|max:300',
+
             // 'artike_bio' => 'required',
             // 'artikel_web' => 'required',
             // 'meta_tag' => 'required'
