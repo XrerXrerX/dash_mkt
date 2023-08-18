@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('dashboard.superadmin.layout.main')
 @section('container')
     <div class="sec_head_form">
         <h3>{{ $title }} Bio Analytic</h3>
