@@ -38,6 +38,22 @@ class SuperAdminController extends Controller
         ]);
     }
 
+    // public function superadmindex(string $id)
+    // {
+    //     $user = $id;
+    //     $data_user = Bo_Link::where('nama_team', $user)
+    //     ->first();
+    // $total_team = Bo_Link::select('nama_team')
+    //     ->distinct()
+    //     ->pluck('nama_team')
+    //     ->toArray();
+    // return view('dashboard.superadmin.bolink.index', [
+    //     'datauser' => $data_user,
+    //     'title' => $user,
+    //     'total_team' => $total_team
+    // ]);
+    // }
+
     public function meta(string $id)
     {
         $user = $id;

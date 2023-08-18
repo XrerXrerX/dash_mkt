@@ -33,7 +33,7 @@ if (!isset($_COOKIE['webtrack_done'])) {
     <div class="container">
         <header>
             <div class="grp_navbar">
-                <a href=""><img class="logo_mobile" src="<?php echo $row['img_profile']; ?>" alt="">
+                <a href=""><img class="logo_mobile" src="../storage/<?php echo $row['img_profile']; ?>" alt="">
                     <p><?php echo $row['nama_team']; ?></p>
                 </a>
                 <div class="menu">
@@ -71,7 +71,7 @@ if (!isset($_COOKIE['webtrack_done'])) {
                     <p>BUKTI JP</p>
                 </a>
                 <a href="">
-                    <img class="logo_mobile" src="https://gcdnb.pbrd.co/images/RJcnZILS0owV.png?o=1" alt="">
+                    <img class="logo_mobile" src="../storage/<?php echo $row['img_profile']; ?>" alt="">
                     <p><?php echo $row['nama_team']; ?></p>
                 </a>
                 <a href="<?php echo $row['wa']; ?>" onclick="handleLoginClick('<?php echo $row['nama_team']; ?>', 'whatsapp')">
@@ -98,7 +98,7 @@ if (!isset($_COOKIE['webtrack_done'])) {
         </section>
         <section class="target-section" style="padding: 0; margin-top: 20px;">
             <div class="promo_sec">
-                <img src="<?php echo $row['banner_web']; ?>" alt="">
+                <img src="../storage/<?php echo $row['banner_web']; ?>" alt="">
                 <a href="<?php echo $row['link_banner']; ?>" target="_blank">Lihat Promo</a>
             </div>
         </section>
@@ -237,7 +237,7 @@ if (!isset($_COOKIE['webtrack_done'])) {
             <img class="line2s" src="assets/img/line.png" alt="">
             <img class="line2ss" src="assets/img/line.png" alt="">
             <div class="grd1">
-                <img src="<?php echo $row['img_profile']; ?>" alt="">
+                <img src="../storage/<?php echo $row['img_profile']; ?>" alt="">
                 <div class="list_grd1">
                     <span>Address</span>
                     <p><?php echo $row['alamat']; ?></p>

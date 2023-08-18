@@ -164,7 +164,7 @@
                         </div>
                     @enderror
                 </div>
-                {{-- <div class="list_form">
+                <div class="list_form">
                     <span class="sec_label">title</span>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
                         name="title" required value="{{ old('title', $datauser->title) }}">
@@ -173,7 +173,7 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div> --}}
+                </div>
                 <div class="list_form">
                     <span class="sec_label">Upload Profile BioLink</span>
                     {{-- <input type='hidden' name="oldimg_profile" value="{{ $datauser->img_profile }}"> --}}

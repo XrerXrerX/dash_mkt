@@ -1,8 +1,8 @@
 @extends('layout.main')
 @section('container')
     <div class="sec_head_form">
-        <h3>BIO {{ $title }}</h3>
-        <h3>WEB {{ $title }}</h3>
+        <h3> <span>Bio Traffic</span> {{ $title }} </h3>
+        <h3> <span>Web Traffic</span>{{ $title }} </h3>
     </div>
 
     <div class="sec_box hgi-100">
@@ -297,6 +297,8 @@
         <form action="" method="POST" enctype="multipart/form-data" id="form">
             @csrf
             <select id="selectOption" onchange="handleSelectChange()">
+                <option value="" disabled selected>Pilih Menu export</option>
+
                 <option value="rekapBio">Rekap Data Bio & Export PDF</option>
                 <option value="rekapWeb">Rekap Data Web & Export PDF</option>
                 <option value="rekapbioexcel">Rekap Data Export to Excel Bio</option>

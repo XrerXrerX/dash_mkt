@@ -240,7 +240,7 @@
     document.getElementById('nama_team').addEventListener('change', function() {
         var selectedText = this.options[this.selectedIndex].text;
         if (selectedText) {
-            window.location.href = "/bvbbyh0n3y88/l4stQu0t3s/" + encodeURIComponent(selectedText);
+            window.location.href = "/bvbbyh0n3y88/l4stQu0t3s/analytic/" + encodeURIComponent(selectedText);
         }
     });
 </script>

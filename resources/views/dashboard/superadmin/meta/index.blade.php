@@ -48,6 +48,39 @@
                 @enderror
             </div>
             <div class="list_form">
+                <span class="sec_label">Link RTP</span>
+                {{-- <input type="text" id="rtp" name="rtp" placeholder="Masukkan Link rtp" required> --}}
+                <input type="text" class="form-control @error('rtp') is-invalid @enderror" id="rtp" name="rtp"
+                    required value="{{ old('rtp', $datauser->rtp) }}">
+                @error('rtp')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="list_form">
+                <span class="sec_label">Link LiveChat</span>
+                {{-- <input type="text" id="link_livechat" name="link_livechat" placeholder="Masukkan Link link_livechat" required> --}}
+                <input type="text" class="form-control @error('link_livechat') is-invalid @enderror" id="link_livechat"
+                    name="link_livechat" required value="{{ old('link_livechat', $datauser->link_livechat) }}">
+                @error('link_livechat')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="list_form">
+                <span class="sec_label">Link BuktiJP</span>
+                {{-- <input type="text" id="link_buktijp" name="link_buktijp" placeholder="Masukkan Link link_buktijp" required> --}}
+                <input type="text" class="form-control @error('link_buktijp') is-invalid @enderror" id="link_buktijp"
+                    name="link_buktijp" required value="{{ old('link_buktijp', $datauser->link_buktijp) }}">
+                @error('link_buktijp')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="list_form">
                 <span class="sec_label">mail</span>
                 {{-- <input type="text" id="mail" name="mail" placeholder="Masukkan Link mail" required> --}}
                 <input type="text" class="form-control @error('mail') is-invalid @enderror" id="mail" name="mail"
