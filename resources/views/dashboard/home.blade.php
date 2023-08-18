@@ -1,9 +1,10 @@
 @extends('layout.main')
 @section('container')
     <div class="sec_head_form">
-        <h3>BIO Analytic {{ $title }}</h3>
-        <h3>WEB Analytic {{ $title }}</h3>
+        <h3>BIO {{ $title }}</h3>
+        <h3>WEB {{ $title }}</h3>
     </div>
+
     <div class="sec_box hgi-100">
         <div class="containercard">
             <div class="sec_card_count">
@@ -280,24 +281,89 @@
             </div>
         </div>
     </div>
+    {{-- <div class="sec_box">
+        <table>
+            <thead>
+                <tr class="head_table">
+                    <th><button class="sec_botton btn_primary" type="button" onclick="confirmDownload()">Export to Excel
+                            Bio</button></th>
+                    <th><button class="sec_botton btn_primary" type="button" onclick="confirmDownload2()">Export to
+                            Excel Web</button></th>
+                </tr>
+            </thead>
+        </table>
+    </div> --}}
+    <div class="sec_box hgi-100">
+        <form action="" method="POST" enctype="multipart/form-data" id="form">
+            @csrf
+            <select id="selectOption" onchange="handleSelectChange()">
+                <option value="rekapBio">Rekap Data Bio & Export PDF</option>
+                <option value="rekapWeb">Rekap Data Web & Export PDF</option>
+                <option value="rekapbioexcel">Rekap Data Export to Excel Bio</option>
+                <option value="rekapWebexcel">Rekap Data Export to Excel Web</option>
 
-    <button class="sec_botton btn_primary" onclick="confirmExportToPdf()">Export to PDF Web Bio</button>
-    <button class="sec_botton btn_primary" onclick="confirmExportToPdfwebsite()">Export to PDF
-        Website</button>
-    <button type="button" onclick="confirmDownload()"> Export to Excel Bio</button>
-    <button type="button" onclick="confirmDownload2()"> Export to Excel Web</button>
+            </select>
+            <button class="sec_botton btn_primary" type="button" id="rekapButton" name="rekapButton"
+                onclick="handleButtonClick()">Export Data</button>
+        </form>
+    </div>
+    {{-- <div class="sec_box hgi-100">
+        <button class="sec_botton btn_primary" type="button" onclick="confirmDownload()"> Export to Excel Bio</button>
+        <button class="sec_botton btn_primary" type="button" onclick="confirmDownload2()"> Export to Excel Web</button>
+    </div> --}}
+    {{-- <div class="sec_box hgi-100">
+        <form action="" method="POST" enctype="multipart/form-data" id="form">
+            @csrf
+            <input type="hidden" id="bio_team" name="bio_team" value="{{ $title }}">
+            <button class="sec_botton btn_primary" type="button" id="rekapButton" name="rekapButton"
+                onclick="confirmExportToPdf()">Rekap Data Bio & update pdf</button>
+        </form>
 
-    <form action="" method="POST" enctype="multipart/form-data" id="form">
-        @csrf
-        <input type="hidden" id="bio_team" name="bio_team" value="{{ $title }}">
-        <button type="button" id="rekapButton" name="rekapButton">Rekap Data Bio</button>
-    </form>
+        <form action="" method="POST" enctype="multipart/form-data" id="form-2">
+            @csrf
+            <input type="hidden" id="web_nama_team" name="web_nama_team" value="{{ $title }}">
+            <button class="sec_botton btn_primary" type="button" id="rekapButton2" name="rekapButton2"
+                onclick="confirmExportToPdfwebsite()">Rekap Data Web</button>
+        </form>
+    </div> --}}
 
-    <form action="" method="POST" enctype="multipart/form-data" id="form-2">
-        @csrf
-        <input type="hidden" id="web_nama_team" name="web_nama_team" value="{{ $title }}">
-        <button type="button" id="rekapButton2" name="rekapButton2">Rekap Data Web</button>
-    </form>
+
+    <script>
+        function handleSelectChange() {
+            var selectOption = document.getElementById("selectOption").value;
+            var rekapButton = document.getElementById("rekapButton");
+
+            if (selectOption === "rekapBio") {
+                rekapButton.textContent = "Rekap Data Bio & update pdf";
+                rekapButton.onclick = confirmExportToPdf;
+            } else if (selectOption === "rekapWeb") {
+                rekapButton.textContent = "Rekap Data Web";
+                rekapButton.onclick = confirmExportToPdfwebsite;
+            } else if (selectOption === "rekapbioexcel") {
+                rekapButton.textContent = "Rekap Data Bio Excel";
+                rekapButton.onclick = confirmDownload;
+            } else if (selectOption === "rekapWebexcel") {
+                rekapButton.textContent = "Rekap Data Web Excel";
+                rekapButton.onclick = confirmDownload2;
+            }
+
+        }
+
+        function handleButtonClick() {
+            var selectOption = document.getElementById("selectOption").value;
+            if (selectOption === "rekapBio") {
+                confirmExportToPdf();
+            } else if (selectOption === "rekapWeb") {
+                confirmExportToPdfwebsite();
+            } else if (selectOption === "rekapbioexcel") {
+                confirmDownload();
+            } else if (selectOption === "rekapWebexcel") {
+                confirmDownload2();
+            }
+        }
+    </script>
+
+
 
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
@@ -342,68 +408,11 @@
 
 
 
-        function exportArrayToExcel() {
-            var url = "/laporanexcel"; // Ganti dengan URL rute yang sesuai
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    var worksheet = XLSX.utils.aoa_to_sheet(data);
-                    var columnWidths = [{
-                            wch: 5
-                        },
-                        {
-                            wch: 20
-                        },
-                        {
-                            wch: 20
-                        },
-                        {
-                            wch: 20
-                        },
-                        {
-                            wch: 20
-                        },
-                        {
-                            wch: 20
-                        },
-                        {
-                            wch: 20
-                        },
-                        {
-                            wch: 20
-                        },
-                    ];
 
-                    // Mengatur lebar kolom pada sheet
-                    worksheet["!cols"] = columnWidths;
-
-                    var workbook = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
-
-                    var excelBuffer = XLSX.write(workbook, {
-                        bookType: "xlsx",
-                        type: "array",
-                    });
-
-                    var blob = new Blob([excelBuffer], {
-                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    });
-
-                    var downloadLink = document.createElement("a");
-                    document.body.appendChild(downloadLink);
-                    downloadLink.href = window.URL.createObjectURL(blob);
-                    downloadLink.download = "data.xlsx"; // Ganti dengan nama file yang diinginkan
-                    downloadLink.click();
-                })
-                .catch(error => {
-                    // Tangani kesalahan jika terjadi
-                    console.error('Terjadi kesalahan:', error);
-                });
-        }
 
         function exportArrayToExcelWeb() {
-            var url = "/laporanexcelweb"; // Ganti dengan URL rute yang sesuai
+            var title = "{{ $title }}";
+            var url = "/laporanexcelweb/" + title; // Ganti dengan URL rute yang sesuai
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -463,7 +472,8 @@
         }
 
         function exportArrayToExcel() {
-            var url = "/laporanexcel"; // Ganti dengan URL rute yang sesuai
+            var title = "{{ $title }}";
+            var url = "/laporanexcel/" + title; // Ganti dengan URL rute yang sesuai
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
