@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! $data_team->meta_tag !!}
-    <link rel="icon" href="/assetszoyaweb/img/admin-icon.png">
-    <title>{{ $data_team->nama_team }} | Admin profesional</title>
+    <link rel="icon" href="/{{ $css }}/img/{{ $favicon }}">
     <link rel="stylesheet" href="/{{ $css }}/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
@@ -16,8 +15,7 @@
     <div class="container">
         <header>
             <div class="grp_navbar">
-                <a href=""><img class="logo_mobile" src="../storage/{{ $data_team->img_profile }}"
-                        alt="">
+                <a href=""><img class="logo_img" src="../storage/{{ $data_team->img_profile }}" alt="">
                     <p>{{ $data_team->nama_team }}</p>
                 </a>
                 <div class="menu">
@@ -122,8 +120,8 @@
                 <h1 class="text_title">{{ $data_team->nama_team }}</h1>
                 <div class="grp_med">
                     <div class="list_med">
-                        <a id="daftar" class="data_med" href="{{ $data_team->daftar }}" target="_blank"
-                            onclick="handleLoginClick('{{ $data_team->nama_team }}', 'daftar')">
+                        <a id="daftar" class="data_med" href="https://mainduo.com/bos{{ $nama_bio }}"
+                            target="_blank" onclick="handleLoginClick('{{ $data_team->nama_team }}', 'daftar')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus"
                                 viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -172,7 +170,7 @@
                         </a>
                     </div>
                     <div class="kanan_med">
-                        <img src="/assetszoyaweb/img/mediasosial.png" alt="">
+                        <img src="/{{ $css }}/img/mediasosial.png" alt="">
                         <p class="type_text">Media sosial kami tetap up-to-date dan responsif, selalu siap sedia
                             memberikan bantuan, menangani keluhan, serta memenuhi kebutuhan member setia kami dengan
                             tanggap dan efektif. Silahkan Hubungi kami sekarang !
@@ -278,16 +276,16 @@
             </div>
         </section>
         <section class="target-section">
-            <div class="konten_lord">{{ $data_team->artikel_web }}</div>
+            <div class="konten_lord">{!! $data_team->artikel_web !!}</div>
         </section>
         <footer>
-            <img class="line2s" src="/assetszoyaweb/img/line.png" alt="">
-            <img class="line2ss" src="/assetszoyaweb/img/line.png" alt="">
+            <img class="line2s" src="/{{ $css }}/img/line.png" alt="">
+            <img class="line2ss" src="/{{ $css }}/img/line.png" alt="">
             <div class="grd1">
                 <img src="../storage/{{ $data_team->img_profile }}" alt="">
                 <div class="list_grd1">
                     <span>Address</span>
-                    <p>{{ $data_team->alamat }}</p>
+                    <p>{!! $data_team->alamat !!}</p>
                 </div>
                 <div class="list_grd1">
                     <span>Mail</span>
@@ -391,7 +389,22 @@
         </footer>
     </div>
 
-    <script src="/assetszoyaweb/script.js"></script>
+    <script src="/{{ $css }}/script.js"></script>
+    <script>
+        function handleLoginClick(param1, param2) {
+            $.ajax({
+                url: 'https://mainduo.com/sumweb/' + param1 + '/' + param2,
+                method: 'GET',
+                dataType: 'html',
+                success: function(responseData) {
+                    $('#resultContainer').html(responseData);
+                },
+                error: function() {
+                    $('#resultContainer').html('Failed to load data.');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

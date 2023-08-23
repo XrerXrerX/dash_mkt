@@ -100,6 +100,7 @@
             <tr>
                 <th>NO</th>
                 <th>NAMA TEAM</th>
+                <th>WEBSITE</th>
                 <th class="align-center">DAFTAR</th>
                 <th class="align-center">WHATSAPP</th>
                 <th class="align-center">FACEBOOK</th>
@@ -112,6 +113,7 @@
         <tbody>
             @php
                 $totaldaftar = 0;
+                $totaltraffic = 0;
                 $totalwhatsapp = 0;
                 $totalfacebook = 0;
                 $totalinstagram = 0;
@@ -123,6 +125,7 @@
                 <tr>
                     <td class="align-center">{{ $index + 1 . '.' }}</td>
                     <td class="align-center">{{ $d->nama_team }}</td>
+                    <td class="align-center">{{ $d->webtrack }}</td>
                     <td class="align-center">{{ $d->daftar }}</td>
                     <td class="align-center">{{ $d->whatsapp }}</td>
                     <td class="align-center">{{ $d->facebook }}</td>
@@ -132,8 +135,9 @@
                     <td class="align-center">{{ $d->livechat }}</td>
                 </tr>
                 @php
-                    $totaldaftar += $d->daftar; // Penambahan nilai gaji pada setiap iterasi
-                    $totalwhatsapp += $d->whatsapp; // Penambahan nilai potongan pada
+                    $totaltraffic += $d->webtrack;
+                    $totaldaftar += $d->daftar;
+                    $totalwhatsapp += $d->whatsapp;
                     $totalfacebook += $d->facebook;
                     $totalinstagram += $d->instagram;
                     $totalrtp += $d->rtp;
@@ -145,6 +149,7 @@
             <!-- Baris total -->
             <tr class="total-row">
                 <td colspan="2" align="right" style="color: black;">Total Keseluruhan</td>
+                <td class="col-casbon align-center black-text">{{ number_format($totaltraffic, 0, ',', '.') }}</td>
                 <td class="col-casbon align-center black-text">{{ number_format($totaldaftar, 0, ',', '.') }}</td>
                 <td class="col-casbon align-center black-text">{{ number_format($totalwhatsapp, 0, ',', '.') }}</td>
                 <td class="col-casbon align-center black-text">{{ number_format($totalfacebook, 0, ',', '.') }}</td>

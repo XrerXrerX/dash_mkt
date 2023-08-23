@@ -33,6 +33,11 @@ use Illuminate\Support\Facades\Cookie;
 
 
 //================================================WEBSITE
+Route::domain('boszoya.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'boszoya']);
+    Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapboszoya']);
+});
+
 Route::domain('www.boszoya.com')->group(function () {
     Route::get('/', [WebsiteFrontEndController::class, 'boszoya']);
 });
@@ -41,139 +46,161 @@ Route::domain('www.bosmega.com')->group(function () {
     Route::get('/', [WebsiteFrontEndController::class, 'bosmega']);
 });
 
+Route::domain('bosmega.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'bosmega']);
+    Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapbosmega']);
+});
+
 
 Route::domain('www.bosgema.com')->group(function () {
     Route::get('/', [WebsiteFrontEndController::class, 'bosgema']);
+});
+
+Route::domain('bosgema.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'bosgema']);
+    Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapbosgema']);
 });
 
 Route::domain('www.boslinda.com')->group(function () {
     Route::get('/', [WebsiteFrontEndController::class, 'boslinda']);
 });
 
+Route::domain('boslinda.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'boslinda']);
+    Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapboslinda']);
+});
 
 
+
+Route::domain('h3b4t.com')->group(function () {
+    Route::get('/{kode}', [LinkShortenController::class, 'unshorten']);
+
+    Route::get('/', function () {
+        $nama_team = 'Boss Team';
+        return view('home', [
+            'nama_team' => $nama_team
+        ]);
+    });
+});
 
 
 
 //================================================FRONTEND
-Route::domain('www.mainduo.com')->group(function () {
+Route::domain('dash_marketing.test')->group(function () {
+    Route::get('/', function () {
+        $nama_team = 'Boss Team';
+        return view('home', [
+            'nama_team' => $nama_team
+        ]);
+    });
 
     Route::get('/boszoya', function () {
-        if (Cookie::has('biotrack_done')) {
-            // Set cookie dengan waktu kedaluwarsa 1 hari
-            Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
 
-            // Lanjutkan dengan operasi yang Anda butuhkan
-            // Contoh:
-            $user = 'bos zoya';
-            $data_user = Bo_Link::where('nama_team', $user)->first();
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos zoya';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
+        $nama_bio = 'zoya';
 
-            if ($data_user) {
-                $nama_team = $user;
-                // Melakukan operasi UPDATE pada tabel sum_bio
-                SumBio::where('nama_team', $nama_team)->increment('biotrack');
 
-                return view('biolink', [
-                    'nama_team' => $user,
-                    'datateam' => $data_user
-                ]);
-            } else {
-                // Handle jika data_user tidak ditemukan
-                return response('Data user not found', 404);
-            }
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user,
+                'nama_bio' => $nama_bio
+            ]);
         } else {
-            // Jika cookie sudah ada, lakukan hal lain atau tampilkan pesan
-            return response('Cookie already set', 200);
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
         }
     });
 
 
     Route::get('/bosmega', function () {
-        if (Cookie::has('biotrack_done')) {
-            // Set cookie dengan waktu kedaluwarsa 1 hari
-            Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
 
-            // Lanjutkan dengan operasi yang Anda butuhkan
-            // Contoh:
-            $user = 'bos mega';
-            $data_user = Bo_Link::where('nama_team', $user)->first();
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos mega';
+        $nama_bio = 'mega';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
 
-            if ($data_user) {
-                $nama_team = $user;
-                // Melakukan operasi UPDATE pada tabel sum_bio
-                SumBio::where('nama_team', $nama_team)->increment('biotrack');
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
 
-                return view('biolink', [
-                    'nama_team' => $user,
-                    'datateam' => $data_user
-                ]);
-            } else {
-                // Handle jika data_user tidak ditemukan
-                return response('Data user not found', 404);
-            }
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user,
+                'nama_bio' => $nama_bio
+            ]);
         } else {
-            // Jika cookie sudah ada, lakukan hal lain atau tampilkan pesan
-            return response('Cookie already set', 200);
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
         }
     });
 
     Route::get('/bosgema', function () {
-        if (Cookie::has('biotrack_done')) {
-            // Set cookie dengan waktu kedaluwarsa 1 hari
-            Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
 
-            // Lanjutkan dengan operasi yang Anda butuhkan
-            // Contoh:
-            $user = 'bos gema';
-            $data_user = Bo_Link::where('nama_team', $user)->first();
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos gema';
+        $nama_bio = 'gema';
 
-            if ($data_user) {
-                $nama_team = $user;
-                // Melakukan operasi UPDATE pada tabel sum_bio
-                SumBio::where('nama_team', $nama_team)->increment('biotrack');
+        $data_user = Bo_Link::where('nama_team', $user)->first();
 
-                return view('biolink', [
-                    'nama_team' => $user,
-                    'datateam' => $data_user
-                ]);
-            } else {
-                // Handle jika data_user tidak ditemukan
-                return response('Data user not found', 404);
-            }
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user,
+                'nama_bio' => $nama_bio
+            ]);
         } else {
-            // Jika cookie sudah ada, lakukan hal lain atau tampilkan pesan
-            return response('Cookie already set', 200);
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
         }
     });
 
 
 
     Route::get('/boslinda', function () {
-        if (Cookie::has('biotrack_done')) {
-            // Set cookie dengan waktu kedaluwarsa 1 hari
-            Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
 
-            // Lanjutkan dengan operasi yang Anda butuhkan
-            // Contoh:
-            $user = 'bos linda';
-            $data_user = Bo_Link::where('nama_team', $user)->first();
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos linda';
+        $nama_bio = 'gema';
 
-            if ($data_user) {
-                $nama_team = $user;
-                // Melakukan operasi UPDATE pada tabel sum_bio
-                SumBio::where('nama_team', $nama_team)->increment('biotrack');
+        $data_user = Bo_Link::where('nama_team', $user)->first();
 
-                return view('biolink', [
-                    'nama_team' => $user,
-                    'datateam' => $data_user
-                ]);
-            } else {
-                // Handle jika data_user tidak ditemukan
-                return response('Data user not found', 404);
-            }
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user,
+                'nama_bio' => $nama_bio
+            ]);
         } else {
-            // Jika cookie sudah ada, lakukan hal lain atau tampilkan pesan
-            return response('Cookie already set', 200);
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
         }
     });
 
@@ -197,10 +224,10 @@ Route::domain('www.mainduo.com')->group(function () {
                 return redirect()->intended('/superadmin');
             } elseif ($user->role == 'admin') {
                 return redirect()->intended('/admin');
-            } elseif ($user->role == 'shorten') {
-                return redirect()->intended('/shorten');
+            } elseif ($user->role == 'captain') {
+                return redirect()->intended('/captain');
             } else {
-                return redirect()->intended('/itteam');
+                return redirect()->intended('/captain');
             }
         }
         return redirect()->intended('/logout');
@@ -230,6 +257,7 @@ Route::domain('www.mainduo.com')->group(function () {
             ->distinct()
             ->pluck('nama_team')
             ->toArray();
+        $datauser = Bo_Link::where('nama_team', $user)->first();
         $analyticbio = SumBio::where('nama_team', $user)->first();
         $analyticweb = SumWeb::where('nama_team', $user)->first();
 
@@ -237,29 +265,27 @@ Route::domain('www.mainduo.com')->group(function () {
             'title' => $user,
             'total_team' => $total_team,
             'analytic' => $analyticbio,
-            'analyticweb' => $analyticweb
-
+            'analyticweb' => $analyticweb,
+            'datauser' => $datauser
 
         ]);
     })->Middleware(['auth', 'admin']);
 
-    Route::get('/itteam', function () {
+    Route::get('/captain', function () {
         $user = Auth::user()->nama_team;
-
         $total_team = Bo_Link::select('nama_team')
             ->distinct()
             ->pluck('nama_team')
             ->toArray();
         $analyticbio = SumBio::where('nama_team', $user)->first();
         $analyticweb = SumWeb::where('nama_team', $user)->first();
-        return view('dashboard.home', [
+        return view('dashboard.superadmin.home', [
             'title' => $user,
             'total_team' => $total_team,
             'analytic' => $analyticbio,
             'analyticweb' => $analyticweb
-
         ]);
-    })->Middleware(['auth', 'shorten']);
+    })->Middleware(['auth', 'captain']);
 
 
     //================================================================MIDDLEWARE SUPERADMIN
@@ -267,7 +293,7 @@ Route::domain('www.mainduo.com')->group(function () {
 
 
     Route::get('/bvbbyh0n3y88/superadmin', [BoLinkController::class, 'index'])->Middleware(['auth', 'admin']);
-    Route::resource('/bvbbyh0n3y88/superadmin', BoLinkController::class)->Middleware(['auth', 'admin']);
+    Route::resource('/bvbbyh0n3y88/superadmin', BoLinkController::class)->Middleware(['auth']);
     Route::get('/bvbbyh0n3y88/create/superadmin/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
 
 
@@ -284,7 +310,7 @@ Route::domain('www.mainduo.com')->group(function () {
 
     Route::get('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'index'])->Middleware(['auth', 'admin']);
     Route::post('/bvbbyh0n3y88/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'admin']);
-    Route::delete('/bvbbyh0n3y88/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'shorten']);
+    Route::delete('/bvbbyh0n3y88/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth']);
 
 
     Route::get('/x/{kode}', [LinkShortenController::class, 'unshorten']);
@@ -294,25 +320,27 @@ Route::domain('www.mainduo.com')->group(function () {
     Route::get('/trackinglogin/{nama_team}', [TrackingController::class, 'trackingLogin']);
 
     //===SUPERADMIN
-    Route::get('/bvbbyh0n3y88/l4stQu0t3s/{nama_team}', [SuperAdminController::class, 'index'])->Middleware(['auth', 'superadmin']);
+    Route::get('/bvbbyh0n3y88/l4stQu0t3s/{nama_team}', [SuperAdminController::class, 'index'])->Middleware(['auth', 'captain']);
     Route::get('/bvbbyh0n3y88/l4stQu0t3s/meta/{nama_team}', [SuperAdminController::class, 'meta'])->Middleware(['auth', 'superadmin']);
     Route::get('/bvbbyh0n3y88/l4stQu0t3s/create/superadmin/{nama_team}', [BoLinkController::class, 'create'])->Middleware(['auth', 'superadmin']);
-    Route::get('/bvbbyh0n3y88/l4stQu0t3s/analytic/{nama_team}', [BoLinkController::class, 'analytic'])->Middleware(['auth', 'superadmin']);
+    Route::get('/bvbbyh0n3y88/l4stQu0t3s/analytic/{nama_team}', [BoLinkController::class, 'analytic'])->Middleware(['auth', 'captain']);
 
 
-    Route::get('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'indexsuperadmin'])->Middleware(['auth', 'superadmin']);
-    Route::post('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'superadmin']);
-    Route::delete('/bvbbyh0n3y88/l4stQu0t3s/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'superadmin']);
-    Route::get('/bvbbyh0n3y88/l4stQu0t3s/laporan/{id}', [LaporanController::class, 'generatePDFRekapBio2'])->Middleware(['auth', 'superadmin']);
-    Route::get('/bvbbyh0n3y88/l4stQu0t3s/laporanrekapweb/{id}', [LaporanController::class, 'generatePDFRekapWeb2'])->Middleware(['auth', 'superadmin']);
+    Route::get('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'indexsuperadmin'])->Middleware(['auth', 'captain']);
+    Route::post('/bvbbyh0n3y88/l4stQu0t3s/shorten/{nama_website}', [LinkShortenController::class, 'shorten'])->Middleware(['auth', 'captain']);
+    Route::delete('/bvbbyh0n3y88/l4stQu0t3s/shorten/{id}', [LinkShortenController::class, 'destroy'])->Middleware(['auth', 'captain']);
+    Route::get('/bvbbyh0n3y88/l4stQu0t3s/laporan/{id}', [LaporanController::class, 'generatePDFRekapBio2'])->Middleware(['auth', 'captain']);
+    Route::get('/bvbbyh0n3y88/l4stQu0t3s/laporanrekapweb/{id}', [LaporanController::class, 'generatePDFRekapWeb2'])->Middleware(['auth', 'captain']);
 
 
 
     Route::get('/sumbio/{nama_team}/{nama_menu}', [TrackingController::class, 'sumBio']);
     Route::get('/sumweb/{nama_team}/{nama_menu}', [TrackingController::class, 'sumweb']);
     Route::post('/rekapbio', [TrackingController::class, 'rekapBio']);
-    Route::post('/rekapweb', [TrackingController::class, 'rekapWeb']);
+    Route::post('/rekapbio2', [TrackingController::class, 'rekapBio2']);
 
+    Route::post('/rekapweb', [TrackingController::class, 'rekapWeb']);
+    Route::post('/rekapweb2', [TrackingController::class, 'rekapWeb2']);
 
 
     Route::get('/laporan', [LaporanController::class, 'generatePDFRekapBio']);

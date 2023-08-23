@@ -130,7 +130,7 @@
                 </tr>
                 @php
                     $totalbiotrack += $d->biotrack; // Penambahan nilai gaji pada setiap iterasi
-                    $totallogin += $d->loginp; // Penambahan nilai potongan pada
+                    $totallogin += $d->login; // Penambahan nilai potongan pada
                     $totaldaftar += $d->daftar; // Penambahan nilai casbon pada setiap
                     $totalwhatsapp += $d->whatsapp;
                     $totalfacebook += $d->facebook;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\RekapBio;
 use App\Models\RekapWeb;
 use Illuminate\Http\Request;
@@ -34,15 +35,16 @@ class LaporanController extends Controller
     public function generatePDFRekapBio(Request $request)
     {
 
+        $user = Auth::user()->nama_team;
         $search_bulan = date('F');
         $search_tahun = date('Y');
         $search_website = '';
 
-        $datas = RekapBio::get();
+        $datas = RekapBio::where('nama_team', $user)->get();
         $data = [
-            'title' => 'Laporan Rekapitulasi Analitik Web Bio',
+            'title' => 'Laporan Rekapitulasi Analitik Bio',
             'title2' => $search_bulan . ' ' . $search_tahun,
-            'title3' => $search_website == '' ? 'All Web' : $search_website,
+            'title3' => $search_website == '' ? $user : $search_website,
             'content' => '',
             'data' => $datas
             // 'content' => 'Ini adalah contoh PDF yang di-generate menggunakan dompdf dan Laravel.'
@@ -63,7 +65,7 @@ class LaporanController extends Controller
         // Render PDF
         $dompdf->render();
 
-        $judul = 'Gaji ' . $datas[0]->bulan . ' ' . $datas[0]->bulan;
+        $judul = $user . $datas[0]->bulan . ' ' . $datas[0]->bulan;
 
         // Mengirimkan PDF sebagai response ke browser
         return $dompdf->stream($judul);
@@ -78,9 +80,9 @@ class LaporanController extends Controller
 
         $datas = RekapBio::where('nama_team', $target)->get();
         $data = [
-            'title' => 'Laporan Rekapitulasi Analitik Web Bio',
+            'title' => 'Laporan Rekapitulasi Analitik Bio',
             'title2' => $search_bulan . ' ' . $search_tahun,
-            'title3' => $search_website == '' ? 'All Web' : $search_website,
+            'title3' => $search_website == '' ? $target : $search_website,
             'content' => '',
             'data' => $datas
             // 'content' => 'Ini adalah contoh PDF yang di-generate menggunakan dompdf dan Laravel.'
@@ -101,7 +103,7 @@ class LaporanController extends Controller
         // Render PDF
         $dompdf->render();
 
-        $judul = 'Gaji ' . $datas[0]->bulan . ' ' . $datas[0]->bulan;
+        $judul = $target . $datas[0]->bulan . ' ' . $datas[0]->bulan;
 
         // Mengirimkan PDF sebagai response ke browser
         return $dompdf->stream($judul);
@@ -110,15 +112,16 @@ class LaporanController extends Controller
 
     public function generatePDFRekapWeb(Request $request)
     {
+        $user = Auth::user()->nama_team;
         $search_bulan = date('F');
         $search_tahun = date('Y');
         $search_website = '';
 
-        $datas = RekapWeb::get();
+        $datas = RekapWeb::where('nama_team', $user)->get();
         $data = [
             'title' => 'Laporan Rekapitulasi Analitik Website',
             'title2' => $search_bulan . ' ' . $search_tahun,
-            'title3' => $search_website == '' ? 'All Website' : $search_website,
+            'title3' => $search_website == '' ? $user : $search_website,
             'content' => '',
             'data' => $datas
             // 'content' => 'Ini adalah contoh PDF yang di-generate menggunakan dompdf dan Laravel.'
@@ -139,7 +142,7 @@ class LaporanController extends Controller
         // Render PDF
         $dompdf->render();
 
-        $judul = 'Gaji ' . $datas[0]->bulan . ' ' . $datas[0]->bulan;
+        $judul = $user . ' Bio' . $datas[0]->bulan . ' ' . $datas[0]->bulan;
 
         // Mengirimkan PDF sebagai response ke browser
         return $dompdf->stream($judul);
@@ -157,7 +160,7 @@ class LaporanController extends Controller
         $data = [
             'title' => 'Laporan Rekapitulasi Analitik Website',
             'title2' => $search_bulan . ' ' . $search_tahun,
-            'title3' => $search_website == '' ? 'All Website' : $search_website,
+            'title3' => $search_website == '' ? $target : $search_website,
             'content' => '',
             'data' => $datas
             // 'content' => 'Ini adalah contoh PDF yang di-generate menggunakan dompdf dan Laravel.'
@@ -178,7 +181,7 @@ class LaporanController extends Controller
         // Render PDF
         $dompdf->render();
 
-        $judul = 'Gaji ' . $datas[0]->bulan . ' ' . $datas[0]->bulan;
+        $judul = $target . ' Website' . $datas[0]->bulan . ' ' . $datas[0]->bulan;
 
         // Mengirimkan PDF sebagai response ke browser
         return $dompdf->stream($judul);
@@ -189,77 +192,55 @@ class LaporanController extends Controller
 
     public function generateExcelRekapBio(String $id)
     {
-        if ($id) {
-            $target = $id;
-            $rekapBio = RekapBio::where('nama_team', $target)->first();
-            $dataArray = [
-                ["No", "Nama Team", "Biotrack", "Login", "Daftar", "Whatsapp", "Facebook", "Instagram"],
-                [$rekapBio->no, $rekapBio->nama_team, $rekapBio->biotrack, $rekapBio->login, $rekapBio->daftar, $rekapBio->whatsapp, $rekapBio->facebook, $rekapBio->instagram]
-            ];
-        } else {
-            $rekapBio = RekapBio::get();
-            $dataArray = [];
-            $dataArray[] = ["No", "Nama Team", "Biotrack", "Login", "Daftar", "Whatsapp", "Facebook", "Instagram"];
-
-            foreach ($rekapBio as $index => $spv) {
-                $rowData = [
-                    $index + 1,
-                    $spv->nama_team,
-                    $spv->biotrack,
-                    $spv->login,
-                    $spv->daftar,
-                    $spv->whatsapp,
-                    $spv->facebook,
-                    $spv->instagram
-                ];
-                $dataArray[] = $rowData;
-            }
-        }
-        return response()->json($dataArray, Response::HTTP_OK);
-    }
-
-    public function generateExcelRekapWeb(String $id)
-    {
-        if ($id) {
-            $target = $id;
-            $rekapBio = RekapWeb::where('nama_team', $target)->first();
-            $dataArray[] = [
-                ["No", "Nama Team", "Daftar", "Whatsapp", "Facebook", "Instagram", "Rtp", "Bukti_JP", "Livechat"],
-                [$rekapBio->no, $rekapBio->nama_team, $rekapBio->daftar, $rekapBio->whatsapp, $rekapBio->facebook, $rekapBio->instagram, $rekapBio->rtp, $rekapBio->bukti_jp, $rekapBio->livechat]
-            ];
-        } else {
-            $rekapBio = RekapWeb::get();
-
-            $dataArray = [];
-            $dataArray[] = ["No", "Nama Team", "Daftar", "Whatsapp", "Facebook", "Instagram", "Rtp", "Bukti_JP", "Livechat"];
-
-            foreach ($rekapBio as $index => $spv) {
-                $rowData = [
-                    $index + 1,
-                    $spv->nama_team,
-                    $spv->daftar,
-                    $spv->whatsapp,
-                    $spv->facebook,
-                    $spv->instagram,
-                    $spv->rtp,
-                    $spv->bukti_jp,
-                    $spv->livechat
-                ];
-                $dataArray[] = $rowData;
-            }
-        }
-
-
-
-        $rekapBio = RekapWeb::get();
-
+        // if ($id) {
+        $target = $id;
+        //     $rekapBio = RekapBio::where('nama_team', $target)->get();
+        //     $dataArray = [
+        //         ["No", "Nama Team", "Biotrack", "Login", "Daftar", "Whatsapp", "Facebook", "Instagram"],
+        //         [$rekapBio->no, $rekapBio->nama_team, $rekapBio->biotrack, $rekapBio->login, $rekapBio->daftar, $rekapBio->whatsapp, $rekapBio->facebook, $rekapBio->instagram]
+        //     ];
+        // } else {
+        $rekapBio = RekapBio::where('nama_team', $target)->get();
         $dataArray = [];
-        $dataArray[] = ["No", "Nama Team", "Daftar", "Whatsapp", "Facebook", "Instagram", "Rtp", "Bukti_JP", "Livechat"];
+        $dataArray[] = ["No", "Nama Team", "Biotrack", "Login", "Daftar", "Whatsapp", "Facebook", "Instagram"];
 
         foreach ($rekapBio as $index => $spv) {
             $rowData = [
                 $index + 1,
                 $spv->nama_team,
+                $spv->biotrack,
+                $spv->login,
+                $spv->daftar,
+                $spv->whatsapp,
+                $spv->facebook,
+                $spv->instagram
+            ];
+            $dataArray[] = $rowData;
+        }
+
+        return response()->json($dataArray, Response::HTTP_OK);
+    }
+
+    public function generateExcelRekapWeb(String $id)
+    {
+        // if ($id) {
+        $target = $id;
+        $rekapBio = RekapWeb::where('nama_team', $target)->get();
+        //     $dataArray[] = [
+        //         ["No","webtrack", "Nama Team", "Daftar", "Whatsapp", "Facebook", "Instagram", "Rtp", "Bukti_JP", "Livechat"],
+        //         [$rekapBio->no,$rekapBio->nama_team, $rekapBio->nama_team, $rekapBio->daftar, $rekapBio->whatsapp, $rekapBio->facebook, $rekapBio->instagram, $rekapBio->rtp, $rekapBio->bukti_jp, $rekapBio->livechat]
+        //     ];
+        // } else {
+        // $rekapBio = RekapWeb::get();
+
+        $dataArray = [];
+        $dataArray[] = ["No", "Nama Team", "webtrack", "Daftar", "Whatsapp", "Facebook", "Instagram", "Rtp", "Bukti_JP", "Livechat"];
+
+        foreach ($rekapBio as $index => $spv) {
+            $rowData = [
+                $index + 1,
+                $spv->nama_team,
+                $spv->webtrack,
                 $spv->daftar,
                 $spv->whatsapp,
                 $spv->facebook,
@@ -270,7 +251,31 @@ class LaporanController extends Controller
             ];
             $dataArray[] = $rowData;
         }
-
         return response()->json($dataArray, Response::HTTP_OK);
     }
+
+
+
+    //     $rekapBio = RekapWeb::get();
+
+    //     $dataArray = [];
+    //     $dataArray[] = ["No", "Nama Team", "Daftar", "Whatsapp", "Facebook", "Instagram", "Rtp", "Bukti_JP", "Livechat"];
+
+    //     foreach ($rekapBio as $index => $spv) {
+    //         $rowData = [
+    //             $index + 1,
+    //             $spv->nama_team,
+    //             $spv->daftar,
+    //             $spv->whatsapp,
+    //             $spv->facebook,
+    //             $spv->instagram,
+    //             $spv->rtp,
+    //             $spv->bukti_jp,
+    //             $spv->livechat
+    //         ];
+    //         $dataArray[] = $rowData;
+    //     }
+
+    //     return response()->json($dataArray, Response::HTTP_OK);
+    // }
 }
