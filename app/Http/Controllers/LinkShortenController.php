@@ -29,7 +29,9 @@ class LinkShortenController extends Controller
     public function index($nama_team)
     {
         $user = Auth::user()->nama_team;
-        $data = LinkShorten::get();
+        $nama = str_replace(' ', '', $user);
+
+        $data = LinkShorten::where('nama_team', $user)->get();
         $total_team = Bo_Link::select('nama_team')
             ->distinct()
             ->pluck('nama_team')
@@ -38,14 +40,17 @@ class LinkShortenController extends Controller
             'data' => $data,
             'title' => $user,
             'total_team' => $total_team,
-            'nama_team' => $user
+            'nama_team' => $user,
+            'total_team' => $total_team,
+            'nama' => $nama,
         ]);
     }
 
     public function indexsuperadmin(string $id)
     {
         $user = $id;
-        $data = LinkShorten::get();
+        $nama = str_replace(' ', '', $user);
+        $data = LinkShorten::where('nama_team', $user)->get();
         $total_team = Bo_Link::select('nama_team')
             ->distinct()
             ->pluck('nama_team')
@@ -54,6 +59,7 @@ class LinkShortenController extends Controller
             'data' => $data,
             'title' => $user,
             'total_team' => $total_team,
+            'nama' => $nama,
         ]);
     }
 
@@ -63,6 +69,7 @@ class LinkShortenController extends Controller
     public function create()
     {
         $user = Auth::user()->nama_team;
+        $nama = str_replace(' ', '', $user);
         $data_user = LinkShorten::where('nama_team', $user)
             ->first();
         $total_team = LinkShorten::select('nama_team')
@@ -72,7 +79,9 @@ class LinkShortenController extends Controller
         return view('dashboard.linkshorten.create', [
             'datauser' => $data_user,
             'title' => $user,
-            'total_team' => $total_team
+            'total_team' => $total_team,
+            'nama' => $nama,
+
         ]);
     }
 
@@ -123,7 +132,7 @@ class LinkShortenController extends Controller
         $shortenedLink = new LinkShorten();
         $shortenedLink->nama_team = $nama_team;
         $shortenedLink->link_awal = $linkToShorten;
-        $shortenedLink->link_hasil = 'http://dash_marketing.test/x/' . $this->generateRandomShortCode();
+        $shortenedLink->link_hasil = 'https://h3b4t.com/' . $this->generateRandomShortCode();
         $shortenedLink->save();
 
         return response()->json(['shortened_link' => $shortenedLink->link_hasil]);
@@ -143,7 +152,7 @@ class LinkShortenController extends Controller
 
     public function unshorten($kode)
     {
-        $kode = 'http://dash_marketing.test/x/' . $kode;
+        $kode = 'https://h3b4t.com/' . $kode;
         $result = LinkShorten::where('link_hasil', $kode)
             ->select('link_awal')
             ->first();

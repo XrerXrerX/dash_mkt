@@ -113,9 +113,9 @@ class MetaController extends Controller
         }
 
         $rules = [
-            'artikel_bio' => 'required|max:30000',
-            'artikel_web' => 'required|max:30000',
-            'meta_tag' => 'required|max:30000',
+            'artikel_bio' => 'max:30000',
+            'artikel_web' => 'max:30000',
+            'meta_tag' => 'max:30000',
             'rtp' => 'required|max:255',
             'link_livechat' => 'required|max:255',
             'link_buktijp' => 'required|max:255',

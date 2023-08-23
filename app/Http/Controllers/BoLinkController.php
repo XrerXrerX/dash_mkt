@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\SumBio;
 use App\Models\SumWeb;
 
+
 class BoLinkController extends Controller
 {
     public function __construct()
@@ -25,6 +26,7 @@ class BoLinkController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         // if (strpos(url()->previous(), '/bvbbyh0n3y88/l4stQu0t3s/') !== false) {
@@ -39,7 +41,7 @@ class BoLinkController extends Controller
         //     }
         //     return redirect()->intended('/bvbbyh0n3y88/l4stQu0t3s/' . $user);
         // } else {
-        if (Auth::user()->role == 'superadmin') {
+        if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'captain') {
             $user = Bo_Link::orderBy('id')->pluck('nama_team')->first();
         } else {
             $user = Auth::user()->nama_team;
@@ -56,7 +58,7 @@ class BoLinkController extends Controller
             'total_team' => $total_team
         ]);
     }
-    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -105,8 +107,7 @@ class BoLinkController extends Controller
      */
     public function store(Request $request)
     {
-        dd('test');
-        $user = Auth::user()->role;
+
 
         $target = $request->nama_team;
         $validatedData = $request->validate([
@@ -116,7 +117,7 @@ class BoLinkController extends Controller
             'wa' => 'required|max:255',
             'fb' => 'required|max:255',
             'ig' => 'required|max:255',
-            'link_banner' => 'required|max:255',
+            // 'link_banner' => 'required|max:255',
             'rtp' => 'required|max:255',
             'alamat' => 'required|max:5046',
             'mail' => 'required|max:5046',
@@ -127,14 +128,14 @@ class BoLinkController extends Controller
             'img_profile' => 'image|file|max:5046',
             'banner_bio' => 'image|file|max:5046',
             'banner_web' => 'image|file|max:5046',
-            'title' => 'required|max:300',
-            // 'artike_bio' => 'required',
-            // 'artikel_web' => 'required',
-            // 'meta_tag' => 'required'
+            'title' => 'required|max:25',
+            'artikel_bio' => 'required',
+
         ]);
         $validatedData['img_profile'] = $request->file('img_profile')->store('imgBIO/' . $target, 'public');
         $validatedData['banner_bio'] = $request->file('banner_bio')->store('imgBIO/' . $target, 'public');
         $validatedData['banner_web'] = $request->file('banner_web')->store('imgBIO/' . $target, 'public');
+
         Bo_Link::create($validatedData);
 
         $uservalidate = $request->validate([
@@ -146,7 +147,7 @@ class BoLinkController extends Controller
         $uservalidate['password'] = Hash::make($uservalidate['password']);
         User::create($uservalidate);
 
-        return redirect('/bvbvbK1n9/superadmin')->with('success', 'new post has been added!');
+        return redirect('/bvbvbK1n9')->with('success', 'new post has been added!');
     }
 
     /**
@@ -180,7 +181,7 @@ class BoLinkController extends Controller
             'wa' => 'required|max:255',
             'fb' => 'required|max:255',
             'ig' => 'required|max:255',
-            'link_banner' => 'required|max:255',
+            // 'link_banner' => 'required|max:255',
             'img_profile' => 'image|file|max:5046',
             'banner_bio' => 'image|file|max:5046',
             'banner_web' => 'image|file|max:5046',

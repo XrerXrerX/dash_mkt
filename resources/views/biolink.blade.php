@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! $datateam->meta_tag !!}
     <link rel="icon" href="/assetsbio/img/admin-icon.png">
-    <title>{{ $nama_team }}</title>
     <link rel="stylesheet" href="/assetsbio/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
@@ -23,10 +22,10 @@
         </div>
         <div class="grp_atas">
             <div class="csl_profilee">
-                <img class="img_profile" src="{{ $datateam->img_profile }}" alt="{{ $nama_team }}">
+                <img class="img_profile" src="/storage/{{ $datateam->img_profile }}" alt="{{ $nama_team }}">
                 <div class="stt"></div>
             </div>
-            <img class="img_banner" src="{{ $datateam->banner_bio }}" alt="Promo {{ $nama_team }}">
+            <img class="img_banner" src="/storage/{{ $datateam->banner_bio }}" alt="Promo {{ $nama_team }}">
         </div>
         <div class="name_page">
             <h1>{{ $nama_team }}</h1>
@@ -38,7 +37,7 @@
             </svg>
         </div>
         <div class="button_grp">
-            <a href="{{ $datateam->login }}>" target="_blank" class="login_cek" data-analytics="login"
+            <a href="{{ $datateam->login }}" target="_blank" class="login_cek" data-analytics="login"
                 onclick="handleLoginClick('{{ $nama_team }}', 'login')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" viewBox="0 0 24 24"
                     stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -127,7 +126,7 @@
     <script>
         function handleLoginClick(param1, param2) {
             $.ajax({
-                url: 'http://dash_marketing.test/sumbio/' + param1 + '/' + param2,
+                url: 'https://mainduo.com/sumbio/' + param1 + '/' + param2,
                 method: 'GET',
                 dataType: 'html',
                 success: function(responseData) {

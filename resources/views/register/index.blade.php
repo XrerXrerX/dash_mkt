@@ -88,8 +88,8 @@
                                 <!-- <option value = "100">Pilih BO</option> -->
                                 <option value="" selected>Pilih Role</option>
                                 <option value="superadmin">SuperAdmin</option>
-                                <option value="superadmin">Admin</option>
-                                <option value="superadmin">Shorten</option>
+                                <option value="captain">Captain</option>
+                                <option value="admin">Admin</option>
                             </select>
                         </div>
                         @error('role')
