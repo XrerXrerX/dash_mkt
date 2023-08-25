@@ -217,6 +217,7 @@ Route::domain('dash_marketing.test')->group(function () {
     Route::post('/bvbbyh0n3y88/login', [LoginController::class, 'authenticate']);
     Route::post('/logout', [LoginController::class, 'logout'])->Middleware('auth');
 
+
     Route::get('/bvbvbK1n9', function () {
         if (Auth::check()) {
             $user = Auth::user();
@@ -230,7 +231,7 @@ Route::domain('dash_marketing.test')->group(function () {
                 return redirect()->intended('/captain');
             }
         }
-        return redirect()->intended('/logout');
+        return redirect()->intended('/bvbbyh0n3y88');
     });
 
 
