@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\SumBio;
+use App\Models\LiveStream;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Response;
 
@@ -90,6 +91,7 @@ class WebsiteFrontEndController extends Controller
             $nama_bio = 'zoya';
             $css = "assetszoyaweb";
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
             SumWeb::where('nama_team', $user)->increment('webtrack');
 
             return view('website.boszoya', [
@@ -97,6 +99,7 @@ class WebsiteFrontEndController extends Controller
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         } else {
@@ -106,11 +109,13 @@ class WebsiteFrontEndController extends Controller
             $favicon = 'zoya-icon_0.png';
             $css = "assetszoyaweb";
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         }
@@ -131,12 +136,15 @@ class WebsiteFrontEndController extends Controller
             $nama_bio = 'mega';
             $favicon = 'mega-icon_0.png';
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
+
             SumWeb::where('nama_team', $user)->increment('webtrack');
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         } else {
@@ -146,11 +154,15 @@ class WebsiteFrontEndController extends Controller
             $favicon = 'mega-icon_0.png';
             $css = "assetsmegaweb";
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
+
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
+
                 'favicon' => $favicon
             ]);
         }
@@ -171,12 +183,15 @@ class WebsiteFrontEndController extends Controller
             $favicon = 'gema-icon_0.png';
             $css = "assetsgemaweb";
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
+
             SumWeb::where('nama_team', $user)->increment('webtrack');
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         } else {
@@ -186,11 +201,13 @@ class WebsiteFrontEndController extends Controller
             $nama_bio = 'gema';
             $favicon = 'gema-icon_0.png';
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         }
@@ -211,12 +228,16 @@ class WebsiteFrontEndController extends Controller
             $favicon = 'linda-icon_0.png';
             $css = "assetslindaweb";
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
+
             SumWeb::where('nama_team', $user)->increment('webtrack');
+
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         } else {
@@ -226,11 +247,14 @@ class WebsiteFrontEndController extends Controller
             $nama_bio = 'linda';
             $css = "assetslindaweb";
             $data_user = Bo_Link::where('nama_team', $user)->first();
+            $livestream = LiveStream::where('nama_streamer', $data_user->nama_streamer)->first();
+
             return view('website.boszoya', [
                 'nama_team' => $user,
                 'data_team' => $data_user,
                 'css' => $css,
                 'nama_bio' => $nama_bio,
+                'livestream' => $livestream,
                 'favicon' => $favicon
             ]);
         }

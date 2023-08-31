@@ -253,19 +253,12 @@
     <div class="sec_box hgi-100">
         <form action="" method="POST" enctype="multipart/form-data" id="form">
             @csrf
-            <select id="selectOption" onchange="handleSelectChange()">
+            <select id="selectOption">
                 <option value="" disabled selected>Pilih Menu export</option>
-                <option value="rekapBiopdf">Export BIOLINK to PDF</option>
-                <option value="rekapWebpdf">Export WEBSITE to PDF</option>
+                <option value="rekapBiopdf">Export BIOLINK to CHART</option>
+                <option value="rekapWebpdf">Export WEBSITE to CHART</option>
                 <option value="rekapbioexcel">Export BIOLINK to Excel</option>
                 <option value="rekapWebexcel">Export WEBSITE to Excel</option>
-                <option value="rekapbio2">Rekap Data BIO</option>
-                <option value="rekapweb2">Rekap Data WEB</option>
-                <option value="rekapbio">Closing Rekap BIO</option>
-                <option value="rekapweb">Closing Rekap Web</option>
-
-
-
             </select>
             <button class="sec_botton btn_primary" type="button" id="rekapButton" name="rekapButton"
                 onclick="handleButtonClick()">Export Data</button>
@@ -304,7 +297,7 @@
                 var bio_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "https://mainduo.com/rekapbio2",
+                    url: "http://dash_marketing.test/rekapbio2",
                     method: "POST",
                     data: {
                         _token: token,
@@ -325,7 +318,8 @@
                 var web_nama_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "https://mainduo.com/rekapweb2",
+                    // url: "http://dash_marketing.test/rekapweb2",
+                    url: "http://dash_marketing.test/rekapweb2",
                     method: "POST",
                     data: {
                         _token: token,
@@ -350,7 +344,7 @@
                 var bio_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "https://mainduo.com/rekapbio",
+                    url: "http://dash_marketing.test/rekapbio",
                     method: "POST",
                     data: {
                         _token: token,
@@ -371,7 +365,7 @@
                 var web_nama_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "https://mainduo.com/rekapweb",
+                    url: "http://dash_marketing.test/rekapweb",
                     method: "POST",
                     data: {
                         _token: token,
@@ -445,9 +439,151 @@
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    var worksheet = XLSX.utils.aoa_to_sheet(data);
-                    var columnWidths = [{
+                    var worksheet = XLSX.utils.aoa_to_sheet(data.data1);
+                    var worksheet2 = XLSX.utils.aoa_to_sheet(data.data2);
+                    var worksheet3 = XLSX.utils.aoa_to_sheet(data.data3);
+                    var worksheet4 = XLSX.utils.aoa_to_sheet(data.data4);
+
+                    var columnWidthsharian = [{
                             wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    var columnWidthmingguan = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    var columnWidthBulanan = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    var columnWidthTahunan = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
                         },
                         {
                             wch: 20
@@ -473,10 +609,16 @@
                     ];
 
                     // Mengatur lebar kolom pada sheet
-                    worksheet["!cols"] = columnWidths;
+                    worksheet["!cols"] = columnWidthsharian;
+                    worksheet2["!cols"] = columnWidthmingguan;
+                    worksheet3["!cols"] = columnWidthBulanan;
+                    worksheet4["!cols"] = columnWidthTahunan;
 
                     var workbook = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Harian");
+                    XLSX.utils.book_append_sheet(workbook, worksheet2, "Mingguan"); // Menambahkan sheet kedua
+                    XLSX.utils.book_append_sheet(workbook, worksheet3, "Bulanan"); // Menambahkan sheet ketiga
+                    XLSX.utils.book_append_sheet(workbook, worksheet4, "Tahunan"); // Menambahkan sheet ketiga
 
                     var excelBuffer = XLSX.write(workbook, {
                         bookType: "xlsx",
@@ -490,7 +632,7 @@
                     var downloadLink = document.createElement("a");
                     document.body.appendChild(downloadLink);
                     downloadLink.href = window.URL.createObjectURL(blob);
-                    downloadLink.download = title + " website.xlsx"; // Ganti dengan nama file yang diinginkan
+                    downloadLink.download = title + " Web.xlsx"; // Ganti dengan nama file yang diinginkan
                     downloadLink.click();
                 })
                 .catch(error => {
@@ -505,9 +647,124 @@
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    var worksheet = XLSX.utils.aoa_to_sheet(data);
-                    var columnWidths = [{
+                    var worksheet = XLSX.utils.aoa_to_sheet(data.data1);
+                    var worksheet2 = XLSX.utils.aoa_to_sheet(data.data2);
+                    var worksheet3 = XLSX.utils.aoa_to_sheet(data.data3);
+                    var worksheet4 = XLSX.utils.aoa_to_sheet(data.data4);
+
+                    var columnWidthsharian = [{
                             wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    var columnWidthmingguan = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    var columnWidthBulanan = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                    ];
+
+                    var columnWidthTahunan = [{
+                            wch: 5
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
+                        },
+                        {
+                            wch: 20
                         },
                         {
                             wch: 20
@@ -536,10 +793,16 @@
                     ];
 
                     // Mengatur lebar kolom pada sheet
-                    worksheet["!cols"] = columnWidths;
+                    worksheet["!cols"] = columnWidthsharian;
+                    worksheet2["!cols"] = columnWidthmingguan;
+                    worksheet3["!cols"] = columnWidthBulanan;
+                    worksheet4["!cols"] = columnWidthTahunan;
 
                     var workbook = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Harian");
+                    XLSX.utils.book_append_sheet(workbook, worksheet2, "Mingguan"); // Menambahkan sheet kedua
+                    XLSX.utils.book_append_sheet(workbook, worksheet3, "Bulanan"); // Menambahkan sheet ketiga
+                    XLSX.utils.book_append_sheet(workbook, worksheet4, "Tahunan"); // Menambahkan sheet ketiga
 
                     var excelBuffer = XLSX.write(workbook, {
                         bookType: "xlsx",
@@ -567,7 +830,7 @@
         //         var bio_team = "{{ $title }}";
         //         var token = $("input[name='_token']").val();
         //         $.ajax({
-        //             url: "https://mainduo.com/rekapbio",
+        //             url: "http://dash_marketing.test/rekapbio",
         //             method: "POST",
         //             data: {
         //                 _token: token,
@@ -589,7 +852,7 @@
         //         var web_nama_team = "{{ $title }}";
         //         var token = $("input[name='_token']").val();
         //         $.ajax({
-        //             url: "https://mainduo.com/rekapweb",
+        //             url: "http://dash_marketing.test/rekapweb",
         //             method: "POST",
         //             data: {
         //                 _token: token,

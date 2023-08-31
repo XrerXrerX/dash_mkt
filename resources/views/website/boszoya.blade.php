@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <a href="{{ $livestream->link_livestream }}" target="_blank">
+        <div class="saint">
+            <img src="/{{ $livestream->banner_livestream }}" alt="bos zoya live">
+            <button>x</button>
+        </div>
+    </a>
     <div class="container">
         <header>
             <div class="grp_navbar">
@@ -275,6 +281,7 @@
                 </div>
             </div>
         </section>
+
         <section class="target-section">
             <div class="konten_lord">{!! $data_team->artikel_web !!}</div>
         </section>
