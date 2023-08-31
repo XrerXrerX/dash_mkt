@@ -146,14 +146,24 @@
                     @enderror
                 </div>
                 <div class="list_form">
-                    <span class="sec_label">Alamat</span>
-                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan Link alamat" required>
-                    @error('alamat')
+                    <span class="sec_label">Nama Streamer</span>
+                    <input type="text" id="nama_streamer" name="nama_streamer" placeholder="Masukkan nama Streamer"
+                        required>
+                    @error('nama_streamer')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <span class="sec_label">Link Streamer</span>
+                    <input type="text" id="link_streamer" name="link_streamer" placeholder="Masukkan Link streamer"
+                        required>
+                    @error('link_streamer')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
+
 
                 <div class="list_form">
                     <span class="sec_label">Upload Profile BioLink</span>
@@ -165,8 +175,6 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
-                <div class="list_form">
                     <span class="sec_label">Upload Banner BioLink</span>
 
                     <input class="form-control  @error('banner_bio') is-invalid @enderror" type="file" id="file"
@@ -177,6 +185,7 @@
                         </div>
                     @enderror
                 </div>
+
                 <div class="list_form">
                     <span class="sec_label">Upload Banner Web</span>
                     <input class="form-control  @error('banner_web') is-invalid @enderror" type="file" id="file"
@@ -186,7 +195,24 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <span class="sec_label">Upload foto Streamer</span>
+                    <input class="form-control  @error('banner_livestream') is-invalid @enderror" type="file"
+                        id="file" name="banner_livestream" accept="image/*" required>
+                    @error('banner_livestream')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
+            </div>
+            <div class="list_form">
+                <span class="sec_label">Alamat</span>
+                <input type="text" id="alamat" name="alamat" placeholder="Masukkan Link alamat" required>
+                @error('alamat')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="sec_button_form">
                 <button class="sec_botton btn_submit" type="submit" id="Contactsubmit">Submit</button>

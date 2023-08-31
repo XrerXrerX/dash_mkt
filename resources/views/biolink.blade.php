@@ -94,6 +94,24 @@
                 </svg>
                 <p>INSTAGRAM</p>
             </a>
+            <a href="{{ $datastream->link_streamer }}" target="_blank" class="livestream"
+                data-analytics="livestream" onclick="handleLoginClick('{{ $nama_team }}', 'livestream')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                    <path d="M12 21l0 .01"></path>
+                    <path d="M3 9l0 .01"></path>
+                    <path d="M21 9l0 .01"></path>
+                    <path d="M8 20.1a9 9 0 0 1 -5 -7.1"></path>
+                    <path d="M16 20.1a9 9 0 0 0 5 -7.1"></path>
+                    <path d="M6.2 5a9 9 0 0 1 11.4 0"></path>
+                </svg>
+
+                <p>LIVE STREAMING</p>
+            </a>
+
             <a href="{{ $datateam->link_website }}" target="_blank"
                 onclick="handleLoginClick('{{ $nama_team }}', 'website_grup')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world-www"
@@ -113,6 +131,7 @@
                 <p>{{ $nama_team }}</p>
             </a>
         </div>
+
         <div class="artikel">
             <h2>{{ $datateam->title }}</h2>
             <p>{{ $datateam->artikel_bio }}</p>

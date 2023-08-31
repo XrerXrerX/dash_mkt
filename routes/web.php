@@ -13,6 +13,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\WebsiteFrontEndController;
 use App\Models\Bo_Link;
 use App\Models\SumBio;
+use App\Models\LiveStream;
 use App\Models\SumWeb;
 
 use function Laravel\Prompts\alert;
@@ -86,7 +87,7 @@ Route::domain('h3b4t.com')->group(function () {
 
 
 //================================================FRONTEND
-Route::domain('dash_marketing.test')->group(function () {
+Route::domain('http://dash_marketing.test')->group(function () {
     Route::get('/', function () {
         $nama_team = 'Boss Team';
         return view('home', [
@@ -101,8 +102,11 @@ Route::domain('dash_marketing.test')->group(function () {
         // Lanjutkan dengan operasi yang Anda butuhkan
         // Contoh:
         $user = 'bos zoya';
-        $data_user = Bo_Link::where('nama_team', $user)->first();
         $nama_bio = 'zoya';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
+        $datastream = $data_user->nama_streamer;
+
+        $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
 
 
         if ($data_user) {
@@ -113,6 +117,7 @@ Route::domain('dash_marketing.test')->group(function () {
             return view('biolink', [
                 'nama_team' => $user,
                 'datateam' => $data_user,
+                'datastream' => $data_stream,
                 'nama_bio' => $nama_bio
             ]);
         } else {
@@ -131,6 +136,8 @@ Route::domain('dash_marketing.test')->group(function () {
         $user = 'bos mega';
         $nama_bio = 'mega';
         $data_user = Bo_Link::where('nama_team', $user)->first();
+        $datastream = $data_user->nama_streamer;
+        $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
 
         if ($data_user) {
             $nama_team = $user;
@@ -140,6 +147,7 @@ Route::domain('dash_marketing.test')->group(function () {
             return view('biolink', [
                 'nama_team' => $user,
                 'datateam' => $data_user,
+                'datastream' => $data_stream,
                 'nama_bio' => $nama_bio
             ]);
         } else {
@@ -156,8 +164,9 @@ Route::domain('dash_marketing.test')->group(function () {
         // Contoh:
         $user = 'bos gema';
         $nama_bio = 'gema';
-
         $data_user = Bo_Link::where('nama_team', $user)->first();
+        $datastream = $data_user->nama_streamer;
+        $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
 
         if ($data_user) {
             $nama_team = $user;
@@ -167,6 +176,7 @@ Route::domain('dash_marketing.test')->group(function () {
             return view('biolink', [
                 'nama_team' => $user,
                 'datateam' => $data_user,
+                'datastream' => $data_stream,
                 'nama_bio' => $nama_bio
             ]);
         } else {
@@ -185,17 +195,18 @@ Route::domain('dash_marketing.test')->group(function () {
         // Contoh:
         $user = 'bos linda';
         $nama_bio = 'gema';
-
         $data_user = Bo_Link::where('nama_team', $user)->first();
+        $datastream = $data_user->nama_streamer;
+        $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
 
         if ($data_user) {
             $nama_team = $user;
             // Melakukan operasi UPDATE pada tabel sum_bio
             SumBio::where('nama_team', $nama_team)->increment('biotrack');
-
             return view('biolink', [
                 'nama_team' => $user,
                 'datateam' => $data_user,
+                'datastream' => $data_stream,
                 'nama_bio' => $nama_bio
             ]);
         } else {

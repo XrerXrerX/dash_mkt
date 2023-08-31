@@ -20,6 +20,7 @@ class TrackingController extends Controller
 
     public function sumBio($nama_team, $nama_menu)
     {
+
         if (empty($nama_team)) {
             return response("Nama tim tidak valid.", 400);
         }
