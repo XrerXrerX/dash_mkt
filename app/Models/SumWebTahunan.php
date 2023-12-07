@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SumWebTahunan extends Model
 {
     use HasFactory;
-    protected $table = 'Tahunan_rekap_web';
+    protected $table = 'tahunan_rekap_web';
     protected $guarded = ['id'];
 }

@@ -71,7 +71,24 @@ Route::domain('boslinda.com')->group(function () {
     Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapboslinda']);
 });
 
+Route::domain('www.boscitra.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'boscitra']);
+});
 
+Route::domain('boscitra.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'boscitra']);
+    Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapboscitra']);
+});
+
+Route::domain('www.bosmika.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'bosmika']);
+});
+
+
+Route::domain('bosmika.com')->group(function () {
+    Route::get('/', [WebsiteFrontEndController::class, 'bosmika']);
+    Route::get('/sitemap.xml', [WebsiteFrontEndController::class, 'sitemapbosmika']);
+});
 
 Route::domain('h3b4t.com')->group(function () {
     Route::get('/{kode}', [LinkShortenController::class, 'unshorten']);
@@ -87,7 +104,7 @@ Route::domain('h3b4t.com')->group(function () {
 
 
 //================================================FRONTEND
-Route::domain('http://dash_marketing.test')->group(function () {
+Route::domain('https://mainduo.com')->group(function () {
     Route::get('/', function () {
         $nama_team = 'Boss Team';
         return view('home', [
@@ -101,6 +118,7 @@ Route::domain('http://dash_marketing.test')->group(function () {
 
         // Lanjutkan dengan operasi yang Anda butuhkan
         // Contoh:
+        $csszoya = 'bos_zoya';
         $user = 'bos zoya';
         $nama_bio = 'zoya';
         $data_user = Bo_Link::where('nama_team', $user)->first();
@@ -118,7 +136,72 @@ Route::domain('http://dash_marketing.test')->group(function () {
                 'nama_team' => $user,
                 'datateam' => $data_user,
                 'datastream' => $data_stream,
-                'nama_bio' => $nama_bio
+                'nama_bio' => $nama_bio,
+                'css' => $csszoya
+            ]);
+        } else {
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
+        }
+    });
+
+
+    Route::get('/bosmika', function () {
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $cssmika = 'bos_mika';
+        $user = 'bos mika';
+        $nama_bio = 'mika';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
+        $datastream = $data_user->nama_streamer;
+
+        $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
+
+
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user,
+                'datastream' => $data_stream,
+                'nama_bio' => $nama_bio,
+                'css' => $cssmika
+            ]);
+        } else {
+            // Handle jika data_user tidak ditemukan
+            return response('Data user not found', 404);
+        }
+    });
+
+
+    Route::get('/boscitra', function () {
+        // Set cookie dengan waktu kedaluwarsa 1 hari
+        Cookie::queue('biotrack_done', 'true', 1440); // 1440 menit = 1 hari
+        // Lanjutkan dengan operasi yang Anda butuhkan
+        // Contoh:
+        $user = 'bos citra';
+        $csscitra = 'bos_citra';
+        $nama_bio = 'citra';
+        $data_user = Bo_Link::where('nama_team', $user)->first();
+        $datastream = $data_user->nama_streamer;
+        $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
+        if ($data_user) {
+            $nama_team = $user;
+            // Melakukan operasi UPDATE pada tabel sum_bio
+            SumBio::where('nama_team', $nama_team)->increment('biotrack');
+
+            return view('biolink', [
+                'nama_team' => $user,
+                'datateam' => $data_user,
+                'datastream' => $data_stream,
+                'nama_bio' => $nama_bio,
+                'css' => $csscitra
             ]);
         } else {
             // Handle jika data_user tidak ditemukan
@@ -134,6 +217,7 @@ Route::domain('http://dash_marketing.test')->group(function () {
         // Lanjutkan dengan operasi yang Anda butuhkan
         // Contoh:
         $user = 'bos mega';
+        $cssmega = 'bos_mega';
         $nama_bio = 'mega';
         $data_user = Bo_Link::where('nama_team', $user)->first();
         $datastream = $data_user->nama_streamer;
@@ -148,7 +232,8 @@ Route::domain('http://dash_marketing.test')->group(function () {
                 'nama_team' => $user,
                 'datateam' => $data_user,
                 'datastream' => $data_stream,
-                'nama_bio' => $nama_bio
+                'nama_bio' => $nama_bio,
+                'css' => $cssmega
             ]);
         } else {
             // Handle jika data_user tidak ditemukan
@@ -164,6 +249,7 @@ Route::domain('http://dash_marketing.test')->group(function () {
         // Contoh:
         $user = 'bos gema';
         $nama_bio = 'gema';
+        $cssgema = 'bos_gema';
         $data_user = Bo_Link::where('nama_team', $user)->first();
         $datastream = $data_user->nama_streamer;
         $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
@@ -177,7 +263,8 @@ Route::domain('http://dash_marketing.test')->group(function () {
                 'nama_team' => $user,
                 'datateam' => $data_user,
                 'datastream' => $data_stream,
-                'nama_bio' => $nama_bio
+                'nama_bio' => $nama_bio,
+                'css' => $cssgema
             ]);
         } else {
             // Handle jika data_user tidak ditemukan
@@ -194,7 +281,8 @@ Route::domain('http://dash_marketing.test')->group(function () {
         // Lanjutkan dengan operasi yang Anda butuhkan
         // Contoh:
         $user = 'bos linda';
-        $nama_bio = 'gema';
+        $csslinda = 'bos_linda';
+        $nama_bio = 'linda';
         $data_user = Bo_Link::where('nama_team', $user)->first();
         $datastream = $data_user->nama_streamer;
         $data_stream = LiveStream::where('nama_streamer', $datastream)->first();
@@ -207,7 +295,8 @@ Route::domain('http://dash_marketing.test')->group(function () {
                 'nama_team' => $user,
                 'datateam' => $data_user,
                 'datastream' => $data_stream,
-                'nama_bio' => $nama_bio
+                'nama_bio' => $nama_bio,
+                'css' => $csslinda
             ]);
         } else {
             // Handle jika data_user tidak ditemukan
@@ -220,11 +309,11 @@ Route::domain('http://dash_marketing.test')->group(function () {
 
 
 
-    //================================================AUTHENTICATION
+    // ================================================AUTHENTICATION
 
     Route::get('/bvbbyh0n3y88', [LoginController::class, 'index'])->name('login');
-    Route::get('/bvbbyh0n3y88/register', [RegisterController::class, 'index']);
-    Route::post('/bvbbyh0n3y88/register', [RegisterController::class, 'store']);
+    // Route::get('/bvbbyh0n3y88/register', [RegisterController::class, 'index']);
+    // Route::post('/bvbbyh0n3y88/register', [RegisterController::class, 'store']);
     Route::post('/bvbbyh0n3y88/login', [LoginController::class, 'authenticate']);
     Route::post('/logout', [LoginController::class, 'logout'])->Middleware('auth');
 
@@ -239,7 +328,7 @@ Route::domain('http://dash_marketing.test')->group(function () {
             } elseif ($user->role == 'captain') {
                 return redirect()->intended('/captain');
             } else {
-                return redirect()->intended('/captain');
+                return redirect()->intended('/bvbbyh0n3y88');
             }
         }
         return redirect()->intended('/bvbbyh0n3y88');

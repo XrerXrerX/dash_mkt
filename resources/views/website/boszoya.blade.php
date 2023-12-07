@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <a href="{{ $livestream->link_livestream }}" target="_blank">
+    <a href="{{ $livestream->link_streamer }}" target="_blank">
         <div class="saint">
-            <img src="/{{ $livestream->banner_livestream }}" alt="bos zoya live">
+            <img src="../storage/{{ $livestream->banner_livestream }}" alt="bos zoya live">
             <button>x</button>
         </div>
     </a>
@@ -98,9 +98,7 @@
         </div>
         <section class="target-section marrqq">
             <div class="spotss left"></div>
-            <marquee behavior="scroll" direction="left">Dalam setiap pelayanan, saya sebagai Admin
-                <span>{{ $data_team->nama_team }}</span>, berkomitmen untuk memberikan yang terbaik kepada pelanggan.
-                Kepuasan mereka adalah prioritas utama dalam setiap tindakan kami.
+            <marquee behavior="scroll" direction="left">{{ $marquee }}
             </marquee>
             <div class="spotss right"></div>
         </section>
@@ -114,9 +112,7 @@
             <div class="deskripsi_sec">
                 <h1 class="text_title" style="border: none; padding-bottom: 0; margin-bottom: 10px">
                     {{ $data_team->nama_team }}</h1>
-                <p class="quotes">"Dalam setiap pelayanan, saya sebagai Admin
-                    <span>{{ $data_team->nama_team }}</span>, berkomitmen untuk memberikan yang terbaik kepada
-                    pelanggan. Kepuasan mereka adalah prioritas utama dalam setiap tindakan kami."
+                <p class="quotes">"{{ $quote }}"
                 </p>
             </div>
         </section>
@@ -177,9 +173,7 @@
                     </div>
                     <div class="kanan_med">
                         <img src="/{{ $css }}/img/mediasosial.png" alt="">
-                        <p class="type_text">Media sosial kami tetap up-to-date dan responsif, selalu siap sedia
-                            memberikan bantuan, menangani keluhan, serta memenuhi kebutuhan member setia kami dengan
-                            tanggap dan efektif. Silahkan Hubungi kami sekarang !
+                        <p class="type_text">{{ $medsos }}
                         </p>
                     </div>
                 </div>
@@ -201,9 +195,7 @@
                                 </svg>
                                 <h3>bertindak cepat</h3>
                             </div>
-                            <p>Sebagai admin, ketangkasan dalam tindakan adalah prinsip utama saya. Dengan sigap, saya
-                                merespon dan menyelesaikan keperluan Anda, memberikan layanan yang efisien dan efektif
-                                setiap saat.</p>
+                            <p>{{ $cepat }}</p>
                         </div>
                         <div class="list_cksatu">
                             <div class="kecil_list">
@@ -218,8 +210,7 @@
                                 </svg>
                                 <h3>sumber informasi</h3>
                             </div>
-                            <p>Sebagai admin, saya hadir untuk menyediakan sumber informasi terpercaya. Silakan ajukan
-                                pertanyaan atau minta panduan terkait informasi terbaru yang ingin anda dapatkan!</p>
+                            <p>{{ $informasi }}</p>
                         </div>
                     </div>
                     <div class="ck_satu">
@@ -236,10 +227,7 @@
                                 </svg>
                                 <h3>admin profesional</h3>
                             </div>
-                            <p>Sebagai seorang admin profesional, saya memastikan memberikan informasi terpercaya,
-                                pengelolaan yang efisien, dan respons yang cepat. Dengan pengalaman dan pengetahuan
-                                dalam bidang ini, komitmen saya adalah memastikan pengalaman yang lancar dan bermanfaat
-                                bagi semua yang berinteraksi dengan layanan ini.</p>
+                            <p>{{ $sumberProfesional }}</p>
                         </div>
                     </div>
                     <div class="ck_satu">
@@ -255,9 +243,7 @@
                                 </svg>
                                 <h3>admin terpercaya</h3>
                             </div>
-                            <p>Sebagai admin yang terpercaya, kami wajib mempersiapkan informasi dari sumber yang valid
-                                sebagai kebutuhan member setia kami untuk memperoleh informasi yang tepat dan efisien
-                                kapanpun informasi tersebut dibutuhkan.</p>
+                            <p>{{ $adminProfesional }}</p>
                         </div>
                         <div class="list_cksatu">
                             <div class="kecil_list">
@@ -274,8 +260,7 @@
                                 </svg>
                                 <h3>aktif 24 jam</h3>
                             </div>
-                            <p>Saya adalah admin yang aktif selama 24 jam penuh. Kapan pun Anda memerlukan bantuan,
-                                informasi, atau panduan, saya siap merespons dengan cepat dan membantu Anda.</p>
+                            <p>{{ $aktifjam }}</p>
                         </div>
                     </div>
                 </div>
@@ -391,7 +376,7 @@
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="bawahss">
-                <p>© Copyright 2023 <span>{{ $data_team->nama_team }}</span> All Rights Reserved.</p>
+                <p>{{ $cp }}</p>
             </div>
         </footer>
     </div>

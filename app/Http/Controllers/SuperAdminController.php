@@ -39,6 +39,8 @@ class SuperAdminController extends Controller
             ->pluck('nama_team')
             ->toArray();
 
+
+
         return view('dashboard.superadmin.bolink.index', [
             'datauser' => $data_user,
             'title' => $user,

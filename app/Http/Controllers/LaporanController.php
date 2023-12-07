@@ -12,7 +12,7 @@ use PDF;
 use Dompdf\Dompdf;
 use App\Models\SumBioHarian;
 use App\Models\SumWebHarian;
-use App\Models\SumBiomingguan;
+use App\Models\SumBioMingguan;
 use App\Models\SumWebMingguan;
 use App\Models\SumBioBulanan;
 use App\Models\SumWebBulanan;
@@ -268,7 +268,7 @@ class LaporanController extends Controller
             $facebookValuesMingguan[] = $data2->facebook;
             $instagramValuesMingguan[] = $data2->instagram;
             $website_grupValuesMingguan[] = $data2->website_grup;
-            $livestream_grupValuesMingguan[] = $data->livestream;
+            $livestream_grupValuesMingguan[] = $data2->livestream;
         }
 
         $bulanValues = [];
@@ -294,7 +294,7 @@ class LaporanController extends Controller
             $website_grupValuesBulanan[] = $data3->website_grup;
             $rata2HariValuesBulanan[] = $data3->rata2_hari;
             $rata2MingguValuesBulanan[] = $data3->rata2_minggu;
-            $livestream_grupValuesBulanan[] = $data->livestream;
+            $livestream_grupValuesBulanan[] = $data3->livestream;
         }
 
         $tahunValues = [];
@@ -309,18 +309,18 @@ class LaporanController extends Controller
         $rata2HariValuesTahunan = [];
         $rata2MingguValuesTahunan = [];
 
-        foreach ($dataTahunan as $data3) {
-            $tahunValues[] = $data3->tahun;
-            $biotrackValuesTahunan[] = $data3->biotrack;
-            $loginValuesTahunan[] = $data3->login;
-            $daftarValuesTahunan[] = $data3->daftar;
-            $whatsappValuesTahunan[] = $data3->whatsapp;
-            $facebookValuesTahunan[] = $data3->facebook;
-            $instagramValuesTahunan[] = $data3->instagram;
-            $website_grupValuesTahunan[] = $data3->website_grup;
+        foreach ($dataTahunan as $data4) {
+            $tahunValues[] = $data4->tahun;
+            $biotrackValuesTahunan[] = $data4->biotrack;
+            $loginValuesTahunan[] = $data4->login;
+            $daftarValuesTahunan[] = $data4->daftar;
+            $whatsappValuesTahunan[] = $data4->whatsapp;
+            $facebookValuesTahunan[] = $data4->facebook;
+            $instagramValuesTahunan[] = $data4->instagram;
+            $website_grupValuesTahunan[] = $data4->website_grup;
             $livestream_grupValuesTahunan[] = $data->livestream;
-            $rata2HariValuesTahunan[] = $data3->rata2_hari;
-            $rata2MingguValuesTahunan[] = $data3->rata2_minggu;
+            $rata2HariValuesTahunan[] = $data4->rata2_hari;
+            $rata2MingguValuesTahunan[] = $data4->rata2_minggu;
         }
 
 

@@ -285,7 +285,7 @@
                 var bio_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "http://dash_marketing.test/rekapbio2",
+                    url: "https://mainduo.com/rekapbio2",
                     method: "POST",
                     data: {
                         _token: token,
@@ -306,8 +306,8 @@
                 var web_nama_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    // url: "http://dash_marketing.test/rekapweb2",
-                    url: "http://dash_marketing.test/rekapweb2",
+                    // url: "https://mainduo.com/rekapweb2",
+                    url: "https://mainduo.com/rekapweb2",
                     method: "POST",
                     data: {
                         _token: token,
@@ -332,7 +332,7 @@
                 var bio_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "http://dash_marketing.test/rekapbio",
+                    url: "https://mainduo.com/rekapbio",
                     method: "POST",
                     data: {
                         _token: token,
@@ -353,7 +353,7 @@
                 var web_nama_team = "{{ $title }}";
                 var token = $("input[name='_token']").val();
                 $.ajax({
-                    url: "http://dash_marketing.test/rekapweb",
+                    url: "https://mainduo.com/rekapweb",
                     method: "POST",
                     data: {
                         _token: token,
@@ -818,7 +818,7 @@
         //         var bio_team = "{{ $title }}";
         //         var token = $("input[name='_token']").val();
         //         $.ajax({
-        //             url: "http://dash_marketing.test/rekapbio",
+        //             url: "https://mainduo.com/rekapbio",
         //             method: "POST",
         //             data: {
         //                 _token: token,
@@ -840,7 +840,7 @@
         //         var web_nama_team = "{{ $title }}";
         //         var token = $("input[name='_token']").val();
         //         $.ajax({
-        //             url: "http://dash_marketing.test/rekapweb",
+        //             url: "https://mainduo.com/rekapweb",
         //             method: "POST",
         //             data: {
         //                 _token: token,

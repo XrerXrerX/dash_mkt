@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Models\SumBioHarian;
 use App\Models\SumWebHarian;
-use App\Models\SumBiomingguan;
+use App\Models\SumBioMingguan;
 use App\Models\SumWebMingguan;
 use App\Models\SumBioBulanan;
 use App\Models\SumWebBulanan;
@@ -43,7 +43,7 @@ class importAnalytic extends Command
     {
         // Ambil nilai visitweb dari sumber yang sesuai
         $now = Carbon::now();
-        $tanggalHariIni = $now->day;
+        $tanggalHariIni = now()->day;
         $namabulan =  $now->format('F');
         if ($namabulan == 'January') {
             $namabulan = 'Januari';
@@ -110,7 +110,7 @@ class importAnalytic extends Command
 
 
             // Simpan nilai visitweb ke dalam database
-            if ($tanggalHariIni === 1) {
+            if ($tanggalHariIni == 1) {
 
                 SumBioHarian::where('nama_team', $teamToProcess)->create([
                     'hari' => $tanggalHariIni,
@@ -243,7 +243,7 @@ class importAnalytic extends Command
                     'created_at' => now()
                 ]);
             }
-            if ($tanggalHariIni === 7) {
+            if ($tanggalHariIni == 7) {
                 SumBioMingguan::where('nama_team', $teamToProcess)->create([
                     'minggu' => $tanggalHariIni,
                     'nama_team' => $teamToProcess,
@@ -254,8 +254,8 @@ class importAnalytic extends Command
                     'facebook' =>  $facebook,
                     'instagram' =>  $instagram,
                     'website_grup' =>  $website_grup,
-                    'created_at' => now(),
                     'livestream' =>  $livestream,
+                    'created_at' => now(),
                 ]);
                 SumWebMingguan::where('nama_team', $teamToProcess)->create([
                     'minggu' => $tanggalHariIni,
@@ -272,7 +272,7 @@ class importAnalytic extends Command
                     'created_at' => now()
                 ]);
             }
-            if ($tanggalHariIni === 14 || $tanggalHariIni === 21 || $tanggalHariIni == $enddate) {
+            if ($tanggalHariIni == 14 || $tanggalHariIni == 21 || $tanggalHariIni == $enddate) {
                 //datalasttableMingguan
                 $lastDatamingguan = SumBioMingguan::where('nama_team', $teamToProcess)
                     ->orderBy('created_at', 'desc')
@@ -463,12 +463,12 @@ class importAnalytic extends Command
 
 
         //habis truncate jadikan  
-        if ($tanggalHariIni == '1') {
+        if ($tanggalHariIni == 1) {
             SumWebHarian::truncate();
             SumBioHarian::truncate();
         }
 
-        if ($tanggalHariIni == '1') {
+        if ($tanggalHariIni == 1) {
             SumWebMingguan::truncate();
             SumBioMingguan::truncate();
         }

@@ -13,6 +13,7 @@ use App\Models\SumWeb;
 use App\Models\LiveStream;
 
 
+
 class BoLinkController extends Controller
 {
     public function __construct()
@@ -60,6 +61,7 @@ class BoLinkController extends Controller
             ->toArray();
         $link_streamer = LiveStream::where('nama_streamer', $data_user->nama_streamer)
             ->first();
+
         return view('dashboard.bolink.index', [
             'datauser' => $data_user,
             'title' => $user,
@@ -136,10 +138,9 @@ class BoLinkController extends Controller
             'link_livechat' => 'required|max:255',
             'link_buktijp' => 'required|max:255',
             'link_website' => 'required|max:255',
-            'img_profile' => 'image|file|max:7500',
-            'banner_bio' => 'image|file|max:7500',
-            'banner_web' => 'image|file|max:10000',
-            'banner_livestream' => 'image|file|max:10000',
+            'img_profile' => 'image|max:7500',
+            'banner_bio' => 'image|max:7500',
+            'banner_web' => 'image|max:10000',
             'title' => 'required|max:25',
             'artikel_bio' => 'required',
 
@@ -169,16 +170,11 @@ class BoLinkController extends Controller
         $validatedData3 = $request->validate([
             'nama_streamer' => 'required|max:5046',
             'link_streamer' => 'required|max:255',
-            'banner_livestream' => 'image|file|max:10000'
+            'banner_livestream' => 'image|mimes:gif|max:10000'
         ]);
 
         $validatedData3['banner_livestream'] = $request->file('banner_livestream')->store('imgStream/' . $target, 'public');
         LiveStream::create($validatedData3);
-
-
-
-
-
 
 
 
@@ -218,21 +214,24 @@ class BoLinkController extends Controller
             'fb' => 'required|max:255',
             'ig' => 'required|max:255',
             'nama_streamer' => 'required|max:255',
-            'img_profile' => 'image|file|max:5046',
-            'banner_bio' => 'image|file|max:5046',
-            'banner_web' => 'image|file|max:5046',
+            'img_profile' => 'image|max:5046',
+            'banner_bio' => 'image|max:5046',
+            'banner_web' => 'image|max:10000',
             'title' => 'required|max:300',
             'link_website' => 'required|max:300',
-
             // 'artike_bio' => 'required',
             // 'artikel_web' => 'required',
             // 'meta_tag' => 'required'
         ];
 
+
         $rulesStream = [
             'nama_streamer' => 'required|max:255',
+            'banner_livestream' => 'image|mimes:gif|max:50000',
             'link_streamer' => 'required|max:255',
         ];
+
+
 
 
         if (Auth::user()->role == 'admin') {
@@ -272,7 +271,7 @@ class BoLinkController extends Controller
 
             Bo_Link::where('nama_team', $id)->update($validatedData);
             LiveStream::where('nama_streamer', $nama_stream)->update($validatedData2);
-            return redirect('/bvbbyh0n3y88/superadmin')->with('success', 'post has been updated!');
+            return redirect('/bvbbyh0n3y88/superadmin')->with('success', 'Data berhasil diubah !');
         } else {
             $rules['nama_team'] = 'required';
             $validatedData = $request->validate($rules);
@@ -311,10 +310,12 @@ class BoLinkController extends Controller
                 $validatedData2['banner_livestream'] = $request->file('banner_livestream')->store('imgStream/' . $target, 'public');
             }
 
+
+
             Bo_Link::where('nama_team', $id)->update($validatedData);
             LiveStream::where('nama_streamer', $nama_stream)->update($validatedData2);
 
-            return redirect('/bvbbyh0n3y88/l4stQu0t3s/' .  $target)->with('success', 'post has been updated!');
+            return redirect('/bvbbyh0n3y88/l4stQu0t3s/' .  $target)->with('success', 'Data berhasil diubah !');
         }
     }
 
