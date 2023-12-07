@@ -6,27 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! $datateam->meta_tag !!}
     <link rel="icon" href="/assetsbio/img/admin-icon.png">
-    <title>{{ $nama_team }}</title>
-    <link rel="stylesheet" href="/assetsbio/style.css">
+    <link rel="stylesheet" href="/assetsbio/{{ $css }}/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 </head>
 
 <body>
     <section>
-        <img class="line2" src="/assetsbio/img/line2.png" alt="">
+        <img class="line2" src="/assetsbio/{{ $css }}/line.png" alt="">
         <div class="line_cls">
             <div class="pst">
-                <img src="/assetsbio/img/line.png" alt="">
+                <img src="/assetsbio/{{ $css }}/line2.png" alt="">
                 <div class="shadd"></div>
             </div>
         </div>
         <div class="grp_atas">
             <div class="csl_profilee">
-                <img class="img_profile" src="{{ $datateam->img_profile }}" alt="{{ $nama_team }}">
+                <img class="img_profile" src="/storage/{{ $datateam->img_profile }}" alt="{{ $nama_team }}">
                 <div class="stt"></div>
             </div>
-            <img class="img_banner" src="{{ $datateam->banner_bio }}" alt="Promo {{ $nama_team }}">
+            <img class="img_banner" src="/storage/{{ $datateam->banner_bio }}" alt="Promo {{ $nama_team }}">
         </div>
         <div class="name_page">
             <h1>{{ $nama_team }}</h1>
@@ -38,7 +37,7 @@
             </svg>
         </div>
         <div class="button_grp">
-            <a href="{{ $datateam->login }}>" target="_blank" class="login_cek" data-analytics="login"
+            <a href="{{ $datateam->login }}" target="_blank" class="login_cek" data-analytics="login"
                 onclick="handleLoginClick('{{ $nama_team }}', 'login')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" viewBox="0 0 24 24"
                     stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -95,6 +94,24 @@
                 </svg>
                 <p>INSTAGRAM</p>
             </a>
+            <a href="{{ $datastream->link_streamer }}" target="_blank" class="livestream"
+                data-analytics="livestream" onclick="handleLoginClick('{{ $nama_team }}', 'livestream')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom-2" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                    <path d="M12 21l0 .01"></path>
+                    <path d="M3 9l0 .01"></path>
+                    <path d="M21 9l0 .01"></path>
+                    <path d="M8 20.1a9 9 0 0 1 -5 -7.1"></path>
+                    <path d="M16 20.1a9 9 0 0 0 5 -7.1"></path>
+                    <path d="M6.2 5a9 9 0 0 1 11.4 0"></path>
+                </svg>
+
+                <p>LIVE STREAMING</p>
+            </a>
+
             <a href="{{ $datateam->link_website }}" target="_blank"
                 onclick="handleLoginClick('{{ $nama_team }}', 'website_grup')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world-www"
@@ -114,6 +131,7 @@
                 <p>{{ $nama_team }}</p>
             </a>
         </div>
+
         <div class="artikel">
             <h2>{{ $datateam->title }}</h2>
             <p>{{ $datateam->artikel_bio }}</p>
@@ -127,7 +145,7 @@
     <script>
         function handleLoginClick(param1, param2) {
             $.ajax({
-                url: 'http://dash_marketing.test/sumbio/' + param1 + '/' + param2,
+                url: 'https://mainduo.com/sumbio/' + param1 + '/' + param2,
                 method: 'GET',
                 dataType: 'html',
                 success: function(responseData) {

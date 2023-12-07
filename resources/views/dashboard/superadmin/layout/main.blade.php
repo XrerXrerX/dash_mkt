@@ -35,6 +35,17 @@
     <script src="/../assets/script.js"></script>
     <script src="/../assets/design.js"></script>
     <script src="/../assets/component.js"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    @endif
 </body>
 
 </html>

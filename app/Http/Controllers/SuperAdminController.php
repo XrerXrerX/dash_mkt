@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\LiveStream;
 
 class SuperAdminController extends Controller
 {
@@ -25,18 +26,46 @@ class SuperAdminController extends Controller
     public function index(string $id)
     {
         $user = $id;
+        $data_stream = LiveStream::select('nama_streamer')
+            ->distinct()
+            ->pluck('nama_streamer')
+            ->toArray();
         $data_user = Bo_Link::where('nama_team', $user)
+            ->first();
+        $link_streamer = LiveStream::where('nama_streamer', $data_user->nama_streamer)
             ->first();
         $total_team = Bo_Link::select('nama_team')
             ->distinct()
             ->pluck('nama_team')
             ->toArray();
+
+
+
         return view('dashboard.superadmin.bolink.index', [
             'datauser' => $data_user,
             'title' => $user,
-            'total_team' => $total_team
+            'total_team' => $total_team,
+            'total_stream' => $data_stream,
+            'linkstream' => $link_streamer,
+
         ]);
     }
+
+    // public function superadmindex(string $id)
+    // {
+    //     $user = $id;
+    //     $data_user = Bo_Link::where('nama_team', $user)
+    //     ->first();
+    // $total_team = Bo_Link::select('nama_team')
+    //     ->distinct()
+    //     ->pluck('nama_team')
+    //     ->toArray();
+    // return view('dashboard.superadmin.bolink.index', [
+    //     'datauser' => $data_user,
+    //     'title' => $user,
+    //     'total_team' => $total_team
+    // ]);
+    // }
 
     public function meta(string $id)
     {

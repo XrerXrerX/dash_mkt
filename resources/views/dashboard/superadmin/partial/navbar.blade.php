@@ -46,12 +46,10 @@
             </svg>
         </div>
         <div class="profile_nav">
-            <img class="users_img"
-                src="https://craftypixels.com/placeholder-image/35x35/c2c2c2/fff&amp;text=35x35
-      "
+            <img class="users_img" src="https://craftypixels.com/placeholder-image/35x35/c2c2c2/fff&amp;text=35x35"
                 alt="gambar profile">
             <div class="group_users_name">
-                <span class="users_name">{{ Auth::user()->nama_team }}</span>
+                <span class="users_name">{{ Auth::user()->username }}</span>
                 <div class="group_users_level">
                     <form action="/logout" method="post">
                         @csrf

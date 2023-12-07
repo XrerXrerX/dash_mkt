@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bo_Link;
+use App\Models\SumWebHarian;
+use App\Models\SumWeb;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class LoginController extends Controller
 {
@@ -27,6 +32,10 @@ class LoginController extends Controller
 
     public function index()
     {
+
+
+
+
         if (auth()->check()) {
             return redirect('/bvbvbK1n9'); // Arahkan ke /bvbvbK1n9 jika sudah terautentikasi
         } else {
